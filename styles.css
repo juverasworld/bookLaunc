@@ -152,6 +152,12 @@ body {
     display: none;
 }
 
+.launch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .more-content {
     margin-top: 1rem;
 }
