@@ -1,0 +1,28 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.myfamilycompanion.org/$1",
+      "permanent": true,
+      "condition": {
+        "host": "myfamilycompanion.com"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://www.myfamilycompanion.org/$1",
+      "permanent": true,
+      "condition": {
+        "host": "www.myfamilycompanion.com"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://www.myfamilycompanion.org/$1",
+      "permanent": true,
+      "condition": {
+        "host": "myfamilycompanion.org"
+      }
+    }
+  ]
+}
