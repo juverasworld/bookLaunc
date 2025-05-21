@@ -281,12 +281,16 @@ body {
         text-align:justify;
 }
     .hero-content .book {
-        margin-top: 2rem;
+        margin-top: 10px;
     }
 
     .about-img img {
         margin-bottom: 1rem;
     }
+        .hero-content .book img {
+            max-width: 300px;
+            width: 100%;
+        }
 }
 /* Sticky Header for Small Screens */
 @media (max-width: 768px) {
