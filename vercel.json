@@ -8,7 +8,7 @@
           "value": "myfamilycompanion.com"
         }
       ],
-      "destination": "https://www.myfamilycompanion.org/:1",
+      "destination": "https://www.myfamilycompanion.org/",
       "permanent": true
     },
     {
@@ -19,7 +19,7 @@
           "value": "www.myfamilycompanion.com"
         }
       ],
-      "destination": "https://www.myfamilycompanion.org/:1",
+      "destination": "https://www.myfamilycompanion.org/",
       "permanent": true
     },
     {
@@ -30,7 +30,7 @@
           "value": "myfamilycompanion.org"
         }
       ],
-      "destination": "https://www.myfamilycompanion.org/:1",
+      "destination": "https://www.myfamilycompanion.org/",
       "permanent": true
     }
   ]
