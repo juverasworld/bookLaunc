@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
     property="og:title"
-    content="MyFamilyCompanion – Family Guide by Dr. OVO"
+    content="My Family Companion– Family Health Guide by Dr. OVO"
   />
   <meta
     property="og:description"
-    content="Everything you need to build a safe, healthy, and happy family in Africa."
+    content="From singlehood to parenthood, everything you need to build a safe and healthy family."
   />
   <meta
     name="keywords"
-    content="MyFamilyCompanion, family health, Dr. OVO, parenting, African family guide, child care, marriage advice"
+    content="My Family Companion– Family Health Guide by Dr. OVO, From singlehood to parenthood, everything you need to build a safe and healthy family."
   />
 
   <meta
@@ -23,13 +23,476 @@
   <meta property="og:url" content="https://myfamilycompanion.org" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="author" content="Dr. Otubo Victor" />
-    <title>MyFamilyCompanion – The Family Health Book by Dr. OVO</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+    <title> My Family Companion– Family Health Guide by Dr. OVO
+    </title>
  
-    <link rel="icon" href="img.webp" type="image/png" />
+    <link rel="icon" href="bg1.jpg" type="image/png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 
     <style>
+      .form-input[type="number"] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+.form-input[type="textarea"] {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-input[type="number"]::-webkit-inner-spin-button,
+.form-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#rewardDisplay {
+  background: #f0fff4;
+  border: 1px solid #38a169;
+}
+
+#totalPriceDisplay {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#totalPrice {
+  color: #1a202c;
+  font-weight: 800;
+}
+      .containerss {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .presale-section {
+          background: #333;
+          ;
+            /* background: linear-gradient(135deg, #ff6b6b, #ee5a24); */
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .presale-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .presale-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .presale-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .presale-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .presale-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .price-container {
+            margin: 30px 0;
+        }
+
+        .current-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .savings {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .countdown {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .time-unit {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+
+        .time-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            background: white;
+            color: #ee5a24;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .newsletter-section {
+            background: linear-gradient(135deg, #4c63d2, #2d3748);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+        }
+
+        .newsletter-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .newsletter-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .benefits-list li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .benefits-list li::before {
+            content: '✨';
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+        }
+
+        .form-input {
+            padding: 16px;
+            border: 2px solid gray;
+            border-radius: 12px;
+            /* background: rgba(255, 255, 255, 0.1);
+            color: white; */
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .newsletter-button {
+            /* background: linear-gradient(135deg, #10b981, #059669); */
+        background: #1f2d3d;
+
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+
+        .privacy-note {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .containerss {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .presale-title {
+                font-size: 2rem;
+            }
+
+            .current-price {
+                font-size: 2.8rem;
+            }
+
+            .newsletter-title {
+                font-size: 1.8rem;
+            }
+
+            .countdown-timer {
+                gap: 10px;
+            }
+
+            .time-unit {
+                min-width: 50px;
+            }
+
+            .time-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .presale-section, .newsletter-section {
+                padding: 30px 20px;
+            }
+
+            .presale-title {
+                font-size: 1.8rem;
+            }
+
+            .current-price {
+                font-size: 2.5rem;
+            }
+
+            .newsletter-title {
+                font-size: 1.6rem;
+            }
+        }
+
+      .topics-container {
+  display: flex;
+  /* justify-content: center; */
+  /* padding: 10px; */
+  /* border:4px solid black; */
+  width: 100%;
+  box-sizing: border-box;
+
+
+}
+
+.topics-list {
+  display: inline-flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #333;
+  margin-bottom:10px ;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.topics-list li {
+  position: relative;
+}
+
+.topics-list li:not(:last-child)::after {
+  content: '·';
+  margin: 0 5px;
+  color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .topics-list {
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    /* Maintain 14px font size */
+  }
+
+  .topics-list li:not(:last-child)::after {
+    margin: 0 4px;
+  }
+}
       /* Existing styles remain unchanged */
+      .timer-container {
+  display: flex;
+  padding-bottom: 20px;
+  /* justify-content: center;
+   */
+  width: 100%;
+  box-sizing: border-box;
+  /* border:10px solid black; */
+}
+
+.timer {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.time-unit span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.time-unit .label {
+  font-size: 1rem;
+  color: #666;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .timer {
+    gap: 10px;
+  }
+
+  .time-unit {
+    min-width: 50px;
+    padding: 8px;
+  }
+
+  .time-unit span {
+    font-size: 1.5rem;
+  }
+
+  .time-unit .label {
+    font-size: 0.8rem;
+  }
+}
+
       * {
         margin: 0;
         padding: 0;
@@ -193,7 +656,7 @@
       }
 
       .winner-badge::before {
-        content: "♥";
+        /* content: "♥"; */
         font-size: 16px;
         margin-bottom: 2px;
       }
@@ -666,7 +1129,7 @@
       }
 
       .chat-bubble::before {
-        content: "👋";
+        /* content: "👋"; */
         margin-right: 8px;
         font-size: 16px;
       }
@@ -818,6 +1281,19 @@
         display: flex;
         align-items: center;
         gap: 12px;
+      }
+
+      .imgs{
+        width: 60px;
+        height: 40px;
+        border-radius: 100%;
+        background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: #6b7280;
+        font-size: 16px;
       }
 
       .author-avatar {
@@ -1096,6 +1572,7 @@
         width: 48%;
         margin: 1%;
         transition: all 0.2s ease;
+        width: 100%;
       }
 
       .payment-btn:hover {
@@ -1184,12 +1661,12 @@
 
     <main class="main-content">
       <div class="hero-image">
-        <img src="/bg.jpg" alt="Team collaboration" class="main-image" />
-        <!-- <div class="winner-badge">
+        <img src="/bg1.jpg" alt="Team collaboration" class="main-image" />
+        <div class="winner-badge">
           <div>
-            <div class="winner-text">BOOK OF THE YEAR<br />WINNER</div>
+            <div class="winner-text">90 Days<br />Presale</div>
           </div>
-        </div> -->
+        </div>
         <div class="productivity-card">
           <div class="productivity-subtitle">
             Evoking true stories<br>and practical insights.<br>from a concerned doctor.
@@ -1198,10 +1675,13 @@
       </div>
 
       <div class="hero-content">
-        <div class="author-tag">FROM THE AMAZON BEST SELLING AUTHOR</div>
+        <!-- <div class="author-tag">FROM THE AMAZON BEST SELLING AUTHOR</div> -->
+        
+        <div class="timer-container"><div class="timer"><div class="time-unit"><span id="days">00</span><span class="label">Days</span></div><div class="time-unit"><span id="hours">00</span><span class="label">Hours</span></div><div class="time-unit"><span id="minutes">00</span><span class="label">Minutes</span></div><div class="time-unit"><span id="seconds">00</span><span class="label">Seconds</span></div></div></div>
+      
         <h1 class="hero-title">My Family Companion</h1>
         <p class="hero-description">
-          Evoking true stories and practical insights from a concerned doctor.
+         From singlehood to Parenthood, this book is a comprehensive guide to navigating the journey of family life. It offers practical advice and expert insights to help you build a strong foundation.
         </p>
         <div class="cta-section">
           <a href="#donate" class="more-info-btn" onclick="showDonationOverlay()">Donate Copy</a>
@@ -1216,22 +1696,63 @@
         <span class="close-btn" onclick="closeOverlay()">&times;</span>
         <h2 class="overlay-title">Donate Copies</h2>
         <div class="copy-option" onclick="selectCopyOption(5)">
-          <div class="copy-option-title">5-10 Copies</div>
-          <div class="copy-option-reward">Receive a certificate</div>
+          <div class="copy-option-title">
+            <span style="font-weight: 800;">A.</span>
+            5-20 Copies</div>
+          <div class="copy-option-reward">  Receive a certificate</div>
         </div>
         <div class="copy-option" onclick="selectCopyOption(20)">
-          <div class="copy-option-title">20-50 Copies</div>
-          <div class="copy-option-reward">Website mention</div>
+          <div class="copy-option-title">
+            <span style="font-weight: 800;">B.</span>
+            
+            20-50 Copies</div>
+          <div class="copy-option-reward"> A+ Website mention</div>
         </div>
         <div class="copy-option" onclick="selectCopyOption(100)">
-          <div class="copy-option-title">100+ Copies</div>
-          <div class="copy-option-reward">Website mention + Printing on paperback</div>
+          <div class="copy-option-title">
+            <span style="font-weight: 800;">C.</span>
+            
+            100+ Copies</div>
+          <div class="copy-option-reward"> A+ B+ Printing on paperback</div>
         </div>
-        <div class="payment-options" id="paymentOptions">
-          <button class="payment-btn" onclick="processPayment('paystack')">Pay with Paystack</button>
-          <button class="payment-btn" onclick="processPayment('stripe')">Pay with Stripe</button>
+        <div class="copy-option" onclick="selectCopyOption(100)">
+          <div class="copy-option-title">
+            <span style="font-weight: 800;">D.</span>
+            
+            1000+ Copies</div>
+          <div class="copy-option-reward"> A+ B+ C</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="copyCount">Number of Copies</label>
+          <input
+            type="number"
+            id="copyCount"
+            name="copyCount"
+            class="form-input"
+            placeholder="Enter number of copies"
+            min="1"
+            required
+            oninput="calculateTotal()"
+            style="border: 1px solid black; color: red;"
+          />
+        </div>
+        <!-- <div class="copy-option" id="rewardDisplay">
+          <div class="copy-option-title">Selected Reward</div>
+          <div class="copy-option-reward" id="rewardText">Select copies to see rewards</div>
+        </div> -->
+        <div class="price-container" id="totalPriceDisplay" style="display: none;">
+          <div class="current-price" id="totalPrice">₦0</div>
+        </div>
+        <div class="payment-options" id="paymentOptions" style="display: none;">
+          <button class="payment-btn" onclick="proceedToInternational()">International Order (Amazon)</button>
+          <button class="payment-btn" onclick="proceedToLocal()">Local Order (Paystack)</button>
         </div>
         <button class="confirm-btn" onclick="confirmDonation()">Confirm Selection</button>
+        <!-- <div class="payment-options" id="paymentOptions">
+          <button class="payment-btn" onclick="processPayment('paystack')">Pay with Paystack</button>
+          <button class="payment-btn" onclick="processPayment('stripe')">Pay with Stripe</button>
+        </div> -->
+        <!-- <button class="confirm-btn" onclick="confirmDonation()">Confirm Selection</button> -->
       </div>
     </div>
 
@@ -1240,8 +1761,12 @@
       <div class="overlay-content">
         <span class="close-btn" onclick="closeOverlay()">&times;</span>
         <h2 class="overlay-title">Select Payment Method</h2>
-        <button class="payment-btn" onclick="processPayment('paystack')">Pay with Paystack</button>
-        <button class="payment-btn" onclick="processPayment('stripe')">Pay with Stripe</button>
+        <div style="width: 100%; ">
+
+          <button class="payment-btn" onclick="processPayment('paystack')">Pay with Paystack</button>
+          <button class="payment-btn" onclick="processPayment('stripe')">Pay with Stripe</button>
+       
+        </div>
       </div>
     </div>
 
@@ -1252,8 +1777,12 @@
         <div class="content-section">
           <div class="tagline">About The Author</div>
           <h1 class="main-heading">It's everything, you'll ever need.</h1>
+          <!-- <p class="">Sex . Pregnacy . Maternal & Child Health . Family & Spouse Support</p>
+            -->
+            <div class="topics-container"><ul class="topics-list"><li>Sex</li><li>Pregnancy</li><li>Maternal & Child Health</li><li>Family & Spouse Support</li></ul></div>
+
           <p class="description">
-            Dr. OVO was barely 10 years old when he watched his little sister die from something that should never have taken her life. Today, his work is preventing one maternal and child death every 30 seconds in communities across Africa...
+            Dr. OVO (Otubo Victor Ogemdi)  was barely 10 years old when he watched his little sister die from something that should never have taken her life. Today, his work is preventing one maternal and child death every 30 seconds in communities across Africa...
           </p>
           <div class="stats-container">
             <div class="stat-item">
@@ -1262,24 +1791,81 @@
             </div>
             <div class="stat-item">
               <span class="stat-number orange">15</span>
-              <span class="stat-label">Years<br />Experience</span>
+              <span class="stat-label">Years<br />Combined Experience</span>
             </div>
           </div>
-          <div class="sam">
+          <!-- <div class="sam">
             <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
             <div class="session-dropdown" id="sessionDropdown">
               <a href="https://calendly.com/your-calendly-link" target="_blank" class="session-option">Join Free Weekly Sessions</a>
               <a href="https://zoom.us/j/your-zoom-id" target="_blank" class="session-option">Book Private Session</a>
             </div>
             <button class="cta-button" onclick="handleMoreInfo()">Invite to Speak</button>
+          </div> -->
+          <div class="sam">
+            <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
+            <div class="session-dropdown" id="sessionDropdown">
+              <a href="#" class="session-option" onclick="showFreeSessionOverlay()">Join Free Weekly Sessions</a>
+              <a href="https://zoom.us/j/your-zoom-id" target="_blank" class="session-option">Book Private Session</a>
+            </div>
+            <button class="cta-button" onclick="showInviteSpeakOverlay()">Invite to Speak</button>
           </div>
+          <!-- Free Weekly Session Overlay -->
+<div class="overlay" id="freeSessionOverlay">
+  <div class="overlay-content">
+    <span class="close-btn" onclick="closeOverlays()">×</span>
+    <h2 class="overlay-title">Join Free Weekly Sessions</h2>
+    <form class="newsletter-form" onsubmit="handleFreeSessionSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" for="sessionName">Full Name</label>
+        <input type="text" id="sessionName" name="sessionName" class="form-input" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sessionEmail">Email Address</label>
+        <input type="email" id="sessionEmail" name="sessionEmail" class="form-input" placeholder="Enter your email address" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sessionPhone">Phone Number (Optional)</label>
+        <input type="tel" id="sessionPhone" name="sessionPhone" class="form-input" placeholder="Enter your phone number">
+      </div>
+      <button type="submit" class="confirm-btn">Join Now</button>
+    </form>
+  </div>
+</div>
+
+<!-- Invite to Speak Overlay -->
+<div class="overlay" id="inviteSpeakOverlay">
+  <div class="overlay-content">
+    <span class="close-btn" onclick="closeOverlays()">×</span>
+    <h2 class="overlay-title">Invite Dr. OVO to Speak</h2>
+    <form class="newsletter-form" onsubmit="handleInviteSpeakSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" for="inviteName">Full Name</label>
+        <input type="text" id="inviteName" name="inviteName" class="form-input" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="inviteEmail">Email Address</label>
+        <input type="email" id="inviteEmail" name="inviteEmail" class="form-input" placeholder="Enter your email address" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="inviteOrganization">Organization/Event Name</label>
+        <input type="text" id="inviteOrganization" name="inviteOrganization" class="form-input" placeholder="Enter organization or event name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="inviteDetails">Event Details</label>
+        <textarea id="inviteDetails" name="inviteDetails" class="form-input" placeholder="Provide details about the event (date, location, topic, etc.)" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="confirm-btn">Submit Request</button>
+    </form>
+  </div>
+</div>
         </div>
         <div class="profile-section">
           <div class="profile-image">
             <img src="/author.jpg" alt="Dr Oto Profile" />
           </div>
           <div class="chat-bubble">
-            <div class="chat-header">Dr Otobo Victor</div>
+            <div class="chat-header">Dr OVO</div>
           </div>
         </div>
       </div>
@@ -1304,15 +1890,15 @@
                       </div>
                       <p class="testimonial-text">
                           "
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit delectus, cum incidunt voluptatum nulla in debitis hic aut odio dolorum porro culpa illum itaque quasi. Voluptate magnam distinctio rem suscipit.
-                          
+                          As a doctor… As a writer… And just as a person… The Family Companion is simply one of the best,
+                          most relatable 'medically non-medical' books l've ever read. Wow!
                           "
                       </p>
                       <div class="testimonial-author">
-                          <div class="author-avatar">AC</div>
+                          <div class="author-avatar"><img class="imgs" src="/IMG_74181.jpg" alt=""></div>
                           <div class="author-info">
-                              <div class="author-name">Alison Christian</div>
-                              <div class="author-title">USA Today</div>
+                              <div class="author-name">Dr. Val Oje</div>
+                              <div class="author-title">Medical Doctor</div>
                           </div>
                       </div>
                   </div>
@@ -1327,15 +1913,17 @@
                       </div>
                       <p class="testimonial-text">
                           "
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit delectus, cum incidunt voluptatum nulla in debitis hic aut odio dolorum porro culpa illum itaque quasi. Voluptate magnam distinctio rem suscipit.
-                          
+                          The author's engaging case studies transform complex medical facts into a captivating, accessible narrative packed with valuable insights. A must-read for all.
+
+
                           "
                       </p>
                       <div class="testimonial-author">
-                          <div class="author-avatar">AC</div>
+                        <div class="author-avatar"><img class="imgs" src="/1.png" alt=""></div>
+
                           <div class="author-info">
-                              <div class="author-name">Alison Christian</div>
-                              <div class="author-title">USA Today</div>
+                              <div class="author-name">Prof Emeritus Peter O. Ebigbo</div>
+                              <div class="author-title">Professor</div>
                           </div>
                       </div>
                   </div>
@@ -1348,136 +1936,280 @@
                       </div>
                       <p class="testimonial-text">
                           "
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit delectus, cum incidunt voluptatum nulla in debitis hic aut odio dolorum porro culpa illum itaque quasi. Voluptate magnam distinctio rem suscipit.
-                          
+                          I love the use of relatable stories that humanizes medical topics and keeps the reader engaged. From the first chapter,
+                          I felt like I was sitting with a trusted family doctor. The tone is clear,
+                          warm,
+                          and educational,
+                          which is perfect for a general audience.
                           "
                       </p>
                       <div class="testimonial-author">
-                          <div class="author-avatar">M</div>
+                        <div class="author-avatar"><img class="imgs" src="/IMG_7421.JPG" alt=""></div>
+
                           <div class="author-info">
-                              <div class="author-name">Maria</div>
-                              <div class="author-title">Goodreads</div>
+                              <div class="author-name">Grace Ihejiamizu-Paul</div>
+                              <div class="author-title">Grace</div>
                           </div>
                       </div>
                   </div>
   
                   <!-- Duplicate set of cards for seamless scrolling -->
                   <div class="testimonial-card">
-                      <div class="stars">
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                      </div>
-                      <p class="testimonial-text">
-                          "
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit delectus, cum incidunt voluptatum nulla in debitis hic aut odio dolorum porro culpa illum itaque quasi. Voluptate magnam distinctio rem suscipit.
-                          
-                          "
-                      </p>
-                      <div class="testimonial-author">
-                          <div class="author-avatar">AC</div>
-                          <div class="author-info">
-                              <div class="author-name">Alison Christian</div>
-                              <div class="author-title">USA Today</div>
-                          </div>
-                      </div>
-                  </div>
-  
-                  <div class="testimonial-card">
-                      <div class="stars">
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                      </div>
-                      <p class="testimonial-text">
-                          "
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit delectus, cum incidunt voluptatum nulla in debitis hic aut odio dolorum porro culpa illum itaque quasi. Voluptate magnam distinctio rem suscipit.
-                          
-                          "
-                      </p>
-                      <div class="testimonial-author">
-                          <div class="author-avatar">AC</div>
-                          <div class="author-info">
-                              <div class="author-name">Alison Christian</div>
-                              <div class="author-title">USA Today</div>
-                          </div>
-                      </div>
-                  </div>
-  
-                  <div class="testimonial-card">
-                      <div class="stars">
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                          <span class="star">★</span>
-                      </div>
-                      <p class="testimonial-text">
-                          "
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit delectus, cum incidunt voluptatum nulla in debitis hic aut odio dolorum porro culpa illum itaque quasi. Voluptate magnam distinctio rem suscipit.
-                          
-                          "
-                      </p>
-                      <div class="testimonial-author">
-                          <div class="author-avatar">M</div>
-                          <div class="author-info">
-                              <div class="author-name">Maria</div>
-                              <div class="author-title">Goodreads</div>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "
+                        As a doctor… As a writer… And just as a person… The Family Companion is simply one of the best,
+                        most relatable 'medically non-medical' books l've ever read. Wow!
+                        "
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img class="imgs" src="/IMG_74181.jpg" alt=""></div>
+                        <div class="author-info">
+                            <div class="author-name">Dr. Val Oje</div>
+                            <div class="author-title">Medical Doctor</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "
+                        The author's engaging case studies transform complex medical facts into a captivating, accessible narrative packed with valuable insights. A must-read for all.
+
+
+                        "
+                    </p>
+                    <div class="testimonial-author">
+                      <div class="author-avatar"><img class="imgs" src="/1.png" alt=""></div>
+
+                        <div class="author-info">
+                            <div class="author-name">Prof Emeritus Peter O. Ebigbo</div>
+                            <div class="author-title">Professor</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "
+                        I love the use of relatable stories that humanizes medical topics and keeps the reader engaged. From the first chapter,
+                        I felt like I was sitting with a trusted family doctor. The tone is clear,
+                        warm,
+                        and educational,
+                        which is perfect for a general audience.
+                        "
+                    </p>
+                    <div class="testimonial-author">
+                      <div class="author-avatar"><img class="imgs" src="/IMG_7421.JPG" alt=""></div>
+
+                        <div class="author-info">
+                            <div class="author-name">Grace Ihejiamizu-Paul</div>
+                            <div class="author-title">Grace</div>
+                        </div>
+                    </div>
+                </div>
               </div>
           </div>
       </div>
      </div>
+     <div class="body">
+      
+      <div class="containerss">
+        <!-- Presale Section -->
+        <div class="presale-section">
+            <div class="presale-badge">🔥 Limited Time Offer</div>
+            <h2 class="presale-title">90-Day Presale</h2>
+            <p class="presale-subtitle">Get exclusive early access at an unbeatable price. This offer won't last forever!</p>
+            
+            <div class="price-container">
+                <div class="current-price">₦20K</div>
+                <div class="original-price">Regular Price: ₦30K</div>
+                <div class="savings">Save ₦10,000!</div>
+            </div>
+  
+            <div class="countdown">
+                <div class="countdown-title">⏰ Presale Ends In:</div>
+                <div class="countdown-timer">
+                    <div class="time-unit">
+                        <span class="time-number" id="days">89</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-number" id="hours">23</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-number" id="minutes">45</span>
+                        <span class="time-label">Min</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-number" id="seconds">12</span>
+                        <span class="time-label">Sec</span>
+                    </div>
+                </div>
+            </div>
+  
+            <button class="cta-button" onclick="handlePresaleCTA()">Claim Your Spot Now</button>
+        </div>
+  
+        <!-- Newsletter Section -->
+        <div class="newsletter-section">
+            <h2 class="newsletter-title">Stay In The Loop</h2>
+            <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p>
+  
+            <ul class="benefits-list">
+                <li>Weekly industry insights and trends</li>
+                <li>Exclusive deals and early access</li>
+                <li>Expert tips and strategies</li>
+                <li>Community updates and events</li>
+            </ul>
+  
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+                </div>
+  
+                <button type="submit" class="newsletter-button">Subscribe Now</button>
+            </form>
+  
+            <p class="privacy-note">
+                🔒 We respect your privacy. Unsubscribe at any time. No spam, ever.
+            </p>
+        </div>
+    </div>
+       </div>
      <div class="bodys">
   
-       <div class="section">
-         <div class="section-title">
-             <span>Podcast & Publications</span>
-             <button class="view-more">View more <span>&rarr;</span></button>
-         </div>
-         <div class="cards-container">
-             <!-- <div class="card">
-                 <div class="card-icon green">&#9658;</div>
-                 <div class="card-content">
-                     <div class="card-title">Thirty days get a jobs</div>
-                     <div class="card-subtitle">Self help • 12 episodes</div>
-                 </div>
-             </div>
-             <div class="card">
-                 <div class="card-icon black">N</div>
-                 <div class="card-content">
-                     <div class="card-title">Open letter for fresh graduate</div>
-                     <div class="card-subtitle">Self help • 12 episodes</div>
-                 </div>
-             </div>
-             <div class="card">
-                 <div class="card-icon black">N</div>
-                 <div class="card-content">
-                     <div class="card-title">Advice for initial job interviews</div>
-                     <div class="card-subtitle">Self help • 12 episodes</div>
-                 </div>
-             </div> -->
-             <div class="card">
-                 <div class="card-icon green">&#9658;</div>
-                 <div class="card-content">
-                     <div class="card-title">Work Life Balance Podcast</div>
-                     <div class="card-subtitle">Self help • 12 episodes</div>
-                 </div>
-             </div>
-             <div class="card">
-                 <div class="card-icon black">N</div>
-                 <div class="card-content">
-                     <div class="card-title">You should fail first. It's a key</div>
-                     <div class="card-subtitle">Self help • 12 episodes</div>
-                 </div>
-             </div>
-         </div>
-     </div>
+      
     
+     <div class="section">
+      <div class="section-title">
+          <span>Podcast & Publications</span>
+          <button class="view-more">View more <span>&rarr;</span></button>
+      </div>
+      <div class="cards-container">
+          <!-- <div class="card">
+              <div class="card-icon green">&#9658;</div>
+              <div class="card-content">
+                  <div class="card-title">Thirty days get a jobs</div>
+                  <div class="card-subtitle">Self help • 12 episodes</div>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-icon black">N</div>
+              <div class="card-content">
+                  <div class="card-title">Open letter for fresh graduate</div>
+                  <div class="card-subtitle">Self help • 12 episodes</div>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-icon black">N</div>
+              <div class="card-content">
+                  <div class="card-title">Advice for initial job interviews</div>
+                  <div class="card-subtitle">Self help • 12 episodes</div>
+              </div>
+          </div> -->
+          <div class="card">
+              <div class="card-icon green">&#9658;</div>
+              <div class="card-content">
+                  <div class="card-title">Work Life Balance Podcast</div>
+                  <div class="card-subtitle">Self help • 12 episodes</div>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-icon black">N</div>
+              <div class="card-content">
+                  <div class="card-title">You should fail first. It's a key</div>
+                  <div class="card-subtitle">Self help • 12 episodes</div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script>
+    // Toggle session dropdown
+  // Toggle session dropdown
+  function toggleSessionDropdown() {
+    const dropdown = document.getElementById('sessionDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('sessionDropdown');
+    const button = e.target.closest('.sam .cta-button');
+    if (!dropdown.contains(e.target) && !button) {
+      dropdown.style.display = 'none';
+    }
+  });
+  
+  // Show free session overlay
+  function showFreeSessionOverlay() {
+    document.getElementById('freeSessionOverlay').style.display = 'flex';
+    document.getElementById('sessionDropdown').style.display = 'none';
+  }
+  
+  // Show invite to speak overlay
+  function showInviteSpeakOverlay() {
+    document.getElementById('inviteSpeakOverlay').style.display = 'flex';
+    document.getElementById('sessionDropdown').style.display = 'none';
+  }
+  
+  // Close all overlays
+  function closeOverlays() {
+    const overlays = document.querySelectorAll('.overlay');
+    overlays.forEach(overlay => {
+      overlay.style.display = 'none';
+    });
+    document.getElementById('sessionDropdown').style.display = 'none';
+  }
+  
+  // Handle free session form submission
+  function handleFreeSessionSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('sessionName').value;
+    const email = document.getElementById('sessionEmail').value;
+    const phone = document.getElementById('sessionPhone').value;
+    console.log('Free Session Submission:', { name, email, phone });
+    alert(`Thank you, ${name}! You've signed up for the free weekly sessions. Details will be sent to ${email}.`);
+    closeOverlay();
+  }
+  
+  // Handle invite to speak form submission
+  function handleInviteSpeakSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('inviteName').value;
+    const email = document.getElementById('inviteEmail').value;
+    const organization = document.getElementById('inviteOrganization').value;
+    const details = document.getElementById('inviteDetails').value;
+    console.log('Invite to Speak Submission:', { name, email, organization, details });
+    alert(`Thank you, ${name}! Your request to invite Dr. OVO to speak at ${organization} has been received. We'll contact you at ${email}.`);
+    closeOverlay();
+  }
+  </script>
     <script>
       let selectedCopies = 0;
 
@@ -1491,16 +2223,73 @@
         // Store type in a data attribute or global variable if needed
         document.getElementById('paymentOverlay').dataset.type = type;
       }
+// Show free session overlay
+function showFreeSessionOverlay() {
+  document.getElementById('freeSessionOverlay').style.display = 'flex';
+}
+
+// Show invite to speak overlay
+function showInviteSpeakOverlay() {
+  document.getElementById('inviteSpeakOverlay').style.display = 'flex';
+}
 
       function closeOverlay() {
-        document.getElementById('donationOverlay').style.display = 'none';
-        document.getElementById('paymentOverlay').style.display = 'none';
-        document.getElementById('paymentOptions').style.display = 'none';
-        // Reset selection
-        selectedCopies = 0;
-        document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-      }
+  document.getElementById('donationOverlay').style.display = 'none';
+  document.getElementById('paymentOverlay').style.display = 'none';
 
+  document.getElementById('paymentOptions').style.display = 'none';
+  selectedCopies = 0;
+  document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
+}
+
+
+
+// Handle free session form submission
+function handleFreeSessionSubmit(event) {
+  event.preventDefault();
+  const name = document.getElementById('sessionName').value;
+  const email = document.getElementById('sessionEmail').value;
+  const phone = document.getElementById('sessionPhone').value;
+  alert(`Thank you, ${name}! You've signed up for the free weekly sessions. Details will be sent to ${email}.`);
+  closeOverlay();
+}
+
+// Handle invite to speak form submission
+function handleInviteSpeakSubmit(event) {
+  event.preventDefault();
+  const name = document.getElementById('inviteName').value;
+  const email = document.getElementById('inviteEmail').value;
+  const organization = document.getElementById('inviteOrganization').value;
+  const details = document.getElementById('inviteDetails').value;
+  alert(`Thank you, ${name}! Your request to invite Dr. OVO to speak at ${organization} has been received. We'll contact you at ${email}.`);
+  closeOverlay();
+}
+
+// Toggle session dropdown
+function toggleSessionDropdown() {
+  const dropdown = document.getElementById('sessionDropdown');
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  const dropdown = document.getElementById('sessionDropdown');
+  const button = e.target.closest('.sam .cta-button');
+  if (!dropdown.contains(e.target) && !button) {
+    dropdown.style.display = 'none';
+  }
+});
+
+// Update session dropdown to trigger free session modal
+document.querySelector('.session-option[href*="calendly"]').addEventListener('click', (e) => {
+  e.preventDefault();
+  showFreeSessionOverlay();
+});
+
+// Update Invite to Speak button to trigger invite modal
+function handleMoreInfo() {
+  showInviteSpeakOverlay();
+}
       function selectCopyOption(copies) {
         selectedCopies = copies;
         document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
@@ -1766,6 +2555,150 @@ document.addEventListener('click', (e) => {
           animateWinnerBadge();
         }, 300);
       });
+// Set fixed target date: September 27, 2025, 03:58 PM WAT
+let targetDate=localStorage.getItem('timerTargetDate') ? new Date(localStorage.getItem('timerTargetDate')) : new Date('2025-09-27T15:58:00+01:00'); // WAT is UTC+1
+
+// Save target date to localStorage if not already set
+if ( !localStorage.getItem('timerTargetDate')) {
+  localStorage.setItem('timerTargetDate', targetDate.toISOString());
+}
+
+function updateTimer() {
+  const now=new Date();
+  const timeLeft=targetDate - now;
+
+  if (timeLeft <=0) {
+    // Timer has ended
+    document.getElementById('days').textContent='00';
+    document.getElementById('hours').textContent='00';
+    document.getElementById('minutes').textContent='00';
+    document.getElementById('seconds').textContent='00';
+    return;
+  }
+
+  const days=Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours=Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes=Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds=Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  document.getElementById('days').textContent=String(days).padStart(2, '0');
+  document.getElementById('hours').textContent=String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent=String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent=String(seconds).padStart(2, '0');
+}
+
+// Update timer immediately and then every second
+updateTimer();
+setInterval(updateTimer, 1000);
     </script>
+      <script>
+    const pricePerCopy = 20000; // ₦20,000 per copy
+    const amazonLink = "https://www.amazon.com/your-book-link"; // Replace with actual Amazon link
+    
+    function showDonationOverlay() {
+      document.getElementById('donationOverlay').style.display = 'flex';
+      document.getElementById('paymentOptions').style.display = 'none';
+      document.getElementById('totalPriceDisplay').style.display = 'none';
+      document.getElementById('copyCount').value = '';
+      document.getElementById('rewardText').textContent = 'Select copies to see rewards';
+      document.getElementById('totalPrice').textContent = '₦0';
+    }
+    
+    function closeOverlay() {
+      document.getElementById('donationOverlay').style.display = 'none';
+      document.getElementById('paymentOverlay').style.display = 'none';
+      document.getElementById('paymentOptions').style.display = 'none';
+      selectedCopies = 0;
+    }
+    
+    function calculateTotal() {
+      const copyCountInput = document.getElementById('copyCount');
+      selectedCopies = parseInt(copyCountInput.value) || 0;
+      const totalPrice = selectedCopies * pricePerCopy;
+    
+      // Update total price display
+      document.getElementById('totalPrice').textContent = `₦${totalPrice.toLocale .format('en-NG')}`;
+    
+      // Update reward text based on copy count
+      let rewardText = '';
+      if (selectedCopies >= 1000) {
+        rewardText = 'Receive a certificate + Website mention + Printing on paperback';
+      } else if (selectedCopies >= 100) {
+        rewardText = 'Receive a certificate + Website mention';
+      } else if (selectedCopies >= 20) {
+        rewardText = 'Receive a certificate';
+      } else if (selectedCopies >= 5) {
+        rewardText = 'Receive a certificate';
+      } else {
+        rewardText = 'Select at least 5 copies to see rewards';
+      }
+      document.getElementById('rewardText').textContent = rewardText;
+    }
+    
+    // function confirmDonation() {
+    //   if (selectedCopies < 5) {
+    //     alert('Please select at least 5 copies to donate');
+    //     return;
+    //   }
+    //   document.getElementById('totalPriceDisplay').style.display = 'block';
+    //   document.getElementById('paymentOptions').style.display = 'flex';
+    // }
+    
+    function confirmDonation() {
+        const copyCountInput = document.getElementById('copyCount');
+        selectedCopies = parseInt(copyCountInput.value) || 0;
+    
+        if (selectedCopies < 5) {
+            alert('Please select at least 5 copies to donate');
+            return;
+        }
+    
+        // Update total price display
+        const totalPrice = selectedCopies * pricePerCopy;
+        document.getElementById('totalPrice').textContent = `₦${totalPrice.toLocaleString('en-NG')}`;
+        document.getElementById('totalPriceDisplay').style.display = 'block';
+        document.getElementById('paymentOptions').style.display = 'flex';
+    }
+    
+    function proceedToInternational() {
+      if (selectedCopies < 5) {
+        alert('Please select at least 5 copies to proceed');
+        return;
+      }
+      // Redirect to Amazon
+      window.location.href = amazonLink;
+    }
+    
+    function proceedToLocal() {
+      if (selectedCopies < 5) {
+        alert('Please select at least 5 copies to proceed');
+        return;
+      }
+      // Calculate total amount in kobo (Paystack requires amount in kobo)
+      const totalAmount = selectedCopies * pricePerCopy * 100;
+      // Initialize Paystack payment
+      initiatePaystackPayment(totalAmount);
+    }
+    
+    function initiatePaystackPayment(amount) {
+      // Replace with your actual Paystack public key
+      const paystackPublicKey = 'your-paystack-public-key'; // Replace with your key
+      const handler = PaystackPop.setup({
+        key: paystackPublicKey,
+        email: 'customer@example.com', // Replace with dynamic email if available
+        amount: amount,
+        currency: 'NGN',
+        callback: function (response) {
+          alert('Payment successful! Reference: ' + response.reference);
+          closeOverlay();
+          // Optionally, send payment details to your server for verification
+        },
+        onClose: function () {
+          alert('Payment window closed');
+        }
+      });
+      handler.openIframe();
+    }
+      </script>
   </body>
 </html>
