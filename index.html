@@ -227,7 +227,81 @@
             padding: 40px;
             color: white;
         }
+/* More Link Styling */
+.more-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
+.more-link:hover {
+  text-decoration: underline;
+}
+
+/* Popup Styling */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid black;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close-popup {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-popup:hover {
+  color: #ff0000;
+}
+
+.popup-text {
+  line-height: 1.6;
+  color: #333;
+}
+
+.popup-text p {
+  margin-bottom: 15px;
+}
+/* .popup-text {
+margin-bottom: 5%;
+} */
+.popup-text em {
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .popup-content {
+    width: 95%;
+    padding: 20px;
+  }
+}
         .newsletter-title {
             font-size: 2.2rem;
             font-weight: 700;
@@ -735,6 +809,14 @@
         letter-spacing: -1px;
       }
 
+      .hero-descript {
+        color: #4a5568;
+        font-size: 18px;
+        line-height: 1.6;
+        /* margin-bottom: 40px; */
+        font-weight: 400;
+        letter-spacing: -0.2px;
+      }
       .hero-description {
         color: #4a5568;
         font-size: 18px;
@@ -1100,6 +1182,7 @@
         width: 350px;
         height: 350px;
         border-radius: 20px;
+    /* margin-top: 20%; */
         background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
         position: relative;
         overflow: hidden;
@@ -1111,6 +1194,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        /* padding-top: 10px; */
+        /* border: 10px black solid ; */
+        /* margin-top: 10; */
       }
 
       .chat-bubble {
@@ -1673,19 +1759,35 @@
           </div>
         </div>
       </div>
-
+    
       <div class="hero-content">
-        <!-- <div class="author-tag">FROM THE AMAZON BEST SELLING AUTHOR</div> -->
-        
         <div class="timer-container"><div class="timer"><div class="time-unit"><span id="days">00</span><span class="label">Days</span></div><div class="time-unit"><span id="hours">00</span><span class="label">Hours</span></div><div class="time-unit"><span id="minutes">00</span><span class="label">Minutes</span></div><div class="time-unit"><span id="seconds">00</span><span class="label">Seconds</span></div></div></div>
       
         <h1 class="hero-title">My Family Companion</h1>
-        <p class="hero-description">
-         From singlehood to Parenthood, this book is a comprehensive guide to navigating the journey of family life. It offers practical advice and expert insights to help you build a strong foundation.
+        <p class="hero-descript " style="padding-bottom:5px ;">
+          Building a healthy family starts long before the wedding day, and continues with every decision you make as a parent 
         </p>
+        <p class="hero-description" style="">In <em>My Family Companion</em>, Dr. OVO draws from years of medical education and practice, real-life stories, and personal experience to guide you through every stage of family life—from choosing the right partner  <a href="#" class="more-link" onclick="showMorePopup()">...  more</a></p>
+
         <div class="cta-section">
           <a href="#donate" class="more-info-btn" onclick="showDonationOverlay()">Donate Copy</a>
           <a href="#payment" class="more-info-btn" onclick="showPaymentOptions('presale')">Presale Order</a>
+        </div>
+      </div>
+    
+      <!-- Popup Container -->
+      <div id="morePopup" class="popup-overlay" >
+        <div class="popup-content">
+          <span class="close-popup" onclick="closeMorePopup()">&times;</span>
+          <div class="popup-text" style="margin-bottom: 5%;">
+            <!-- <span>(medically) to navigating pregnancy, childbirth, newborn care, and parenting young children. Written in a simple, warm, and conversational style, this book answers the questions many families are too uninformed, shy or overwhelmed to ask.</span> -->
+            <p>Building a healthy family starts long before the wedding day—and continues with every decision you make as a parent.</p>
+            <p style="margin-bottom: 5px;">In <em>My Family Companion</em>, Dr. OVO draws from years of medical education and practice, real-life stories, and personal experience to guide you through every stage of family life—from choosing the right partner (medically) to navigating pregnancy, childbirth, newborn care, and parenting young children. Written in a simple, warm, and conversational style, this book answers the questions many families are too uninformed, shy or overwhelmed to ask.</p>
+            <p>Whether you’re single, newly married, expecting a baby, or raising little ones, <em>My Family Companion</em> equips you with life-saving insights.</p>
+            <p>Every chapter begins with a true and relatable story, followed by a series of conversationally tailored practical advice, with current medically accurate information.</p>
+            <p>This book empowers you to make informed choices and build a strong, healthy home—one decision at a time.</p>
+            <p>It puts a doctor on the shelf of every household because every family deserves a trusted companion.</p>
+          </div>
         </div>
       </div>
     </main>
@@ -1862,7 +1964,7 @@
         </div>
         <div class="profile-section">
           <div class="profile-image">
-            <img src="/author.jpg" alt="Dr Oto Profile" />
+            <img src="/author2.jpg" alt="Dr Oto Profile" />
           </div>
           <div class="chat-bubble">
             <div class="chat-header">Dr OVO</div>
@@ -2152,6 +2254,27 @@
   <script>
     // Toggle session dropdown
   // Toggle session dropdown
+  function showMorePopup() {
+  document.getElementById('morePopup').style.display = 'flex';
+}
+
+function closeMorePopup() {
+  document.getElementById('morePopup').style.display = 'none';
+}
+
+// Close popup when clicking outside the content
+document.getElementById('morePopup').addEventListener('click', function(event) {
+  if (event.target === this) {
+    closeMorePopup();
+  }
+});
+
+// Close popup with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeMorePopup();
+  }
+});
   function toggleSessionDropdown() {
     const dropdown = document.getElementById('sessionDropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
