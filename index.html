@@ -620,12 +620,21 @@ margin-bottom: 5%;
         font-weight: 700;
         color: #1a202c;
         letter-spacing: -0.5px;
+        /* border-bottom: 2px solid #fbbf24; */
+
       }
+     
+
+
 
       .logo-icon {
         width: 42px;
         height: 42px;
         margin-right: 8px;
+        /* border-bottom: 2px solid #fbbf24; */
+        position: relative;
+  display: inline-block; /* Ensures the underline fits the text width */
+  text-align: none;
         padding: 10px;
         background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
         border-radius: 8px;
@@ -636,7 +645,15 @@ margin-bottom: 5%;
         font-size: 16px;
         font-weight: 600;
       }
-
+      .logo-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust distance of underline from text */
+  /* width: 100%; */
+  height: 2px; /* Thickness of underline */
+  background-color: #ffff00; /* Yellow color */
+}
       .nav-menu {
         display: flex;
         list-style: none;
@@ -1006,6 +1023,7 @@ flex-direction: column;
         background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
         border-radius: 8px;
         display: none;
+        border-bottom: 2px solid #fbbf24;
         /* flex: ; */
         align-items: center;
         justify-content: center;
@@ -1935,7 +1953,7 @@ flex-direction: column;
             <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
             <div class="session-dropdown" id="sessionDropdown">
               <a href="#" class="session-option" onclick="showFreeSessionOverlay()">Join Free Weekly Sessions</a>
-              <a href="https://zoom.us/j/your-zoom-id" target="_blank" class="session-option">Book Private Session</a>
+              <a href="https://zoom.us/j/your-zoom-id" target="_blank" class="session-option">Book Private Paid  Session</a>
             </div>
             <button class="cta-button" onclick="showInviteSpeakOverlay()">Invite to Speak</button>
           </div>
