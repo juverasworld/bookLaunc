@@ -312,6 +312,13 @@ margin-bottom: 5%;
             margin-bottom: 16px;
             line-height: 1.3;
         }
+        .newsletter-titles {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
 
         .newsletter-subtitle {
             font-size: 1.1rem;
@@ -322,11 +329,11 @@ margin-bottom: 5%;
 
         .benefits-list {
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .benefits-list li {
-            padding: 12px 0;
+            padding: 4px 0;
             display: flex;
             align-items: center;
             font-size: 1rem;
@@ -1989,6 +1996,8 @@ flex-direction: column;
           <a href="#blog">Blog</a>
           <a href="#join-community">Join Community</a>
           <a href="#events">Events</a>
+          <a href="#Podcast">Podcast</a>
+
         </nav>
         <!-- Hamburger Menu for Small Screens -->
         <div class="hamburger">
@@ -2001,6 +2010,7 @@ flex-direction: column;
           <a href="#blog">Blog</a>
           <a href="#join-community">Join Community</a>
           <a href="#events">Events</a>
+          <a href="#Podcast">Podcast</a>
         </div>
         <a href="#payment" class="contact-btn" onclick="showPaymentOptions('presale')">Presale Order</a>
       </div>
@@ -2487,13 +2497,13 @@ flex-direction: column;
                 </div>
             </div> -->
   
-            <button class="cta-button" onclick="handlePresaleCTA()">Claim Your Spot Now</button>
+            <button class="cta-button" onclick="handlePresaleCTA()">Order Presale Now</button>
         </div>
   
         <!-- Newsletter Section -->
         <div class="newsletter-section">
-            <h2 class="newsletter-title">Stay In The Loop</h2>
-            <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p>
+            <h2 class="newsletter-titles">Join Community</h2>
+            <!-- <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p> -->
   
             <ul class="benefits-list" id="join-community">
                 <li>
@@ -2512,6 +2522,8 @@ flex-direction: column;
                 <!-- <li>Expert tips and strategies</li>
                 <li>Community updates and events</li> -->
             </ul>
+            <h2 class="newsletter-titles">Stay In The Loop</h2>
+            <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p>
   
             <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
                 <div class="form-group">

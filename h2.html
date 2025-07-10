@@ -69,7 +69,8 @@
 
       .contact-btn:hover, .more-info-btn:hover {
         background: #38a169;
-        transform: translateY(-1px);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
       }
 
       .main-content {
@@ -138,6 +139,22 @@
         width: 90%;
         position: relative;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        animation: bounceIn 0.5s ease-out;
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
       }
 
       .close-btn {
@@ -147,6 +164,11 @@
         font-size: 24px;
         cursor: pointer;
         color: #4a5568;
+        transition: transform 0.2s ease;
+      }
+
+      .close-btn:hover {
+        transform: scale(1.2);
       }
 
       .overlay-title {
@@ -175,11 +197,13 @@
         width: 100%;
         font-size: 1rem;
         color: #1a202c;
+        transition: transform 0.2s ease, border-color 0.2s ease;
       }
 
       .form-input:focus {
         outline: none;
         border-color: #38a169;
+        transform: scale(1.02);
       }
 
       .confirm-btn, .payment-btn {
@@ -197,6 +221,8 @@
 
       .confirm-btn:hover, .payment-btn:hover {
         background: #38a169;
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
       }
 
       .anonymous-btn {
@@ -209,10 +235,13 @@
         cursor: pointer;
         width: 100%;
         margin: 10px 0;
+        transition: all 0.2s ease;
       }
 
       .anonymous-btn:hover {
         background: #e2e8f0;
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
       .copy-option {
@@ -222,11 +251,26 @@
         border-radius: 8px;
         cursor: pointer;
         transition: all 0.2s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
+
+      .copy-option:nth-child(1) { animation-delay: 0.1s; }
+      .copy-option:nth-child(2) { animation-delay: 0.2s; }
+      .copy-option:nth-child(3) { animation-delay: 0.3s; }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .copy-option:hover {
         background: #f7fafc;
         border-color: #38a169;
+        transform: scale(1.02);
       }
 
       .copy-option.selected {
@@ -373,7 +417,7 @@
         <div class="form-group">
           <label class="form-label">Select Currency</label>
           <button class="payment-btn" onclick="showPresaleForm('local')">Local (₦20,000/copy)</button>
-          <button class="payment-btn" onclick="showPresaleForm('international')">International ($20/copy)</button>
+          <button class="payment-btn" onclick="showPresaleForm('international')">International ($15/copy)</button>
         </div>
       </div>
     </div>
@@ -383,7 +427,7 @@
       <div class="overlay-content">
         <span class="close-btn" onclick="closeOverlays()">×</span>
         <h2 class="overlay-title" id="presaleFormTitle">Presale Details</h2>
-        <form class="newsletter-form" onsubmit="handlePresaleSubmit(event)">
+        <form class="newsletter-form" id="presaleForm" onsubmit="handlePresaleSubmit(event)">
           <div class="form-group">
             <label class="form-label" for="presaleQuantity">Number of Copies</label>
             <input type="number" id="presaleQuantity" class="form-input" placeholder="Enter number of copies" min="1" required oninput="calculatePresaleTotal()">
@@ -442,7 +486,7 @@
       // Configuration
       const config = {
         pricePerCopyNGN: 20000, // ₦20,000 per copy
-        pricePerCopyUSD: 20,    // $20 per copy
+        pricePerCopyUSD: 15,    // Updated to $15 per copy
         sessionPriceNGN: 75000, // ₦75,000 per session
         sessionPriceUSD: 50,    // $50 per session
         amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
@@ -652,10 +696,8 @@
           return;
         }
         try {
-          if (isAnonymous) {
-            document.getElementById('donationForm').style.display = 'none';
-            document.getElementById('donationPaymentOptions').style.display = 'block';
-          }
+          document.getElementById('donationForm').style.display = 'none';
+          document.getElementById('donationPaymentOptions').style.display = 'block';
         } catch (error) {
           console.error('Error in proceedToDonationPayment:', error);
           alert('Error proceeding to payment. Please try again.');
@@ -713,6 +755,7 @@
             if (selectedPresale.type === 'local') {
               initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
             } else {
+              console.log('Redirecting to Amazon for international presale');
               window.location.href = config.amazonLink;
             }
           } else {
