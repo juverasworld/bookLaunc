@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 
     <style>
-      .form-input[type="number"] {
+      /* .form-input[type="number"] {
   -webkit-appearance: none;
   -moz-appearance: textfield;
 }
@@ -46,7 +46,7 @@
 .form-input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 #rewardDisplay {
   background: #f0fff4;
@@ -288,6 +288,7 @@
 .popup-text {
   line-height: 1.6;
   color: #333;
+  text-align: justify;
 }
 
 .popup-text p {
@@ -319,6 +320,15 @@ margin-bottom: 5%;
             text-align: center;
             margin-bottom: 16px;
             line-height: 1.3;
+            /* color: #ed8936; */
+        }
+        .newsletter-titless {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            color: #ed8936;
         }
 
         .newsletter-subtitle {
@@ -339,6 +349,8 @@ margin-bottom: 5%;
             align-items: center;
             font-size: 1rem;
             opacity: 0.95;
+            justify-content: center;
+            text-align: center;
         }
 
         .benefits-list li {
@@ -363,30 +375,32 @@ margin-bottom: 5%;
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        margin-bottom: 15px;
+      }
 
-        .form-label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.9;
-        }
+      .form-label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: #1a202c;
+        margin-bottom: 8px;
+      }
 
-        .form-input {
-            padding: 16px;
-            border: 2px solid gray;
-            border-radius: 12px;
-            /* background: rgba(255, 255, 255, 0.1);
-            color: white; */
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+      .form-input {
+        padding: 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        width: 100%;
+        font-size: 1rem;
+        color: #1a202c;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
 
-        }
+      .form-input:focus {
+        outline: none;
+        border-color: #38a169;
+        transform: scale(1.02);
+      }
 
         .confirm-btn, .payment-btn {
         background: #1f2d3d;
@@ -406,7 +420,7 @@ margin-bottom: 5%;
         transform: scale(1.05);
         box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
       }
-        .form-input::placeholder {
+        /* .form-input::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
 
@@ -415,7 +429,7 @@ margin-bottom: 5%;
             border-color: rgba(255, 255, 255, 0.5);
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-1px);
-        }
+        } */
 
         .newsletter-button {
             /* background: linear-gradient(135deg, #10b981, #059669); */
@@ -482,8 +496,11 @@ margin-bottom: 5%;
         @media (max-width: 480px) {
             .presale-section, .newsletter-section {
                 padding: 30px 20px;
+                
             }
-
+            .newsletter-section{
+              text-align: center;
+            }
             .presale-title {
                 font-size: 1.8rem;
             }
@@ -549,8 +566,8 @@ margin-bottom: 5%;
       .timer-container {
   display: flex;
   padding-bottom: 20px;
-  /* justify-content: center;
-   */
+  justify-content: center;
+  
   width: 100%;
   box-sizing: border-box;
   /* border:10px solid black; */
@@ -668,29 +685,23 @@ margin-bottom: 5%;
 .logo {
   display: flex;
   align-items: center;
+  /* border: 10px solid pink; */
   justify-content: center; /* Center the logo */
 }
 
 /* Logo Icon */
 .logo-icon {
-  width: 50px; /* Increased size for better visibility */
+  width: 50px; 
   height: 50px;
+  /* border: 10px solid pink; */
+
   border-radius: 8px;
-  background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
+  /* background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%); */
   padding: 8px;
   display: block; /* Ensure it behaves as a block for centering */
   position: relative;
 }
 
-.logo-icon::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 2px;
-  background-color: #ffff00; /* Yellow underline */
-}
 
 /* Nav Container */
 .nav-container {
@@ -717,6 +728,7 @@ margin-bottom: 5%;
   width: 100%;
   height: 3px;
   background: #1a202c;
+  /* border: 5px solid black; */
   transition: all 0.3s ease;
 }
 
@@ -880,15 +892,7 @@ margin-bottom: 5%;
         font-size: 16px;
         font-weight: 600;
       }
-      .logo-icon::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px; /* Adjust distance of underline from text */
-  /* width: 100%; */
-  height: 2px; /* Thickness of underline */
-  background-color: #ffff00; /* Yellow color */
-}
+      
       .nav-menu {
         display: flex;
         list-style: none;
@@ -1258,7 +1262,7 @@ flex-direction: column;
         background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
         border-radius: 8px;
         /* display: none; */
-        border-bottom: 2px solid #fbbf24;
+        /* border-bottom: 2px solid #fbbf24; */
         /* flex: ; */
         align-items: center;
         justify-content: center;
@@ -1276,7 +1280,7 @@ flex-direction: column;
         }
 
         .hero-title {
-          font-size: 42px;
+          font-size: 30px;
         }
 
         .hero-content {
@@ -1822,6 +1826,8 @@ flex-direction: column;
         }
   .bodys {
             padding-top: 20px;
+            padding-left: 4px;
+            padding-right: 4px;
             padding-bottom: 20px;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 
@@ -2189,8 +2195,8 @@ flex-direction: column;
           <h2 class="overlay-title" id="donationOverlayTitle">Donation Details</h2>
           <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
             <div class="form-group">
-              <label class="form-label" for="donationName">Full Name</label>
-              <input type="text" id="donationName" class="form-input" placeholder="Enter your full name" required>
+              <label class="form-label" for="donationName">First name</label>
+              <input type="text" id="donationName" class="form-input" placeholder="Enter your First name" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="donationEmail">Email Address</label>
@@ -2227,7 +2233,7 @@ flex-direction: column;
           <div class="form-group">
             <label class="form-label">Select Currency</label>
             <button class="payment-btn" onclick="showPresaleForm('local')">Local (₦20,000/copy)</button>
-            <button class="payment-btn" onclick="showPresaleForm('international')">International ($15/copy)</button>
+            <button class="payment-btn" onclick="showPresaleForm('international')">International (Amazon)</button>
           </div>
         </div>
       </div>
@@ -2243,8 +2249,8 @@ flex-direction: column;
               <input type="number" id="presaleQuantity" class="form-input" placeholder="Enter number of copies" min="1" required oninput="calculatePresaleTotal()">
             </div>
             <div class="form-group">
-              <label class="form-label" for="presaleName">Full Name</label>
-              <input type="text" id="presaleName" class="form-input" placeholder="Enter your full name" required>
+              <label class="form-label" for="presaleName">First name</label>
+              <input type="text" id="presaleName" class="form-input" placeholder="Enter your First name" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="presaleEmail">Email Address</label>
@@ -2254,9 +2260,9 @@ flex-direction: column;
               <label class="form-label" for="presaleLocation">Location</label>
               <input type="text" id="presaleLocation" class="form-input" placeholder="Enter your location" required>
             </div>
-            <div class="price-container">
+            <!-- <div class="price-container">
               <div class="current-price" id="presaleTotalPrice">Summary: 0 Copies, ₦0</div>
-            </div>
+            </div> -->
             <button type="submit" class="confirm-btn">Proceed to Payment</button>
           </form>
         </div>
@@ -2269,8 +2275,8 @@ flex-direction: column;
           <h2 class="overlay-title">Book a Paid Session</h2>
           <form class="newsletter-form" id="sessionForm" onsubmit="handleSessionSubmit(event)">
             <div class="form-group">
-              <label class="form-label" for="sessionName">Full Name</label>
-              <input type="text" id="sessionName" class="form-input" placeholder="Enter your full name" required>
+              <label class="form-label" for="sessionName">First name</label>
+              <input type="text" id="sessionName" class="form-input" placeholder="Enter your First name" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="sessionEmail">Email Address</label>
@@ -2340,8 +2346,8 @@ flex-direction: column;
     <h2 class="overlay-title">Join Free Weekly Sessions</h2>
     <form class="newsletter-form" onsubmit="handleFreeSessionSubmit(event)">
       <div class="form-group">
-        <label class="form-label" for="sessionName">Full Name</label>
-        <input type="text" id="sessionName" name="sessionName" class="form-input" placeholder="Enter your full name" required>
+        <label class="form-label" for="sessionName">First name</label>
+        <input type="text" id="sessionName" name="sessionName" class="form-input" placeholder="Enter your First name" required>
       </div>
       <div class="form-group">
         <label class="form-label" for="sessionEmail">Email Address</label>
@@ -2363,8 +2369,8 @@ flex-direction: column;
     <h2 class="overlay-title">Invite Dr. OVO to Speak</h2>
     <form class="newsletter-form" onsubmit="handleInviteSpeakSubmit(event)">
       <div class="form-group">
-        <label class="form-label" for="inviteName">Full Name</label>
-        <input type="text" id="inviteName" name="inviteName" class="form-input" placeholder="Enter your full name" required>
+        <label class="form-label" for="inviteName">First name</label>
+        <input type="text" id="inviteName" name="inviteName" class="form-input" placeholder="Enter your First name" required>
       </div>
       <div class="form-group">
         <label class="form-label" for="inviteEmail">Email Address</label>
@@ -2565,33 +2571,20 @@ flex-direction: column;
   
       
     
-      <div class="section">
+      <div class="section" id="Podcast">
        <div class="section-title">
-           <span>Podcast & Publications</span>
+           <span>Podcast</span>
            <button class="view-more">View more <span>&rarr;</span></button>
        </div>
        <div class="cards-container">
-           <!-- <div class="card">
+      
+           <div class="card">
                <div class="card-icon green">&#9658;</div>
                <div class="card-content">
-                   <div class="card-title">Thirty days get a jobs</div>
+                   <div class="card-title">Work Life Balance Podcast</div>
                    <div class="card-subtitle">Self help • 12 episodes</div>
                </div>
            </div>
-           <div class="card">
-               <div class="card-icon black">N</div>
-               <div class="card-content">
-                   <div class="card-title">Open letter for fresh graduate</div>
-                   <div class="card-subtitle">Self help • 12 episodes</div>
-               </div>
-           </div>
-           <div class="card">
-               <div class="card-icon black">N</div>
-               <div class="card-content">
-                   <div class="card-title">Advice for initial job interviews</div>
-                   <div class="card-subtitle">Self help • 12 episodes</div>
-               </div>
-           </div> -->
            <div class="card">
                <div class="card-icon green">&#9658;</div>
                <div class="card-content">
@@ -2612,7 +2605,7 @@ flex-direction: column;
       
       <div class="containerss">
         <!-- Presale Section -->
-        <div class="presale-section">
+        <div class="presale-section" id="blog">
             <div class="presale-badge">🔥 Limited Time Offer</div>
             <h2 class="presale-title">90-Day Presale</h2>
             <p class="presale-subtitle">Get exclusive early access at an unbeatable price. This offer won't last forever!</p>
@@ -2622,37 +2615,17 @@ flex-direction: column;
             <img src="/WhatsApp Image 2025-07-09 at 08.47.50_9462555c.jpg" alt="" class="main-image">
             </div>
   
-            <!-- <div class="countdown">
-                <div class="countdown-title">⏰ Presale Ends In:</div>
-                <div class="countdown-timer">
-                    <div class="time-unit">
-                        <span class="time-number" id="days">89</span>
-                        <span class="time-label">Days</span>
-                    </div>
-                    <div class="time-unit">
-                        <span class="time-number" id="hours">23</span>
-                        <span class="time-label">Hours</span>
-                    </div>
-                    <div class="time-unit">
-                        <span class="time-number" id="minutes">45</span>
-                        <span class="time-label">Min</span>
-                    </div>
-                    <div class="time-unit">
-                        <span class="time-number" id="seconds">12</span>
-                        <span class="time-label">Sec</span>
-                    </div>
-                </div>
-            </div> -->
+          
   
             <button class="cta-button" onclick="handlePresaleCTA()">Order Presale Now</button>
         </div>
   
         <!-- Newsletter Section -->
-        <div class="newsletter-section">
-            <h2 class="newsletter-titles">Join Community</h2>
+        <div class="newsletter-section" id="join-community">
+            <h2 class="newsletter-titless" >Join Community</h2>
             <!-- <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p> -->
   
-            <ul class="benefits-list" id="join-community">
+            <ul class="benefits-list" >
               <li>
                   <i class="fab fa-whatsapp"></i>
                   <a href="https://whatsapp.com/channel/0029VbB0G3AEKyZDnb8juE46" class="a" style="">
@@ -2662,17 +2635,18 @@ flex-direction: column;
               <li>
                   <i class="fab fa-telegram-plane"></i>
                   <a href="https://t.me/myfamilycompanion" class="a" style="">
-                      Join Our Telegram Channel
+                      Join Our Telegram Group
                   </a>
               </li>
           </ul>
-            <h2 class="newsletter-titles">Stay In The Loop</h2>
-            <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p>
+            <h2 class="newsletter-titles">Join the My Family Companion Circle. 
+            </h2>
+            <p class="newsletter-subtitle">Every week, I share honest stories, doctor-backed insights, and practical guides to help you build a healthy, happy home—now or later</p>
   
             <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
                 <div class="form-group">
-                    <label class="form-label" for="name">Full Name</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                    <label class="form-label" for="name">First name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your First name" required>
                 </div>
                 
                 <div class="form-group">
@@ -2690,767 +2664,758 @@ flex-direction: column;
     </div>
        </div>
     
-<script>
-  // Configuration
-const config = {
-  pricePerCopyNGN: 20000, // ₦20,000 per copy
-  pricePerCopyUSD: 15,    // $15 per copy
-  sessionPriceNGN: 75000, // ₦75,000 per session
-  sessionPriceUSD: 50,    // $50 per session
-  amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
-  paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack public key
-  stripePublicKey: 'YOUR_STRIPE_PUBLIC_KEY',     // Replace with your Stripe public key
-  web3FormsAccessKey: 'YOUR_ACCESS_KEY',         // Replace with your Web3Forms access key
-  stripeServerEndpoint: 'YOUR_SERVER_ENDPOINT'   // Replace with your server endpoint for Stripe
-};
-
-let selectedDonation = { copies: 0, reward: '', range: '' };
-let selectedPresale = { type: '', copies: 0 };
-
-// Overlay Management
-function showDonationOverlay() {
-  console.log('Opening donation quantity overlay');
-  document.getElementById('donationQuantityOverlay').style.display = 'flex';
-  resetDonationForm();
-}
-
-function showPresaleOverlay() {
-  console.log('Opening presale overlay');
-  document.getElementById('presaleOverlay').style.display = 'flex';
-}
-
-function showPresaleForm(type) {
-  console.log(`Showing presale form for ${type}`);
-  selectedPresale.type = type;
-  document.getElementById('presaleOverlay').style.display = 'none';
-  document.getElementById('presaleFormOverlay').style.display = 'flex';
-  document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale ($)';
-  resetPresaleForm();
-}
-
-function showSessionOverlay() {
-  console.log('Opening session overlay');
-  document.getElementById('sessionOverlay').style.display = 'flex';
-  resetSessionForm();
-}
-
-function showFreeSessionOverlay() {
-  console.log('Opening free session overlay');
-  document.getElementById('freeSessionOverlay').style.display = 'flex';
-}
-
-function showInviteSpeakOverlay() {
-  console.log('Opening invite to speak overlay');
-  document.getElementById('inviteSpeakOverlay').style.display = 'flex';
-}
-
-function showMorePopup() {
-  console.log('Opening more popup');
-  document.getElementById('morePopup').style.display = 'flex';
-}
-
-function closeMorePopup() {
-  console.log('Closing more popup');
-  document.getElementById('morePopup').style.display = 'none';
-}
-
-function closeOverlays() {
-  console.log('Closing all overlays');
-  document.querySelectorAll('.overlay').forEach(overlay => {
-    overlay.style.display = 'none';
-  });
-  document.getElementById('sessionDropdown').style.display = 'none';
-  resetForms();
-}
-
-function resetForms() {
-  console.log('Resetting all forms');
-  selectedDonation = { copies: 0, reward: '', range: '' };
-  selectedPresale = { type: '', copies: 0 };
-  const donationCopyCount = document.getElementById('donationCopyCount');
-  if (donationCopyCount) donationCopyCount.value = '';
-  const donationTotalPrice = document.getElementById('donationTotalPrice');
-  if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
-  const donationForm = document.getElementById('donationForm');
-  if (donationForm) donationForm.reset();
-  const donationPaymentOptions = document.getElementById('donationPaymentOptions');
-  if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
-  const paystackAmount = document.getElementById('paystackAmount');
-  if (paystackAmount) paystackAmount.textContent = '0';
-  const stripeAmount = document.getElementById('stripeAmount');
-  if (stripeAmount) stripeAmount.textContent = '0';
-  const presaleQuantity = document.getElementById('presaleQuantity');
-  if (presaleQuantity) presaleQuantity.value = '';
-  const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-  if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
-  const presaleFormOverlay = document.getElementById('presaleFormOverlay');
-  if (presaleFormOverlay) presaleFormOverlay.dataset.type = '';
-  const presaleForm = document.getElementById('presaleForm');
-  if (presaleForm) presaleForm.reset();
-  const sessionForm = document.getElementById('sessionForm');
-  if (sessionForm) sessionForm.reset();
-  const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
-  if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
-  document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-}
-
-// Donation Logic
-function selectCopyOption(copies, range) {
-  console.log(`Selected ${copies} copies with range ${range}`);
-  selectedDonation.copies = copies;
-  selectedDonation.range = range;
-  document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-  try {
-    event.currentTarget.classList.add('selected');
-  } catch (error) {
-    console.error('Error in selectCopyOption:', error);
-  }
-}
-
-function calculateDonationTotal() {
-  try {
-    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-    console.log(`Calculating total for ${copies} copies`);
-    selectedDonation.copies = copies;
-    const totalNGN = copies * config.pricePerCopyNGN;
-    const totalUSD = copies * config.pricePerCopyUSD;
-    const donationTotalPrice = document.getElementById('donationTotalPrice');
-    if (donationTotalPrice) {
-      donationTotalPrice.textContent = `₦${totalNGN.toLocaleString('en-NG')}`;
-    }
-    selectedDonation.reward = getDonationReward(copies);
-  } catch (error) {
-    console.error('Error in calculateDonationTotal:', error);
-    alert('Error calculating total. Please try again.');
-  }
-}
-
-function getDonationReward(copies) {
-  if (copies >= 100) return 'Certificate + Website Mention + Brand on Cover';
-  if (copies >= 20) return 'Certificate + Website Mention';
-  if (copies >= 5) return 'Certificate of Appreciation';
-  return 'Select at least 5 copies to see rewards';
-}
-
-function confirmDonationQuantity() {
-  console.log('Confirming donation quantity', selectedDonation);
-  if (!selectedDonation.range) {
-    alert('Please select a donation range (5-20, 20-100, or 100+ copies).');
-    return;
-  }
-  try {
-    document.getElementById('donationQuantityOverlay').style.display = 'none';
-    document.getElementById('donationCopiesOverlay').style.display = 'flex';
-    const donationCopyCount = document.getElementById('donationCopyCount');
-    if (donationCopyCount) {
-      donationCopyCount.value = selectedDonation.copies;
-    }
-    calculateDonationTotal();
-  } catch (error) {
-    console.error('Error in confirmDonationQuantity:', error);
-    alert('Error proceeding to next step. Please try again.');
-  }
-}
-
-function proceedToDonationForm() {
-  try {
-    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-    console.log(`Proceeding with ${copies} copies, range: ${selectedDonation.range}`);
-    if (copies < 5) {
-      alert('Please select at least 5 copies to donate.');
-      return;
-    }
-    if (selectedDonation.range === '5-20' && (copies < 5 || copies > 20)) {
-      alert('Please select a number of copies between 5 and 20.');
-      return;
-    }
-    if (selectedDonation.range === '20-100' && (copies < 20 || copies > 100)) {
-      alert('Please select a number of copies between 20 and 100.');
-      return;
-    }
-    if (selectedDonation.range === '100+' && copies < 100) {
-      alert('Please select at least 100 copies.');
-      return;
-    }
-    selectedDonation.copies = copies;
-    document.getElementById('donationCopiesOverlay').style.display = 'none';
-    document.getElementById('donationFormOverlay').style.display = 'flex';
-    const donationSummary = document.getElementById('donationSummary');
-    if (donationSummary) {
-      donationSummary.textContent = `Summary: ${selectedDonation.copies} Copies, ₦${(selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`;
-    }
-  } catch (error) {
-    console.error('Error in proceedToDonationForm:', error);
-    alert('Error proceeding to donation form. Please try again.');
-  }
-}
-
-async function handleDonationSubmit(event) {
-  event.preventDefault();
-  console.log('Submitting donation form');
-  try {
-    const name = document.getElementById('donationName').value;
-    const email = document.getElementById('donationEmail').value;
-    const organization = document.getElementById('donationOrganization').value;
-    const location = document.getElementById('donationLocation').value;
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('organization', organization);
-    formData.append('location', location);
-    formData.append('copies', selectedDonation.copies);
-    formData.append('reward', selectedDonation.reward);
-    formData.append('type', 'donation');
-    formData.append('access_key', config.web3FormsAccessKey);
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    const result = await response.json();
-    if (result.success) {
-      console.log('Form submitted successfully');
-      document.getElementById('donationForm').style.display = 'none';
-      document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
-      document.getElementById('donationPaymentOptions').style.display = 'block';
-      const paystackAmount = document.getElementById('paystackAmount');
-      const stripeAmount = document.getElementById('stripeAmount');
-      if (paystackAmount && stripeAmount) {
-        paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
-        stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
-      }
-    } else {
-      console.error('Form submission failed:', result);
-      alert('Submission failed. Please try again.');
-    }
-  } catch (error) {
-    console.error('Error in handleDonationSubmit:', error);
-    alert('An error occurred during submission. Please try again.');
-  }
-}
-
-function proceedToDonationPayment(isAnonymous) {
-  console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
-  if (selectedDonation.copies < 5) {
-    alert('Please select at least 5 copies to proceed.');
-    return;
-  }
-  try {
-    document.getElementById('donationForm').style.display = 'none';
-    document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
-    document.getElementById('donationPaymentOptions').style.display = 'block';
-    const paystackAmount = document.getElementById('paystackAmount');
-    const stripeAmount = document.getElementById('stripeAmount');
-    if (paystackAmount && stripeAmount) {
-      paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
-      stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
-    }
-  } catch (error) {
-    console.error('Error in proceedToDonationPayment:', error);
-    alert('Error proceeding to payment. Please try again.');
-  }
-}
-
-// Presale Logic
-function calculatePresaleTotal() {
-  try {
-    const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
-    console.log(`Calculating presale total for ${copies} copies`);
-    selectedPresale.copies = copies;
-    const total = selectedPresale.type === 'local' 
-      ? `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`
-      : `$${copies * config.pricePerCopyUSD}`;
-    const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-    if (presaleTotalPrice) {
-      presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
-    }
-  } catch (error) {
-    console.error('Error in calculatePresaleTotal:', error);
-    alert('Error calculating presale total. Please try again.');
-  }
-}
-
-async function handlePresaleSubmit(event) {
-  event.preventDefault();
-  console.log('Submitting presale form');
-  try {
-    const quantity = parseInt(document.getElementById('presaleQuantity').value);
-    const name = document.getElementById('presaleName').value;
-    const email = document.getElementById('presaleEmail').value;
-    const location = document.getElementById('presaleLocation').value;
-
-    if (quantity < 1) {
-      alert('Please select at least 1 copy.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('location', location);
-    formData.append('quantity', personally);
-    formData.append('type', selectedPresale.type);
-    formData.append('access_key', config.web3FormsAccessKey);
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    const result = await response.json();
-    if (result.success) {
-      console.log('Presale form submitted successfully');
-      if (selectedPresale.type === 'local') {
-        initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
-      } else {
-        console.log('Redirecting to Amazon for international presale');
-        window.location.href = config.amazonLink;
-      }
-    } else {
-      console.error('Presale submission failed:', result);
-      alert('Submission failed. Please try again.');
-    }
-  } catch (error) {
-    console.error('Error in handlePresaleSubmit:', error);
-    alert('An error occurred during submission. Please try again.');
-  }
-}
-
-// Session Logic
-async function handleSessionSubmit(event) {
-  event.preventDefault();
-  console.log('Submitting session form');
-  try {
-    const name = document.getElementById('sessionName').value;
-    const email = document.getElementById('sessionEmail').value;
-    const location = document.getElementById('sessionLocation').value;
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('location', location);
-    formData.append('type', 'session');
-    formData.append('access_key', config.web3FormsAccessKeyRed);
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    const result = await response.json();
-    if (result.success) {
-      console.log('Session form submitted successfully');
-      document.getElementById('sessionForm').style.display = 'none';
-      document.getElementById('sessionPaymentOptions').style.display = 'block';
-    } else {
-      console.error('Session submission failed:', result);
-      alert('Submission failed. Please try again.');
-    }
-  } catch (error) {
-    console.error('Error in handleSessionSubmit:', error);
-    alert('An error occurred during submission. Please try again.');
-  }
-}
-
-async function handleFreeSessionSubmit(event) {
-  event.preventDefault();
-  console.log('Submitting free session form');
-  try {
-    const name = document.getElementById('sessionName').value;
-    const email = document.getElementById('sessionEmail').value;
-    const phone = document.getElementById('sessionPhone').value;
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('type', 'free-session');
-    formData.append('access_key', config.web3FormsAccessKey);
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    const result = await response.json();
-    if (result.success) {
-      console.log('Free session form submitted successfully');
-      alert(`Thank you, ${name}! You've signed up for the free weekly sessions. Details will be sent to ${email}.`);
-      closeOverlays();
-    } else {
-      console.error('Free session submission failed:', result);
-      alert('Submission failed. Please try again.');
-    }
-  } catch (error) {
-    console.error('Error in handleFreeSessionSubmit:', error);
-    alert('An error occurred during submission. Please try again.');
-  }
-}
-
-async function handleInviteSpeakSubmit(event) {
-  event.preventDefault();
-  console.log('Submitting invite to speak form');
-  try {
-    const name = document.getElementById('inviteName').value;
-    const email = document.getElementById('inviteEmail').value;
-    const organization = document.getElementById('inviteOrganization').value;
-    const details = document.getElementById('inviteDetails').value;
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('organization', organization);
-    formData.append('details', details);
-    formData.append('type', 'invite-speak');
-    formData.append('access_key', config.web3FormsAccessKey);
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    const result = await response.json();
-    if (result.success) {
-      console.log('Invite to speak form submitted successfully');
-      alert(`Thank you, ${name}! Your request to invite Dr. OVO to speak at ${organization} has been received. We'll contact you at ${email}.`);
-      closeOverlays();
-    } else {
-      console.error('Invite to speak submission failed:', result);
-      alert('Submission failed. Please try again.');
-    }
-  } catch (error) {
-    console.error('Error in handleInviteSpeakSubmit:', error);
-    alert('An error occurred during submission. Please try again.');
-  }
-}
-
-// Payment Gateway Integration
-function initiatePaystackPayment(amount, email, type) {
-  console.log(`Initiating Paystack payment for ${type}, amount: ${amount}, email: ${email}`);
-  try {
-    const handler = PaystackPop.setup({
-      key: config.paystackPublicKey,
-      email: email,
-      amount: amount,
-      currency: 'NGN',
-      metadata: { type: type },
-      callback: function (response) {
-        console.log('Paystack payment successful:', response);
-        alert(`Payment successful! Reference: ${response.reference}`);
-        closeOverlays();
-      },
-      onClose: function () {
-        console.log('Paystack payment window closed');
-        alert('Payment window closed.');
-      }
-    });
-    handler.openIframe();
-  } catch (error) {
-    console.error('Paystack Error:', error);
-    alert('Failed to initialize Paystack payment. Please try again.');
-  }
-}
-
-function initiateStripePayment(amount, email, type) {
-  console.log(`Initiating Stripe payment for ${type}, amount: ${amount}, email: ${email}`);
-  try {
-    const stripe = Stripe(config.stripePublicKey);
-    fetch(config.stripeServerEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        amount: amount,
-        email: email,
-        type: type,
-        currency: 'usd'
-      })
-    })
-    .then(response => response.json())
-    .then(session => {
-      console.log('Stripe session created:', session);
-      return stripe.redirectToCheckout({ sessionId: session.id });
-    })
-    .then(result => {
-      if (result.error) {
-        console.error('Stripe checkout error:', result.error);
-        alert(result.error.message);
-      }
-    })
-    .catch(error => {
-      console.error('Stripe Error:', error);
-      alert('Failed to initialize Stripe payment. Please try again.');
-    });
-  } catch (error) {
-    console.error('Stripe Error:', error);
-    alert('Failed to initialize Stripe payment. Please try again.');
-  }
-}
-
-// Smooth Scrolling for Navigation Links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  });
-});
-
-// Toggle Hamburger Menu
-document.querySelector('.hamburger').addEventListener('click', function () {
-  this.classList.toggle('active');
-  document.querySelector('.mobile-menu').classList.toggle('active');
-});
-
-// Close Mobile Menu When Clicking a Link
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.hamburger').classList.remove('active');
-    document.querySelector('.mobile-menu').classList.remove('active');
-  });
-});
-
-// Close Mobile Menu When Clicking Outside
-document.addEventListener('click', (e) => {
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-  }
-});
-
-// Close More Popup When Clicking Outside
-document.getElementById('morePopup').addEventListener('click', function(event) {
-  if (event.target === this) {
-    closeMorePopup();
-  }
-});
-
-// Close More Popup with Escape Key
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    closeMorePopup();
-  }
-});
-
-// Toggle Session Dropdown
-function toggleSessionDropdown() {
-  const dropdown = document.getElementById('sessionDropdown');
-  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-// Close Dropdown When Clicking Outside
-document.addEventListener('click', (e) => {
-  const dropdown = document.getElementById('sessionDropdown');
-  const button = e.target.closest('.sam .cta-button');
-  if (!dropdown.contains(e.target) && !button) {
-    dropdown.style.display = 'none';
-  }
-});
-
-// Update Session Dropdown to Trigger Free Session Modal
-document.querySelector('.session-option[href*="calendly"]').addEventListener('click', (e) => {
-  e.preventDefault();
-  showFreeSessionOverlay();
-});
-
-// Parallax Effect for Testimonial Section
-document.addEventListener("mousemove", (e) => {
-  const section = document.querySelector(".testimonial-sections");
-  if (section) {
-    const rect = section.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-
-    const moveX = (x - 0.5) * 10;
-    const moveY = (y - 0.5) * 10;
-
-    section.style.transform = `perspective(1000px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`;
-  }
-});
-
-// Reset Transform When Mouse Leaves
-document.addEventListener("mouseleave", () => {
-  const section = document.querySelector(".testimonial-sections");
-  if (section) {
-    section.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-  }
-});
-
-// Card Hover Animations
-const cards = document.querySelectorAll(".testimonial-card");
-cards.forEach((card) => {
-  card.addEventListener("mouseenter", () => {
-    card.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
-  });
-});
-
-// Parallax Effect for Portfolio Card
-document.addEventListener("mousemove", (e) => {
-  const card = document.querySelector(".portfolio-card");
-  if (card) {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const moveX = (x - rect.width / 2) / 50;
-    const moveY = (y - rect.height / 2) / 50;
-
-    card.style.transform = `perspective(1000px) rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
-  }
-});
-
-document.addEventListener("mouseleave", () => {
-  const card = document.querySelector(".portfolio-card");
-  if (card) {
-    card.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-  }
-});
-
-// Animate Stats on Scroll/Load
-function animateStats() {
-  const statNumbers = document.querySelectorAll(".stat-number");
-  statNumbers.forEach((stat, index) => {
-    const finalValue = stat.textContent;
-    let currentValue = 0;
-    const increment = parseInt(finalValue) / 30;
-
-    const timer = setInterval(() => {
-      currentValue += increment;
-      if (currentValue >= parseInt(finalValue)) {
-        stat.textContent = finalValue;
-        clearInterval(timer);
-      } else {
-        stat.textContent = Math.floor(currentValue);
-      }
-    }, 50 + index * 20);
-  });
-}
-
-// Scroll Effect for Header
-window.addEventListener("scroll", function () {
-  const header = document.querySelector(".header");
-  if (header) {
-    if (window.scrollY > 50) {
-      header.style.background = "rgba(255, 255, 255, 0.98)";
-      header.style.backdropFilter = "blur(20px)";
-    } else {
-      header.style.background = "rgba(255, 255, 255, 0.95)";
-      header.style.backdropFilter = "blur(20px)";
-    }
-  }
-});
-
-// Parallax Effect for Hero Elements
-window.addEventListener("scroll", function () {
-  const scrolled = window.pageYOffset;
-  const rate = scrolled * -0.5;
-  const heroImage = document.querySelector(".hero-image");
-  if (heroImage) {
-    heroImage.style.transform = `translateY(${rate * 0.3}px)`;
-  }
-});
-
-// Animate Elements on Scroll
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
-
-const observer = new IntersectionObserver(function (entries) {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(30px)";
-  el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-  observer.observe(el);
-});
-
-// Micro-interactions for Buttons
-document.querySelectorAll(".contact-btn, .more-info-btn").forEach((btn) => {
-  btn.addEventListener("mouseenter", function () {
-    this.style.transform = "translateY(-2px)";
-    this.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.15)";
-  });
-
-  btn.addEventListener("mouseleave", function () {
-    this.style.transform = "translateY(0)";
-    this.style.boxShadow = "none";
-  });
-});
-
-// Floating Animation for Winner Badge
-function animateWinnerBadge() {
-  const badge = document.querySelector(".winner-badge");
-  if (badge) {
-    badge.style.animation = "float 3s ease-in-out infinite";
-  }
-}
-
-// Add CSS Animation
-const style = document.createElement("style");
-style.textContent = `
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-`;
-document.head.appendChild(style);
-
-// Initialize Animations After Page Load
-window.addEventListener("load", function () {
-  setTimeout(() => {
-    document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    });
-    animateWinnerBadge();
-    animateStats();
-  }, 300);
-});
-
-// Countdown Timer
-let targetDate = localStorage.getItem('timerTargetDate') 
-  ? new Date(localStorage.getItem('timerTargetDate')) 
-  : new Date('2025-09-27T15:58:00+01:00'); // WAT is UTC+1
-
-if (!localStorage.getItem('timerTargetDate')) {
-  localStorage.setItem('timerTargetDate', targetDate.toISOString());
-}
-
-function updateTimer() {
-  const now = new Date();
-  const timeLeft = targetDate - now;
-
-  if (timeLeft <= 0) {
-    document.getElementById('days').textContent = '00';
-    document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
-    return;
-  }
-
-  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-  document.getElementById('days').textContent = String(days).padStart(2, '0');
-  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-}
-
-// Update Timer Immediately and Every Second
-updateTimer();
-setInterval(updateTimer, 1000);
-</script>
+       <script>
+        // Configuration
+        const config = {
+          pricePerCopyNGN: 20000, // ₦20,000 per copy
+          pricePerCopyUSD: 15,    // $15 per copy
+          sessionPriceNGN: 75000, // ₦75,000 per session
+          sessionPriceUSD: 50,    // $50 per session
+          amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
+          paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack public key
+          stripePublicKey: 'YOUR_STRIPE_PUBLIC_KEY',     // Replace with your Stripe public key
+          web3FormsAccessKey: 'YOUR_ACCESS_KEY',         // Replace with your Web3Forms access key
+          stripeServerEndpoint: 'YOUR_SERVER_ENDPOINT'   // Replace with your server endpoint for Stripe
+        };
+      
+        let selectedDonation = { copies: 0, reward: '', range: '' };
+        let selectedPresale = { type: '', copies: 0 };
+      
+        // Overlay Management
+        function showDonationOverlay() {
+          console.log('Opening donation quantity overlay');
+          document.getElementById('donationQuantityOverlay').style.display = 'flex';
+          resetDonationForm();
+        }
+      
+        function showPresaleOverlay() {
+          console.log('Opening presale overlay');
+          document.getElementById('presaleOverlay').style.display = 'flex';
+        }
+      
+        function showPresaleForm(type) {
+          console.log(`Showing presale form for ${type}`);
+          selectedPresale.type = type;
+          document.getElementById('presaleOverlay').style.display = 'none';
+          document.getElementById('presaleFormOverlay').style.display = 'flex';
+          document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale ($)';
+          resetPresaleForm();
+        }
+      
+        function showSessionOverlay() {
+          console.log('Opening session overlay');
+          document.getElementById('sessionOverlay').style.display = 'flex';
+          resetSessionForm();
+        }
+      
+        function showFreeSessionOverlay() {
+          console.log('Opening free session overlay');
+          document.getElementById('freeSessionOverlay').style.display = 'flex';
+          document.getElementById('sessionDropdown').style.display = 'none';
+        }
+      
+        function showInviteSpeakOverlay() {
+          console.log('Opening invite to speak overlay');
+          document.getElementById('inviteSpeakOverlay').style.display = 'flex';
+          document.getElementById('sessionDropdown').style.display = 'none';
+        }
+      
+        function closeOverlays() {
+          console.log('Closing all overlays');
+          document.querySelectorAll('.overlay').forEach(overlay => {
+            overlay.style.display = 'none';
+          });
+          document.getElementById('sessionDropdown').style.display = 'none';
+          resetForms();
+        }
+      
+        function resetForms() {
+          console.log('Resetting all forms');
+          selectedDonation = { copies: 0, reward: '', range: '' };
+          selectedPresale = { type: '', copies: 0 };
+          const donationCopyCount = document.getElementById('donationCopyCount');
+          if (donationCopyCount) donationCopyCount.value = '';
+          const donationTotalPrice = document.getElementById('donationTotalPrice');
+          if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
+          const donationForm = document.getElementById('donationForm');
+          if (donationForm) donationForm.reset();
+          const donationPaymentOptions = document.getElementById('donationPaymentOptions');
+          if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
+          const paystackAmount = document.getElementById('paystackAmount');
+          if (paystackAmount) paystackAmount.textContent = '0';
+          const stripeAmount = document.getElementById('stripeAmount');
+          if (stripeAmount) stripeAmount.textContent = '0';
+          const presaleQuantity = document.getElementById('presaleQuantity');
+          if (presaleQuantity) presaleQuantity.value = '';
+          const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+          if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
+          const presaleFormOverlay = document.getElementById('presaleFormOverlay');
+          if (presaleFormOverlay) presaleFormOverlay.dataset.type = '';
+          const presaleForm = document.getElementById('presaleForm');
+          if (presaleForm) presaleForm.reset();
+          const sessionForm = document.getElementById('sessionForm');
+          if (sessionForm) sessionForm.reset();
+          const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
+          if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
+          document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
+        }
+      
+        function resetDonationForm() {
+          const donationForm = document.getElementById('donationForm');
+          if (donationForm) donationForm.reset();
+          const donationCopyCount = document.getElementById('donationCopyCount');
+          if (donationCopyCount) donationCopyCount.value = '';
+          const donationTotalPrice = document.getElementById('donationTotalPrice');
+          if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
+          const donationPaymentOptions = document.getElementById('donationPaymentOptions');
+          if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
+        }
+      
+        function resetPresaleForm() {
+          const presaleForm = document.getElementById('presaleForm');
+          if (presaleForm) presaleForm.reset();
+          const presaleQuantity = document.getElementById('presaleQuantity');
+          if (presaleQuantity) presaleQuantity.value = '';
+          const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+          if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
+        }
+      
+        function resetSessionForm() {
+          const sessionForm = document.getElementById('sessionForm');
+          if (sessionForm) sessionForm.reset();
+          const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
+          if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
+        }
+      
+        // Donation Logic
+        function selectCopyOption(copies, range) {
+          console.log(`Selected ${copies} copies with range ${range}`);
+          selectedDonation.copies = copies;
+          selectedDonation.range = range;
+          document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
+          try {
+            event.currentTarget.classList.add('selected');
+          } catch (error) {
+            console.error('Error in selectCopyOption:', error);
+          }
+        }
+      
+        function calculateDonationTotal() {
+          try {
+            const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+            console.log(`Calculating total for ${copies} copies`);
+            selectedDonation.copies = copies;
+            const totalNGN = copies * config.pricePerCopyNGN;
+            const totalUSD = copies * config.pricePerCopyUSD;
+            const donationTotalPrice = document.getElementById('donationTotalPrice');
+            if (donationTotalPrice) {
+              donationTotalPrice.textContent = `₦${totalNGN.toLocaleString('en-NG')}`;
+            }
+            selectedDonation.reward = getDonationReward(copies);
+          } catch (error) {
+            console.error('Error in calculateDonationTotal:', error);
+            alert('Error calculating total. Please try again.');
+          }
+        }
+      
+        function getDonationReward(copies) {
+          if (copies >= 100) return 'Certificate + Website Mention + Brand on Cover';
+          if (copies >= 20) return 'Certificate + Website Mention';
+          if (copies >= 5) return 'Certificate of Appreciation';
+          return 'Select at least 5 copies to see rewards';
+        }
+      
+        function confirmDonationQuantity() {
+          console.log('Confirming donation quantity', selectedDonation);
+          if (!selectedDonation.range) {
+            alert('Please select a donation range (5-20, 20-100, or 100+ copies).');
+            return;
+          }
+          try {
+            document.getElementById('donationQuantityOverlay').style.display = 'none';
+            document.getElementById('donationCopiesOverlay').style.display = 'flex';
+            const donationCopyCount = document.getElementById('donationCopyCount');
+            if (donationCopyCount) {
+              donationCopyCount.value = selectedDonation.copies;
+            }
+            calculateDonationTotal();
+          } catch (error) {
+            console.error('Error in confirmDonationQuantity:', error);
+            alert('Error proceeding to next step. Please try again.');
+          }
+        }
+      
+        function proceedToDonationForm() {
+          try {
+            const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+            console.log(`Proceeding with ${copies} copies, range: ${selectedDonation.range}`);
+            if (copies < 5) {
+              alert('Please select at least 5 copies to donate.');
+              return;
+            }
+            if (selectedDonation.range === '5-20' && (copies < 5 || copies > 20)) {
+              alert('Please select a number of copies between 5 and 20.');
+              return;
+            }
+            if (selectedDonation.range === '20-100' && (copies < 20 || copies > 100)) {
+              alert('Please select a number of copies between 20 and 100.');
+              return;
+            }
+            if (selectedDonation.range === '100+' && copies < 100) {
+              alert('Please select at least 100 copies.');
+              return;
+            }
+            selectedDonation.copies = copies;
+            document.getElementById('donationCopiesOverlay').style.display = 'none';
+            document.getElementById('donationFormOverlay').style.display = 'flex';
+            const donationSummary = document.getElementById('donationSummary');
+            if (donationSummary) {
+              donationSummary.textContent = `Summary: ${selectedDonation.copies} Copies, ₦${(selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`;
+            }
+          } catch (error) {
+            console.error('Error in proceedToDonationForm:', error);
+            alert('Error proceeding to donation form. Please try again.');
+          }
+        }
+      
+        async function handleDonationSubmit(event) {
+          event.preventDefault();
+          console.log('Submitting donation form');
+          try {
+            const name = document.getElementById('donationName').value;
+            const email = document.getElementById('donationEmail').value;
+            const organization = document.getElementById('donationOrganization').value;
+            const location = document.getElementById('donationLocation').value;
+      
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('organization', organization);
+            formData.append('location', location);
+            formData.append('copies', selectedDonation.copies);
+            formData.append('reward', selectedDonation.reward);
+            formData.append('type', 'donation');
+            formData.append('access_key', config.web3FormsAccessKey);
+      
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+              console.log('Form submitted successfully');
+              document.getElementById('donationForm').style.display = 'none';
+              document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
+              document.getElementById('donationPaymentOptions').style.display = 'block';
+              const paystackAmount = document.getElementById('paystackAmount');
+              const stripeAmount = document.getElementById('stripeAmount');
+              if (paystackAmount && stripeAmount) {
+                paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
+                stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
+              }
+            } else {
+              console.error('Form submission failed:', result);
+              alert('Submission failed. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error in handleDonationSubmit:', error);
+            alert('An error occurred during submission. Please try again.');
+          }
+        }
+      
+        function proceedToDonationPayment(isAnonymous) {
+          console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
+          if (selectedDonation.copies < 5) {
+            alert('Please select at least 5 copies to proceed.');
+            return;
+          }
+          try {
+            document.getElementById('donationForm').style.display = 'none';
+            document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
+            document.getElementById('donationPaymentOptions').style.display = 'block';
+            const paystackAmount = document.getElementById('paystackAmount');
+            const stripeAmount = document.getElementById('stripeAmount');
+            if (paystackAmount && stripeAmount) {
+              paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
+              stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
+            }
+          } catch (error) {
+            console.error('Error in proceedToDonationPayment:', error);
+            alert('Error proceeding to payment. Please try again.');
+          }
+        }
+      
+        // Presale Logic
+        function calculatePresaleTotal() {
+          try {
+            const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
+            console.log(`Calculating presale total for ${copies} copies`);
+            selectedPresale.copies = copies;
+            const total = selectedPresale.type === 'local' 
+              ? `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`
+              : `$${copies * config.pricePerCopyUSD}`;
+            const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+            if (presaleTotalPrice) {
+              presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
+            }
+          } catch (error) {
+            console.error('Error in calculatePresaleTotal:', error);
+            alert('Error calculating presale total. Please try again.');
+          }
+        }
+      
+        async function handlePresaleSubmit(event) {
+          event.preventDefault();
+          console.log('Submitting presale form');
+          try {
+            const quantity = parseInt(document.getElementById('presaleQuantity').value);
+            const name = document.getElementById('presaleName').value;
+            const email = document.getElementById('presaleEmail').value;
+            const location = document.getElementById('presaleLocation').value;
+      
+            if (quantity < 1) {
+              alert('Please select at least 1 copy.');
+              return;
+            }
+      
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('location', location);
+            formData.append('quantity', quantity);
+            formData.append('type', selectedPresale.type);
+            formData.append('access_key', config.web3FormsAccessKey);
+      
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+              console.log('Presale form submitted successfully');
+              if (selectedPresale.type === 'local') {
+                initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
+              } else {
+                console.log('Redirecting to Amazon for international presale');
+                window.location.href = config.amazonLink;
+              }
+            } else {
+              console.error('Presale submission failed:', result);
+              alert('Submission failed. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error in handlePresaleSubmit:', error);
+            alert('An error occurred during submission. Please try again.');
+          }
+        }
+      
+        // Session Logic
+        async function handleSessionSubmit(event) {
+          event.preventDefault();
+          console.log('Submitting session form');
+          try {
+            const name = document.getElementById('sessionName').value;
+            const email = document.getElementById('sessionEmail').value;
+            const location = document.getElementById('sessionLocation').value;
+      
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('location', location);
+            formData.append('type', 'session');
+            formData.append('access_key', config.web3FormsAccessKey);
+      
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+              console.log('Session form submitted successfully');
+              document.getElementById('sessionForm').style.display = 'none';
+              document.getElementById('sessionPaymentOptions').style.display = 'block';
+            } else {
+              console.error('Session submission failed:', result);
+              alert('Submission failed. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error in handleSessionSubmit:', error);
+            alert('An error occurred during submission. Please try again.');
+          }
+        }
+      
+        // Free Session Submission
+        async function handleFreeSessionSubmit(event) {
+          event.preventDefault();
+          console.log('Submitting free session form');
+          try {
+            const name = document.getElementById('sessionName').value;
+            const email = document.getElementById('sessionEmail').value;
+            const phone = document.getElementById('sessionPhone').value;
+      
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('type', 'free_session');
+            formData.append('access_key', config.web3FormsAccessKey);
+      
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+              console.log('Free session form submitted successfully');
+              alert(`Thank you, ${name}! You've signed up for the free weekly sessions. Details will be sent to ${email}.`);
+              closeOverlays();
+            } else {
+              console.error('Free session submission failed:', result);
+              alert('Submission failed. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error in handleFreeSessionSubmit:', error);
+            alert('An error occurred during submission. Please try again.');
+          }
+        }
+      
+        // Invite to Speak Submission
+        async function handleInviteSpeakSubmit(event) {
+          event.preventDefault();
+          console.log('Submitting invite to speak form');
+          try {
+            const name = document.getElementById('inviteName').value;
+            const email = document.getElementById('inviteEmail').value;
+            const organization = document.getElementById('inviteOrganization').value;
+            const details = document.getElementById('inviteDetails').value;
+      
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('organization', organization);
+            formData.append('details', details);
+            formData.append('type', 'invite_speak');
+            formData.append('access_key', config.web3FormsAccessKey);
+      
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+              console.log('Invite to speak form submitted successfully');
+              alert(`Thank you, ${name}! Your request to invite Dr. OVO to speak at ${organization} has been received. We'll contact you at ${email}.`);
+              closeOverlays();
+            } else {
+              console.error('Invite to speak submission failed:', result);
+              alert('Submission failed. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error in handleInviteSpeakSubmit:', error);
+            alert('An error occurred during submission. Please try again.');
+          }
+        }
+      
+        // Payment Gateway Integration
+        function initiatePaystackPayment(amount, email, type) {
+          console.log(`Initiating Paystack payment for ${type}, amount: ${amount}, email: ${email}`);
+          try {
+            const handler = PaystackPop.setup({
+              key: config.paystackPublicKey,
+              email: email,
+              amount: amount,
+              currency: 'NGN',
+              metadata: { type: type },
+              callback: function (response) {
+                console.log('Paystack payment successful:', response);
+                alert(`Payment successful! Reference: ${response.reference}`);
+                closeOverlays();
+              },
+              onClose: function () {
+                console.log('Paystack payment window closed');
+                alert('Payment window closed.');
+              }
+            });
+            handler.openIframe();
+          } catch (error) {
+            console.error('Paystack Error:', error);
+            alert('Failed to initialize Paystack payment. Please try again.');
+          }
+        }
+      
+        function initiateStripePayment(amount, email, type) {
+          console.log(`Initiating Stripe payment for ${type}, amount: ${amount}, email: ${email}`);
+          try {
+            const stripe = Stripe(config.stripePublicKey);
+            fetch(config.stripeServerEndpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                amount: amount,
+                email: email,
+                type: type,
+                currency: 'usd'
+              })
+            })
+            .then(response => response.json())
+            .then(session => {
+              console.log('Stripe session created:', session);
+              return stripe.redirectToCheckout({ sessionId: session.id });
+            })
+            .then(result => {
+              if (result.error) {
+                console.error('Stripe checkout error:', result.error);
+                alert(result.error.message);
+              }
+            })
+            .catch(error => {
+              console.error('Stripe Error:', error);
+              alert('Failed to initialize Stripe payment. Please try again.');
+            });
+          } catch (error) {
+            console.error('Stripe Error:', error);
+            alert('Failed to initialize Stripe payment. Please try again.');
+          }
+        }
+      
+        // Additional UI Interactions
+        function showMorePopup() {
+          document.getElementById('morePopup').style.display = 'flex';
+        }
+      
+        function closeMorePopup() {
+          document.getElementById('morePopup').style.display = 'none';
+        }
+      
+        function toggleSessionDropdown() {
+          const dropdown = document.getElementById('sessionDropdown');
+          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+      
+        function handlePresaleCTA() {
+          showPresaleOverlay();
+        }
+      
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      
+        // Toggle Hamburger Menu
+        document.querySelector('.hamburger').addEventListener('click', function () {
+          this.classList.toggle('active');
+          document.querySelector('.mobile-menu').classList.toggle('active');
+        });
+      
+        // Close Mobile Menu When Clicking a Link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            document.querySelector('.hamburger').classList.remove('active');
+            document.querySelector('.mobile-menu').classList.remove('active');
+          });
+        });
+      
+        // Close Mobile Menu When Clicking Outside
+        document.addEventListener('click', (e) => {
+          const hamburger = document.querySelector('.hamburger');
+          const mobileMenu = document.querySelector('.mobile-menu');
+          if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+          }
+        });
+      
+        // Close popup when clicking outside
+        document.getElementById('morePopup').addEventListener('click', function(event) {
+          if (event.target === this) {
+            closeMorePopup();
+          }
+        });
+      
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            closeMorePopup();
+            closeOverlays();
+          }
+        });
+      
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+          const dropdown = document.getElementById('sessionDropdown');
+          const button = e.target.closest('.sam .cta-button');
+          if (!dropdown.contains(e.target) && !button) {
+            dropdown.style.display = 'none';
+          }
+        });
+      
+        // Add scroll effect to header
+        window.addEventListener("scroll", function () {
+          const header = document.querySelector(".header");
+          if (window.scrollY > 50) {
+            header.style.background = "rgba(255, 255, 255, 0.98)";
+            header.style.backdropFilter = "blur(20px)";
+          } else {
+            header.style.background = "rgba(255, 255, 255, 0.95)";
+            header.style.backdropFilter = "blur(20px)";
+          }
+        });
+      
+        // Parallax effect for hero elements
+        window.addEventListener("scroll", function () {
+          const scrolled = window.pageYOffset;
+          const rate = scrolled * -0.5;
+          const heroImage = document.querySelector(".hero-image");
+          if (heroImage) {
+            heroImage.style.transform = `translateY(${rate * 0.3}px)`;
+          }
+        });
+      
+        // Animate elements on scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+      
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        }, observerOptions);
+      
+        document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+          observer.observe(el);
+        });
+      
+        // Add micro-interactions
+        document.querySelectorAll(".contact-btn, .more-info-btn").forEach((btn) => {
+          btn.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-2px)";
+            this.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.15)";
+          });
+          btn.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+            this.style.boxShadow = "none";
+          });
+        });
+      
+        // Floating animation for winner badge
+        function animateWinnerBadge() {
+          const badge = document.querySelector(".winner-badge");
+          if (badge) {
+            badge.style.animation = "float 3s ease-in-out infinite";
+          }
+        }
+      
+        const style = document.createElement("style");
+        style.textContent = `
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+        `;
+        document.head.appendChild(style);
+      
+        // Initialize animations after page load
+        window.addEventListener("load", function () {
+          setTimeout(() => {
+            document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
+              el.style.opacity = "1";
+              el.style.transform = "translateY(0)";
+            });
+            animateWinnerBadge();
+          }, 300);
+        });
+      
+        // Timer Logic
+        let targetDate = localStorage.getItem('timerTargetDate') ? new Date(localStorage.getItem('timerTargetDate')) : new Date('2025-09-27T15:58:00+01:00'); // WAT is UTC+1
+        if (!localStorage.getItem('timerTargetDate')) {
+          localStorage.setItem('timerTargetDate', targetDate.toISOString());
+        }
+      
+        function updateTimer() {
+          const now = new Date();
+          const timeLeft = targetDate - now;
+          if (timeLeft <= 0) {
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            return;
+          }
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+          document.getElementById('days').textContent = String(days).padStart(2, '0');
+          document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+          document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+          document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+      
+        updateTimer();
+        setInterval(updateTimer, 1000);
+      
+        // Parallax effect for testimonial section
+        document.addEventListener("mousemove", (e) => {
+          const section = document.querySelector(".testimonial-section");
+          const rect = section.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const moveX = (x - 0.5) * 10;
+          const moveY = (y - 0.5) * 10;
+          section.style.transform = `perspective(1000px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`;
+        });
+      
+        document.addEventListener("mouseleave", () => {
+          const section = document.querySelector(".testimonial-section");
+          section.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
+        });
+      
+        // Add card hover animations
+        const cards = document.querySelectorAll(".testimonial-card");
+        cards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            card.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+          });
+        });
+      
+        // Animate stats on scroll/load
+        function animateStats() {
+          const statNumbers = document.querySelectorAll(".stat-number");
+          statNumbers.forEach((stat, index) => {
+            const finalValue = stat.textContent;
+            let currentValue = 0;
+            const increment = parseInt(finalValue) / 30;
+            const timer = setInterval(() => {
+              currentValue += increment;
+              if (currentValue >= parseInt(finalValue)) {
+                stat.textContent = finalValue;
+                clearInterval(timer);
+              } else {
+                stat.textContent = Math.floor(currentValue);
+              }
+            }, 50 + index * 20);
+          });
+        }
+      
+        window.addEventListener("load", () => {
+          setTimeout(animateStats, 500);
+        });
+      </script>
   </body>
 </html>
