@@ -25,6 +25,7 @@
   <meta name="author" content="Dr. Otubo Victor" />
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://js.paystack.co/v1/inline.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title> My Family Companion– Family Health Guide by Dr. OVO
     </title>
  
@@ -340,11 +341,20 @@ margin-bottom: 5%;
             opacity: 0.95;
         }
 
-        .benefits-list li::before {
-            content: '✨';
-            margin-right: 12px;
-            font-size: 1.2rem;
-        }
+        .benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Replaces margin-right for better spacing control */
+}
+
+.benefits-list li i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.benefits-list li::before {
+    content: none; /* Remove the default ✨ emoji */
+}
 
         .newsletter-form {
             display: flex;
@@ -2506,22 +2516,19 @@ flex-direction: column;
             <!-- <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p> -->
   
             <ul class="benefits-list" id="join-community">
-                <li>
+              <li>
+                  <i class="fab fa-whatsapp"></i>
                   <a href="https://whatsapp.com/channel/0029VbB0G3AEKyZDnb8juE46" class="a" style="">
-                    Join Our WhatsApp Channel
-
-                </a>
+                      Join Our WhatsApp Channel
+                  </a>
               </li>
-                <li>
+              <li>
+                  <i class="fab fa-telegram-plane"></i>
                   <a href="https://t.me/myfamilycompanion" class="a" style="">
-                    Join Our Telegram Channel
-
-                </a>
+                      Join Our Telegram Channel
+                  </a>
               </li>
-                <!-- <li>Join Our WhatsApp Channel</li> -->
-                <!-- <li>Expert tips and strategies</li>
-                <li>Community updates and events</li> -->
-            </ul>
+          </ul>
             <h2 class="newsletter-titles">Stay In The Loop</h2>
             <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p>
   
