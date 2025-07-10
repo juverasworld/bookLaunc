@@ -76,8 +76,9 @@
         }
 
         .presale-section {
-          background: #333;
-          ;
+          background: #172536
+
+     ;
             /* background: linear-gradient(135deg, #ff6b6b, #ee5a24); */
             border-radius: 20px;
             padding: 40px;
@@ -91,7 +92,10 @@
         .presale-section:hover {
             transform: translateY(-5px);
         }
-
+.a{
+  color: #fff;
+  text-decoration: none;
+}
         .presale-section::before {
             content: '';
             position: absolute;
@@ -99,7 +103,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(180deg, rgba(23, 37, 54, 0.9), rgba(40, 100, 150, 0.5));
             transform: rotate(45deg);
             animation: shimmer 3s infinite;
         }
@@ -624,7 +628,202 @@ margin-bottom: 5%;
 
       }
      
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the logo */
+}
 
+/* Logo Icon */
+.logo-icon {
+  width: 50px; /* Increased size for better visibility */
+  height: 50px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
+  padding: 8px;
+  display: block; /* Ensure it behaves as a block for centering */
+  position: relative;
+}
+
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #ffff00; /* Yellow underline */
+}
+
+/* Nav Container */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background: #1a202c;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 20px 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  border-top: 1px solid rgba(226, 232, 240, 0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 15px 20px;
+  display: block;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.mobile-menu a:hover {
+  color: #1a202c;
+}
+
+/* Center Navigation Links on Large Screens */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s ease;
+  letter-spacing: -0.2px;
+}
+
+.nav-menu a:hover {
+  color: #1a202c;
+}
+
+/* Contact Button */
+.contact-btn {
+  background: #1f2d3d;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.2px;
+}
+
+.contact-btn:hover {
+  background: #38a169;
+  transform: translateY(-1px);
+}
+
+.contact-btn::after {
+  content: "→";
+  font-size: 14px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none; /* Hide nav links on small screens */
+  }
+
+  .hamburger {
+    display: flex; /* Show hamburger on small screens */
+  }
+
+  .mobile-menu.active {
+    display: flex; /* Show mobile menu when active */
+  }
+
+  .nav-container {
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    flex: 0 0 auto; /* Prevent logo from shrinking */
+  }
+
+  .logo-icon {
+    width: 40px; /* Slightly smaller for small screens */
+    height: 40px;
+  }
+
+  .contact-btn {
+    flex: 0 0 auto;
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+}
+
+/* Ensure header remains fixed and full-width */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+}
 
 
       .logo-icon {
@@ -1022,7 +1221,7 @@ flex-direction: column;
         padding: 10px;
         background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
         border-radius: 8px;
-        display: none;
+        /* display: none; */
         border-bottom: 2px solid #fbbf24;
         /* flex: ; */
         align-items: center;
@@ -1060,7 +1259,7 @@ flex-direction: column;
         }
 
         .productivity-card {
-          bottom: -30px;
+          bottom: -70px;
           left: -20px;
           max-width: 240px;
           padding: 24px;
@@ -1586,8 +1785,11 @@ flex-direction: column;
             color: #1f2d3d;
         }
   .bodys {
-            padding: 20px;
-            background: #f9f9f9;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+          
         font-family: 'Montserrat', sans-serif;
         /* border: #000 1px solid; */
 
@@ -1780,8 +1982,25 @@ flex-direction: column;
     <header class="header">
       <div class="nav-container">
         <div class="logo">
-          <div class="logo-icon">MFC</div>
-          MY FAMILY COMPANION
+          <img src="/logo.jpg" alt="My Family Companion Logo" class="logo-icon">
+        </div>
+        <!-- Navigation Links for Large Screens -->
+        <nav class="nav-menu">
+          <a href="#blog">Blog</a>
+          <a href="#join-community">Join Community</a>
+          <a href="#events">Events</a>
+        </nav>
+        <!-- Hamburger Menu for Small Screens -->
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+          <a href="#blog">Blog</a>
+          <a href="#join-community">Join Community</a>
+          <a href="#events">Events</a>
         </div>
         <a href="#payment" class="contact-btn" onclick="showPaymentOptions('presale')">Presale Order</a>
       </div>
@@ -1792,7 +2011,7 @@ flex-direction: column;
         <img src="/bg1.jpg" alt="Team collaboration" class="main-image" />
         <div class="winner-badge">
           <div>
-            <div class="winner-text">90 Days<br />Presale</div>
+            <div class="winner-text">90 Days<br />Presale 30% Off</div>
           </div>
         </div>
         <div class="productivity-card">
@@ -2185,6 +2404,53 @@ flex-direction: column;
           </div>
       </div>
      </div>
+     <div class="bodys">
+  
+      
+    
+      <div class="section">
+       <div class="section-title">
+           <span>Podcast & Publications</span>
+           <button class="view-more">View more <span>&rarr;</span></button>
+       </div>
+       <div class="cards-container">
+           <!-- <div class="card">
+               <div class="card-icon green">&#9658;</div>
+               <div class="card-content">
+                   <div class="card-title">Thirty days get a jobs</div>
+                   <div class="card-subtitle">Self help • 12 episodes</div>
+               </div>
+           </div>
+           <div class="card">
+               <div class="card-icon black">N</div>
+               <div class="card-content">
+                   <div class="card-title">Open letter for fresh graduate</div>
+                   <div class="card-subtitle">Self help • 12 episodes</div>
+               </div>
+           </div>
+           <div class="card">
+               <div class="card-icon black">N</div>
+               <div class="card-content">
+                   <div class="card-title">Advice for initial job interviews</div>
+                   <div class="card-subtitle">Self help • 12 episodes</div>
+               </div>
+           </div> -->
+           <div class="card">
+               <div class="card-icon green">&#9658;</div>
+               <div class="card-content">
+                   <div class="card-title">Work Life Balance Podcast</div>
+                   <div class="card-subtitle">Self help • 12 episodes</div>
+               </div>
+           </div>
+           <div class="card">
+               <div class="card-icon black">N</div>
+               <div class="card-content">
+                   <div class="card-title">You should fail first. It's a key</div>
+                   <div class="card-subtitle">Self help • 12 episodes</div>
+               </div>
+           </div>
+       </div>
+   </div>
      <div class="body">
       
       <div class="containerss">
@@ -2194,13 +2460,12 @@ flex-direction: column;
             <h2 class="presale-title">90-Day Presale</h2>
             <p class="presale-subtitle">Get exclusive early access at an unbeatable price. This offer won't last forever!</p>
             
+
             <div class="price-container">
-                <div class="current-price">₦20K</div>
-                <div class="original-price">Regular Price: ₦30K</div>
-                <div class="savings">Save ₦10,000!</div>
+            <img src="/WhatsApp Image 2025-07-09 at 08.47.50_9462555c.jpg" alt="" class="main-image">
             </div>
   
-            <div class="countdown">
+            <!-- <div class="countdown">
                 <div class="countdown-title">⏰ Presale Ends In:</div>
                 <div class="countdown-timer">
                     <div class="time-unit">
@@ -2220,7 +2485,7 @@ flex-direction: column;
                         <span class="time-label">Sec</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
   
             <button class="cta-button" onclick="handlePresaleCTA()">Claim Your Spot Now</button>
         </div>
@@ -2230,11 +2495,22 @@ flex-direction: column;
             <h2 class="newsletter-title">Stay In The Loop</h2>
             <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p>
   
-            <ul class="benefits-list">
-                <li>Weekly industry insights and trends</li>
-                <li>Exclusive deals and early access</li>
-                <li>Expert tips and strategies</li>
-                <li>Community updates and events</li>
+            <ul class="benefits-list" id="join-community">
+                <li>
+                  <a href="https://whatsapp.com/channel/0029VbB0G3AEKyZDnb8juE46" class="a" style="">
+                    Join Our WhatsApp Channel
+
+                </a>
+              </li>
+                <li>
+                  <a href="https://t.me/myfamilycompanion" class="a" style="">
+                    Join Our Telegram Channel
+
+                </a>
+              </li>
+                <!-- <li>Join Our WhatsApp Channel</li> -->
+                <!-- <li>Expert tips and strategies</li>
+                <li>Community updates and events</li> -->
             </ul>
   
             <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
@@ -2257,54 +2533,43 @@ flex-direction: column;
         </div>
     </div>
        </div>
-     <div class="bodys">
-  
-      
     
-     <div class="section">
-      <div class="section-title">
-          <span>Podcast & Publications</span>
-          <button class="view-more">View more <span>&rarr;</span></button>
-      </div>
-      <div class="cards-container">
-          <!-- <div class="card">
-              <div class="card-icon green">&#9658;</div>
-              <div class="card-content">
-                  <div class="card-title">Thirty days get a jobs</div>
-                  <div class="card-subtitle">Self help • 12 episodes</div>
-              </div>
-          </div>
-          <div class="card">
-              <div class="card-icon black">N</div>
-              <div class="card-content">
-                  <div class="card-title">Open letter for fresh graduate</div>
-                  <div class="card-subtitle">Self help • 12 episodes</div>
-              </div>
-          </div>
-          <div class="card">
-              <div class="card-icon black">N</div>
-              <div class="card-content">
-                  <div class="card-title">Advice for initial job interviews</div>
-                  <div class="card-subtitle">Self help • 12 episodes</div>
-              </div>
-          </div> -->
-          <div class="card">
-              <div class="card-icon green">&#9658;</div>
-              <div class="card-content">
-                  <div class="card-title">Work Life Balance Podcast</div>
-                  <div class="card-subtitle">Self help • 12 episodes</div>
-              </div>
-          </div>
-          <div class="card">
-              <div class="card-icon black">N</div>
-              <div class="card-content">
-                  <div class="card-title">You should fail first. It's a key</div>
-                  <div class="card-subtitle">Self help • 12 episodes</div>
-              </div>
-          </div>
-      </div>
-  </div>
   <script>
+    // Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  });
+});
+  // Toggle Hamburger Menu
+document.querySelector('.hamburger').addEventListener('click', function () {
+  this.classList.toggle('active');
+  document.querySelector('.mobile-menu').classList.toggle('active');
+});
+
+// Close Mobile Menu When Clicking a Link
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.remove('active');
+    document.querySelector('.mobile-menu').classList.remove('active');
+  });
+});
+
+// Close Mobile Menu When Clicking Outside
+document.addEventListener('click', (e) => {
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  }
+});
     // Toggle session dropdown
   // Toggle session dropdown
   function showMorePopup() {
