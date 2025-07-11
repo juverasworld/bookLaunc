@@ -762,6 +762,8 @@ margin-bottom: 5%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* border: 10px solid pink; */
+
   z-index: 2000;
   border-top: 1px solid rgba(226, 232, 240, 0.5);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -772,6 +774,7 @@ margin-bottom: 5%;
   color: #4a5568;
   font-weight: 500;
   font-size: 18px;
+  /* border: 10px solid pink; */
   padding: 15px 20px;
   display: block;
   text-align: center;
@@ -838,6 +841,8 @@ margin-bottom: 5%;
 
   .hamburger {
     display: flex; /* Show hamburger on small screens */
+  /* border: 10px solid pink; */
+    
   }
 
   .mobile-menu.active {
@@ -2073,6 +2078,33 @@ flex-direction: column;
           margin: 5px 0;
         }
       }
+      #back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* Hidden by default */
+  background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);/* Button background color */
+  color: white; /* Icon color */
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px; /* Center icon vertically */
+  border-radius: 50%; /* Circular button */
+  font-size: 20px;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000; /* Ensure it’s above other content */
+}
+
+#back-to-top:hover {
+  background-color: #0056b3; /* Darker on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+#back-to-top.show {
+  display: block; /* Show when scrolled */
+}
     </style>
   </head>
   <body>
@@ -2672,7 +2704,10 @@ flex-direction: column;
         </div>
     </div>
        </div>
-    
+    <!-- Back to Top Button -->
+<a href="#" id="back-to-top" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+</a>
        <script>
         // Configuration
         const config = {
@@ -3425,6 +3460,26 @@ flex-direction: column;
         window.addEventListener("load", () => {
           setTimeout(animateStats, 500);
         });
+          // Get the button
+  const backToTopButton = document.getElementById('back-to-top');
+
+// Show/hide button based on scroll position
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) { // Show button after scrolling 300px
+    backToTopButton.classList.add('show');
+  } else {
+    backToTopButton.classList.remove('show');
+  }
+});
+
+// Smooth scroll to top when clicked
+backToTopButton.addEventListener('click', (e) => {
+  e.preventDefault(); // Prevent default anchor behavior
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scrolling
+  });
+});
       </script>
   </body>
 </html>
