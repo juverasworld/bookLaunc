@@ -2593,13 +2593,13 @@ flex-direction: column;
                    <div class="card-subtitle">Self help • 12 episodes</div>
                </div>
            </div>
-           <div class="card">
+           <!-- <div class="card">
                <div class="card-icon black">N</div>
                <div class="card-content">
                    <div class="card-title">You should fail first. It's a key</div>
                    <div class="card-subtitle">Self help • 12 episodes</div>
                </div>
-           </div>
+           </div> -->
        </div>
    </div>
      <div class="body">
@@ -3373,7 +3373,7 @@ flex-direction: column;
       
         // Parallax effect for testimonial section
         document.addEventListener("mousemove", (e) => {
-          const section = document.querySelector(".testimonial-section");
+          const section = document.querySelector(".testimonial-sections");
           const rect = section.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width;
           const y = (e.clientY - rect.top) / rect.height;
@@ -3383,7 +3383,7 @@ flex-direction: column;
         });
       
         document.addEventListener("mouseleave", () => {
-          const section = document.querySelector(".testimonial-section");
+          const section = document.querySelector(".testimonial-sections");
           section.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
         });
       
