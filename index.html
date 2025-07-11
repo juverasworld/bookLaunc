@@ -99,7 +99,7 @@
             transform: translateY(-5px);
         }
 .a{
-  color: #fff;
+  color: #1a202c;
   text-decoration: none;
 }
         .presale-section::before {
@@ -335,7 +335,10 @@ margin-bottom: 5%;
             line-height: 1.3;
             color: #ed8936;
         }
+.spans{
+  color: #ed8936;
 
+}
         .newsletter-subtitle {
             font-size: 1.1rem;
             opacity: 0.9;
@@ -361,11 +364,13 @@ margin-bottom: 5%;
         .benefits-list li {
     display: flex;
     align-items: center;
+  color: #1a202c;
+
     gap: 12px; /* Replaces margin-right for better spacing control */
 }
 
 .benefits-list li i {
-    color: white;
+  color: #1a202c;
     font-size: 1.2rem;
 }
 
@@ -407,7 +412,7 @@ margin-bottom: 5%;
         transform: scale(1.02);
       }
 
-        .confirm-btn, .payment-btn {
+        .confirm-btn, .payment-btn, .payment-btns {
         background: #1f2d3d;
         color: white;
         padding: 14px 28px;
@@ -420,7 +425,7 @@ margin-bottom: 5%;
         transition: all 0.2s ease;
       }
 
-      .confirm-btn:hover, .payment-btn:hover {
+      .confirm-btn:hover, .payment-btn:hover, .payment-btns:hover {
         background: #38a169;
         transform: scale(1.05);
         box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
@@ -2007,8 +2012,24 @@ flex-direction: column;
         transition: all 0.2s ease;
         width: 100%;
       }
+      .payment-btns {
+        background: #fff;
+        color: #1a202c;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        width: 48%;
+        margin: 1%;
+        transition: all 0.2s ease;
+        width: 100%;
+      }
 
       .payment-btn:hover {
+        background: #e2e8f0;
+      }
+      .payment-btns:hover {
         background: #e2e8f0;
       }
 
@@ -2074,6 +2095,10 @@ flex-direction: column;
           padding: 20px;
         }
         .payment-btn {
+          width: 100%;
+          margin: 5px 0;
+        }
+        .payment-btns {
           width: 100%;
           margin: 5px 0;
         }
@@ -2649,13 +2674,16 @@ flex-direction: column;
         <div class="presale-section" >
             <div class="presale-badge">🔥 Limited Time Offer</div>
             <h2 class="presale-title">90-Day Presale</h2>
-            <p class="presale-subtitle">Get exclusive early access at an unbeatable price. This offer won't last forever!</p>
+            <p class="presale-subtitle">Get exclusive early access with 
+              <span class="spans">  free delivery nationwide</span>
+               (Nigeria)</p>
             
 
             <div class="price-container">
             <img src="/WhatsApp Image 2025-07-09 at 08.47.50_9462555c.jpg" alt="" class="main-image">
             </div>
   
+            <p class="presale-subtitle">30% Discount</p>
           
   
             <button class="cta-button" onclick="handlePresaleCTA()">Order Presale Now</button>
@@ -2663,22 +2691,34 @@ flex-direction: column;
   
         <!-- Newsletter Section -->
         <div class="newsletter-section" id="join-community">
-            <h2 class="newsletter-titless" >Join Community</h2>
+            <h2 class="newsletter-titles" >Join Community</h2>
             <!-- <p class="newsletter-subtitle">Join thousands of subscribers and never miss our latest updates, exclusive offers, and insider insights.</p> -->
   
             <ul class="benefits-list" >
               <li>
+                <p class="payment-btns">
+
                   <i class="fab fa-whatsapp"></i>
                   <a href="https://whatsapp.com/channel/0029VbB0G3AEKyZDnb8juE46" class="a" style="">
                       Join Our WhatsApp Channel
                   </a>
+                </p>
               </li>
               <li>
+                <p class="payment-btns">
+
                   <i class="fab fa-telegram-plane"></i>
                   <a href="https://t.me/myfamilycompanion" class="a" style="">
                       Join Our Telegram Group
                   </a>
+                </p>
               </li>
+              <!-- <li>
+                  <i class="fab fa-telegram-plane"></i>
+                  <a href="https://t.me/myfamilycompanion" class="a" style="">
+                      Join Our Telegram Group
+                  </a>
+              </li> -->
           </ul>
             <h2 class="newsletter-titles">Join the My Family Companion Circle. 
             </h2>
