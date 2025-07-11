@@ -1791,24 +1791,41 @@ flex-direction: column;
             align-items: center;
         }
 
-        .view-more {
-          background: #1f2d3d;
-        color: white;
-        border: none;
-        padding: 14px 28px;
-        border-radius: 50px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        }
+    /* View More Button */
+.view-more {
+  background: #1f2d3d;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif; /* Matches your site */
+}
 
-        .view-more:hover {
-            background: #059669;
-        }
+.view-more:hover {
+  background: #059669;
+}
+
+/* Click Animation Class */
+.view-more.shake {
+  animation: shake 0.5s;
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-2px, 0) rotate(-2deg); }
+  40% { transform: translate(2px, 0) rotate(2deg); }
+  60% { transform: translate(-2px, 0) rotate(-2deg); }
+  80% { transform: translate(2px, 0) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
 
         .cards-container {
             display: grid;
@@ -2799,7 +2816,15 @@ color: white;
   <i class="fas fa-arrow-up"></i>
 </a>
        <script>
-        // Configuration
+        // View More Button Click Animation
+// View More Button Click Animation
+const viewMoreButton = document.querySelector('.view-more');
+viewMoreButton.addEventListener('click', () => {
+  viewMoreButton.classList.add('shake');
+  setTimeout(() => {
+    viewMoreButton.classList.remove('shake');
+  }, 500); // Matches animation duration (0.5s)
+});    // Configuration
         const config = {
           pricePerCopyNGN: 20000, // ₦20,000 per copy
           pricePerCopyUSD: 15,    // $15 per copy
