@@ -98,7 +98,21 @@
         .presale-section:hover {
             transform: translateY(-5px);
         }
-        
+        .back-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+  color: #FF0000; /* YouTube red to match your previous request */
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1100; /* Above overlay content */
+}
+
+.back-btn:hover {
+  color: #CC0000; /* Darker red on hover */
+}
+     
 .a{
   color: inherit;
   text-decoration: none;
@@ -2204,7 +2218,10 @@ color: white;
         <!-- <div class="logo">
       
         </div> -->
-        <img src="/logo.jpg" style="border-radius: 30%;" alt="My Family Companion Logo" class="logo-icon">
+        <a href="/index.html" class="">
+
+          <img src="/logo.jpg" style="border-radius: 30%;" alt="My Family Companion Logo" class="logo-icon">
+        </a>
         <!-- Navigation Links for Large Screens -->
         <nav class="nav-menu">
           <a href="#blog">Blog</a>
@@ -2373,6 +2390,7 @@ color: white;
       <div class="overlay" id="presaleFormOverlay">
         <div class="overlay-content">
           <span class="close-btn" onclick="closeOverlays()">×</span>
+          <!-- <span class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></span> -->
           <h2 class="overlay-title" id="presaleFormTitle">Presale Details</h2>
           <form class="newsletter-form" id="presaleForm" onsubmit="handlePresaleSubmit(event)">
             <div class="form-group">
@@ -2387,13 +2405,65 @@ color: white;
               <label class="form-label" for="presaleEmail">Email Address</label>
               <input type="email" id="presaleEmail" class="form-input" placeholder="Enter your email address" required>
             </div>
-            <div class="form-group">
-              <label class="form-label" for="presaleLocation">Location</label>
+            <!-- <div class="form-group">
+              <label class="form-label" for="presaleLocation">City</label>
               <input type="text" id="presaleLocation" class="form-input" placeholder="Enter your location" required>
-            </div>
-            <!-- <div class="price-container">
-              <div class="current-price" id="presaleTotalPrice">Summary: 0 Copies, ₦0</div>
             </div> -->
+            <div class="form-group">
+              <label class="form-label" for="presaleLocation">Nearest City</label>
+              <select id="presaleLocation" class="form-input" required>
+                <option value="" disabled selected>Select your city</option>
+                <option value="Aba">Aba</option>
+                <option value="Abakaliki">Abakaliki</option>
+                <option value="Abeokuta">Abeokuta</option>
+                <option value="Abuja">Abuja</option>
+                <option value="Ado-Ekiti">Ado-Ekiti</option>
+                <option value="Akure">Akure</option>
+                <option value="Asaba">Asaba</option>
+                <option value="Awka">Awka</option>
+                <option value="Bauchi">Bauchi</option>
+                <option value="Benin City">Benin City</option>
+                <option value="Birnin Kebbi">Birnin Kebbi</option>
+                <option value="Calabar">Calabar</option>
+                <option value="Damaturu">Damaturu</option>
+                <option value="Dutse">Dutse</option>
+                <option value="Enugu">Enugu</option>
+                <option value="Gombe">Gombe</option>
+                <option value="Gusau">Gusau</option>
+                <option value="Ibadan">Ibadan</option>
+                <option value="Ikeja">Ikeja</option>
+                <option value="Ilorin">Ilorin</option>
+                <option value="Jalingo">Jalingo</option>
+                <option value="Jos">Jos</option>
+                <option value="Kaduna">Kaduna</option>
+                <option value="Kano">Kano</option>
+                <option value="Katsina">Katsina</option>
+                <option value="Lafia">Lafia</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Lekki">Lekki</option>
+                <option value="Maiduguri">Maiduguri</option>
+                <option value="Makurdi">Makurdi</option>
+                <option value="Minna">Minna</option>
+                <option value="Nnewi">Nnewi</option>
+                <option value="Ogbomosho">Ogbomosho</option>
+                <option value="Onitsha">Onitsha</option>
+                <option value="Osogbo">Osogbo</option>
+                <option value="Owerri">Owerri</option>
+                <option value="Port Harcourt">Port Harcourt</option>
+                <option value="Sokoto">Sokoto</option>
+                <option value="Umuahia">Umuahia</option>
+                <option value="Uyo">Uyo</option>
+                <option value="Warri">Warri</option>
+                <option value="Yenagoa">Yenagoa</option>
+                <option value="Yola">Yola</option>
+                <option value="Zaria">Zaria</option>
+                <option value="FCT">FCT</option>
+              </select>
+            </div>
+            <div class="price-container">
+              <div class="current-price" id="presaleTotalPrice">Summary: 0 Copies, ₦0</div>
+            </div>
             <button type="submit" class="confirm-btn">Proceed to Payment</button>
           </form>
         </div>
@@ -2818,6 +2888,7 @@ color: white;
   <i class="fas fa-arrow-up"></i>
 </a>
        <script>
+
         // View More Button Click Animation
 // View More Button Click Animation
 const viewMoreButton = document.querySelector('.view-more');
