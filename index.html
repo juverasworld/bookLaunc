@@ -387,11 +387,14 @@
               <div class="current-price" id="sessionSummary">Summary: Paid Session, ₦75,000 or $50</div>
             </div> -->
             <!-- <button type="submit" class="confirm-btn">Proceed to Payment</button> -->
-         
+            <div class="payment-optionsa" id="sessionPaymentOptions" >
+              <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Paystack (₦75,000)</button>
+              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Stripe ($50)</button>
+            </div>
             <div class="payment-optionsa"  id="sessionPaymentOptions" >
               <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')"> (₦75,000)</button>
 
-              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Stripe ($50)</button>
+              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')"> ($50)</button>
 
             </div>
           </form>
