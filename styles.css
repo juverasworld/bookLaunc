@@ -136,9 +136,9 @@ text-decoration: none;
     line-height: 1.5;
 }
 
-.price-container {
+/* .price-container {
     margin: 30px 0;
-}
+} */
 
 .current-price {
     font-size: 3.5rem;
@@ -232,7 +232,7 @@ text-decoration: none;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 8px;
 }
 
 .payment-btna {
@@ -269,7 +269,7 @@ text-decoration: none;
 
 /* Adjust form input styles */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .form-input {
@@ -470,7 +470,7 @@ margin-bottom: 5%;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 6px;
 }
 
 .form-label {
@@ -478,7 +478,7 @@ margin-bottom: 5%;
     font-size: 0.9rem;
     text-transform: uppercase;
     color: #1a202c;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .form-input {
@@ -2108,7 +2108,7 @@ text-align: none;
 }
 
 .current-prices {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
 
 
@@ -2169,7 +2169,7 @@ text-align: none;
 
 .price-container {
     text-align: center;
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
 
 .current-price {

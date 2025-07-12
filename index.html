@@ -52,10 +52,13 @@
         </a>
         <!-- Navigation Links for Large Screens -->
         <nav class="nav-menu">
+
           <a href="#blog">Blog</a>
           <a href="#join-community">Join Community</a>
           <a href="#events">Events</a>
           <a href="#Podcast">Podcast</a>
+        <a href="mailto:contact@myfamilycompanion.com"  >contact@myfamilycompanion.com</a>
+
 
         </nav>
         <!-- Hamburger Menu for Small Screens -->
@@ -66,13 +69,16 @@
         </div>
         <!-- Mobile Menu -->
         <div class="mobile-menu">
+
           <a href="#blog">Blog</a>
           <a href="#join-community">Join Community</a>
           <a href="#events">Events</a>
           <a href="#Podcast">Podcast</a>
+        <a href="mailto:contact@myfamilycompanion.com"  class="contact-btn" >contact@myfamilycompanion.com</a>
+
         </div>
         <a href="#payment" class="contact-btn" onclick="showPresaleOverlay()">Presale Order</a>
-
+     
       </div>
     </header>
 
@@ -242,14 +248,14 @@
           class="payment-btna"
           onclick="initiatePaystackPayment(selectedDonation.totalNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
         >
-            (₦<span id="paystackAmount">0</span>)
+            (₦ Paystack-<span id="paystackAmount">0</span>)
         </button>
         <button
           type="button"
           class="payment-btna"
           onclick="initiateStripePayment(selectedDonation.totalUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
         >
-          ($<span id="stripeAmount">0</span>)
+          ($ Stripe-<span id="stripeAmount">0</span>)
         </button>
       </div>
     </form>
@@ -387,14 +393,14 @@
               <div class="current-price" id="sessionSummary">Summary: Paid Session, ₦75,000 or $50</div>
             </div> -->
             <!-- <button type="submit" class="confirm-btn">Proceed to Payment</button> -->
-            <div class="payment-optionsa" id="sessionPaymentOptions" >
+            <!-- <div class="payment-optionsa" id="sessionPaymentOptions" >
               <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Paystack (₦75,000)</button>
               <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Stripe ($50)</button>
-            </div>
+            </div> -->
             <div class="payment-optionsa"  id="sessionPaymentOptions" >
-              <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')"> (₦75,000)</button>
+              <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')">Paystack- (₦75,000)</button>
 
-              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')"> ($50)</button>
+              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Stripe- ($50)</button>
 
             </div>
           </form>
