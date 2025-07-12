@@ -1,892 +1,425 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="My Family Companion – Family Health Guide by Dr. OVO" />
-    <meta property="og:description" content="From singlehood to parenthood, everything you need to build a safe and healthy family." />
-    <meta name="keywords" content="My Family Companion, Family Health Guide, Dr. OVO, healthy family" />
-    <meta property="og:image" content="https://myfamilycompanion.org/cover.jpg" />
-    <meta property="og:url" content="https://myfamilycompanion.org" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="author" content="Dr. Otubo Victor" />
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <title>My Family Companion – Family Health Guide by Dr. OVO</title>
-    <link rel="icon" href="bg1.jpg" type="image/png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', sans-serif;
-      }
+       /* Ensure payment buttons are styled side by side */
+.payment-optionsa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  border: 2px solid black;
+}
 
-      body {
-        background: linear-gradient(180deg, rgba(23, 37, 54, 0.7), rgba(40, 100, 120, 0.5));
-        color: #ffffff;
-        overflow-x: hidden;
-      }
+.payment-btna {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #1a202c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
 
-      .header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 20px 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-      }
+.payment-btna:hover {
+  background-color: #2d3748;
+  transform: translateY(-2px);
+}
 
-      .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-      }
+.anonymous-btn {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  background: none;
+  border: 1px solid #1a202c;
+  color: #1a202c;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-      .logo {
-        font-size: 28px;
-        font-weight: 700;
-        color: #1a202c;
-      }
+.anonymous-btn:hover {
+  background-color: #f7fafc;
+}
 
-      .contact-btn, .more-info-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.2s ease;
-        cursor: pointer;
-      }
+/* Adjust form input styles */
+.form-group {
+  margin-bottom: 15px;
+}
 
-      .contact-btn:hover, .more-info-btn:hover {
-        background: #38a169;
-        transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
-      }
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
-      .main-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 140px 20px 80px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-      }
-
-      .hero-image {
-        position: relative;
-        width: 100%;
-        height: 520px;
-      }
-
-      .main-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      }
-
-      .hero-title {
-        font-size: 56px;
-        font-weight: 800;
-        color: #ffffff;
-        line-height: 1.1;
-        margin-bottom: 24px;
-      }
-
-      .hero-description {
-        color: #d1d5db;
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 40px;
-      }
-
-      .cta-section {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-      }
-
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 2000;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .overlay-content {
-        background: white;
-        padding: 40px;
-        border-radius: 16px;
-        max-width: 600px;
-        width: 90%;
-        position: relative;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        animation: bounceIn 0.5s ease-out;
-      }
-
-      @keyframes bounceIn {
-        0% {
-          transform: scale(0.8);
-          opacity: 0;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #4a5568;
-        transition: transform 0.2s ease;
-      }
-
-      .close-btn:hover {
-        transform: scale(1.2);
-      }
-
-      .overlay-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: #1a202c;
-      }
-
-      .form-group {
-        margin-bottom: 15px;
-      }
-
-      .form-label {
-        font-weight: 600;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        color: #1a202c;
-        margin-bottom: 8px;
-      }
-
-      .form-input {
-        padding: 12px;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        width: 100%;
-        font-size: 1rem;
-        color: #1a202c;
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-
-      .form-input:focus {
-        outline: none;
-        border-color: #38a169;
-        transform: scale(1.02);
-      }
-
-      .confirm-btn, .payment-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 14px 28px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin: 10px 0;
-        transition: all 0.2s ease;
-      }
-
-      .confirm-btn:hover, .payment-btn:hover {
-        background: #38a169;
-        transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
-      }
-
-      .anonymous-btn {
-        background: #edf2f7;
-        color: #1a202c;
-        padding: 12px 20px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin: 10px 0;
-        transition: all 0.2s ease;
-      }
-
-      .anonymous-btn:hover {
-        background: #e2e8f0;
-        transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .copy-option {
-        margin: 15px 0;
-        padding: 15px;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.5s ease-out forwards;
-      }
-
-      .copy-option:nth-child(1) { animation-delay: 0.1s; }
-      .copy-option:nth-child(2) { animation-delay: 0.2s; }
-      .copy-option:nth-child(3) { animation-delay: 0.3s; }
-
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .copy-option:hover {
-        background: #f7fafc;
-        border-color: #38a169;
-        transform: scale(1.02);
-      }
-
-      .copy-option.selected {
-        background: #f0fff4;
-        border-color: #38a169;
-      }
-
-      .price-container {
-        text-align: center;
-        margin: 20px 0;
-      }
-
-      .current-price {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1a202c;
-      }
-
-      @media (max-width: 768px) {
-        .main-content {
-          grid-template-columns: 1fr;
-          gap: 60px;
-          padding: 120px 20px 60px;
-        }
-
-        .hero-title {
-          font-size: 42px;
-        }
-
-        .cta-section {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .overlay-content {
-          padding: 20px;
-        }
-      }
+.current-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a202c;
+  margin: 10px 0;
+} 
     </style>
-  </head>
-  <body>
-    <header class="header">
-      <div class="nav-container">
-        <div class="logo">MY FAMILY COMPANION</div>
-        <a href="#payment" class="contact-btn" onclick="showPresaleOverlay()">Presale Order</a>
-      </div>
-    </header>
-
-    <main class="main-content">
-      <div class="hero-image">
-        <img src="/bg1.jpg" alt="Team collaboration" class="main-image" />
-      </div>
-      <div class="hero-content">
-        <h1 class="hero-title">My Family Companion</h1>
-        <p class="hero-description">
-          Building a healthy family starts long before the wedding day, and continues with every decision you make as a parent. In <em>My Family Companion</em>, Dr. OVO draws from years of medical education and practice, real-life stories, and personal experience to guide you through every stage of family life.
-        </p>
-        <div class="cta-section">
-          <a href="#donate" class="more-info-btn" onclick="showDonationOverlay()">Donate Copy</a>
-          <a href="#payment" class="more-info-btn" onclick="showPresaleOverlay()">Presale Order</a>
-          <a href="#session" class="more-info-btn" onclick="showSessionOverlay()">Book a Paid Session</a>
+<!-- Donation Overlay (Replaces donationQuantityOverlay and donationCopiesOverlay) -->
+<div class="overlay" id="donationOverlay">
+    <div class="overlay-content">
+      <span class="close-btn" onclick="closeOverlays()">×</span>
+      <h2 class="overlay-title">
+        <div class="topics-container">
+          <ul class="topics-list">
+            <li>One Book</li>
+            <li>One Gift</li>
+            <li>One Family Saved</li>
+          </ul>
         </div>
+      </h2>
+      <p style="margin-bottom: 20px;" class="donate-p">
+        Your Gift is helping us prevent one maternal and child death every 30 seconds in Communities across Africa
+      </p>
+      <div class="form-group">
+        <label class="form-label" for="donationCopyCount">Number of Copies</label>
+        <input
+          type="number"
+          id="donationCopyCount"
+          class="form-input"
+          placeholder="Enter number of copies"
+          min="1"
+          required
+          oninput="calculateDonationTotal()"
+        />
       </div>
-    </main>
-
-    <!-- Donation Quantity Overlay -->
-    <div class="overlay" id="donationQuantityOverlay">
-      <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlays()">×</span>
-        <h2 class="overlay-title">Select Donation Copies</h2>
-        <div class="copy-option" onclick="selectCopyOption(5, '5-20')">
-          <div class="copy-option-title">A. 5-20 Copies</div>
-          <div class="copy-option-reward">Receive Certificate of Appreciation</div>
-        </div>
-        <div class="copy-option" onclick="selectCopyOption(20, '20-100')">
-          <div class="copy-option-title">B. 20-100 Copies</div>
-          <div class="copy-option-reward">A + Website Appreciation Mention</div>
-        </div>
-        <div class="copy-option" onclick="selectCopyOption(100, '100+')">
-          <div class="copy-option-title">C. 100+ Copies</div>
-          <div class="copy-option-reward">A + B + Your Brand/Name Printed on the Book Cover</div>
-        </div>
-        <button class="confirm-btn" onclick="confirmDonationQuantity()">Confirm Selection</button>
+      <div class="price-container">
+        <div class="current-price" id="donationTotalPrice">₦0 / $0</div>
       </div>
+      <button class="confirm-btn" onclick="proceedToDonationForm()">Continue</button>
     </div>
-
-    <!-- Donation Copies Overlay -->
-    <div class="overlay" id="donationCopiesOverlay">
-      <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlays()">×</span>
-        <h2 class="overlay-title">Thank You for Donating!</h2>
-        <p style="margin-bottom: 20px;">Hey, thank you for donating! Now, how many copies would you like to donate?</p>
+  </div>
+  
+  <!-- Donation Form Overlay -->
+  <div class="overlay" id="donationFormOverlay">
+    <div class="overlay-content">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="closeOverlays()">×</span>
+            <h2 class="overlay-title">Select Donation Copies</h2>
+            <div class="copy-option">
+                <div class="copy-option-title">A. 5-20 Copies</div>
+                <div class="copy-option-reward">Receive Certificate of Appreciation</div>
+            </div>
+            <div class="copy-option">
+                <div class="copy-option-title">B. 20-100 Copies</div>
+                <div class="copy-option-reward">A+Website Appreciation Mention</div>
+            </div>
+            
+            <div class="copy-option"><div class="copy-option-title">C. 100+Copies</div>
+            <div class="copy-option-reward">A+B+Your Brand/Name Printed on the Book Cover</div>
+     
+     
+            <span class="close-btn" onclick="closeOverlays()">×</span>
+      <h2 class="overlay-title" id="donationOverlayTitle">Donation Details</h2>
+      <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
         <div class="form-group">
-          <label class="form-label" for="donationCopyCount">Number of Copies</label>
-          <input type="number" id="donationCopyCount" class="form-input" placeholder="Enter number of copies" min="5" required oninput="calculateDonationTotal()">
+          <label class="form-label" for="donationCopyCountForm">Number of Copies</label>
+          <input
+            type="number"
+            id="donationCopyCountForm"
+            class="form-input"
+            placeholder="Enter number of copies"
+            min="1"
+            required
+            oninput="updateDonationSummary()"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="donationPriceNGN">Price per Copy (NGN)</label>
+          <input
+            type="number"
+            id="donationPriceNGN"
+            class="form-input"
+            placeholder="Enter price per copy in NGN"
+            min="0"
+            step="100"
+            required
+            oninput="updateDonationSummary()"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="donationPriceUSD">Price per Copy (USD)</label>
+          <input
+            type="number"
+            id="donationPriceUSD"
+            class="form-input"
+            placeholder="Enter price per copy in USD"
+            min="0"
+            step="0.01"
+            required
+            oninput="updateDonationSummary()"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="donationName">First Name</label>
+          <input
+            type="text"
+            id="donationName"
+            class="form-input"
+            placeholder="Enter your First name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="donationEmail">Email Address</label>
+          <input
+            type="email"
+            id="donationEmail"
+            class="form-input"
+            placeholder="Enter your email address"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="donationOrganization">Organization Name</label>
+          <input
+            type="text"
+            id="donationOrganization"
+            class="form-input"
+            placeholder="Enter organization name (optional)"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="donationLocation">Location</label>
+          <input
+            type="text"
+            id="donationLocation"
+            class="form-input"
+            placeholder="Enter your location"
+            required
+          />
         </div>
         <div class="price-container">
-          <div class="current-price" id="donationTotalPrice">₦0</div>
+          <div class="current-price" id="donationSummary">Summary: 0 Copies, ₦0 / $0</div>
         </div>
-        <button class="confirm-btn" onclick="proceedToDonationForm()">Continue</button>
-      </div>
-    </div>
-
-    <!-- Donation Form and Payment Overlay -->
-    <div class="overlay" id="donationFormOverlay">
-      <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlays()">×</span>
-        <h2 class="overlay-title" id="donationOverlayTitle">Donation Details</h2>
-        <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" for="donationName">Full Name</label>
-            <input type="text" id="donationName" class="form-input" placeholder="Enter your full name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="donationEmail">Email Address</label>
-            <input type="email" id="donationEmail" class="form-input" placeholder="Enter your email address" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="donationOrganization">Organization Name</label>
-            <input type="text" id="donationOrganization" class="form-input" placeholder="Enter organization name (optional)">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="donationLocation">Location</label>
-            <input type="text" id="donationLocation" class="form-input" placeholder="Enter your location" required>
-          </div>
-          <div class="price-container">
-            <div class="current-price" id="donationSummary">Summary: 0 Copies, ₦0</div>
-          </div>
-          <button type="submit" class="confirm-btn">Proceed to Payment</button>
-          <button type="button" class="anonymous-btn" onclick="proceedToDonationPayment(true)">Donate Anonymously</button>
-          <div class="payment-options" id="donationPaymentOptions" style="display: none;">
-            <h2 class="overlay-title">Select Payment Method</h2>
-            <p style="margin-bottom: 20px; color: #1a202c;">Choose your preferred payment method:</p>
-            <button class="payment-btn" onclick="initiatePaystackPayment(selectedDonation.copies * config.pricePerCopyNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')">Pay with Paystack (₦<span id="paystackAmount">0</span>)</button>
-            <button class="payment-btn" onclick="initiateStripePayment(selectedDonation.copies * config.pricePerCopyUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')">Pay with Stripe ($<span id="stripeAmount">0</span>)</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Presale Overlay -->
-    <div class="overlay" id="presaleOverlay">
-      <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlays()">×</span>
-        <h2 class="overlay-title">Presale Order</h2>
-        <div class="form-group">
-          <label class="form-label">Select Currency</label>
-          <button class="payment-btn" onclick="showPresaleForm('local')">Local (₦20,000/copy)</button>
-          <button class="payment-btn" onclick="showPresaleForm('international')">International ($15/copy)</button>
+        <div class="payment-options">
+          <button
+            type="button"
+            class="payment-btn"
+            onclick="initiatePaystackPayment(selectedDonation.totalNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
+          >
+            Pay with Paystack (₦<span id="paystackAmount">0</span>)
+          </button>
+          <button
+            type="button"
+            class="payment-btn"
+            onclick="initiateStripePayment(selectedDonation.totalUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
+          >
+            Pay with Stripe ($<span id="stripeAmount">0</span>)
+          </button>
         </div>
-      </div>
+        <button type="submit" class="anonymous-btn" onclick="proceedToDonationPayment(true)">
+          Donate Anonymously
+        </button>
+      </form>
     </div>
+  </div>
+  <script>
+    // Configuration (ensure this is already in your code)
+const config = {
+  pricePerCopyNGN: 20000, // ₦20,000 per copy
+  pricePerCopyUSD: 15,    // $15 per copy
+  sessionPriceNGN: 75000, // ₦75,000 per session
+  sessionPriceUSD: 50,    // $50 per session
+  amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
+  paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack public key
+  stripePublicKey: 'YOUR_STRIPE_PUBLIC_KEY',     // Replace with your Stripe public key
+  web3FormsAccessKey: 'YOUR_ACCESS_KEY',         // Replace with your Web3Forms access key
+  stripeServerEndpoint: 'YOUR_SERVER_ENDPOINT'   // Replace with your server endpoint for Stripe
+};
 
-    <!-- Presale Form Overlay -->
-    <div class="overlay" id="presaleFormOverlay">
-      <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlays()">×</span>
-        <h2 class="overlay-title" id="presaleFormTitle">Presale Details</h2>
-        <form class="newsletter-form" id="presaleForm" onsubmit="handlePresaleSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" for="presaleQuantity">Number of Copies</label>
-            <input type="number" id="presaleQuantity" class="form-input" placeholder="Enter number of copies" min="1" required oninput="calculatePresaleTotal()">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="presaleName">Full Name</label>
-            <input type="text" id="presaleName" class="form-input" placeholder="Enter your full name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="presaleEmail">Email Address</label>
-            <input type="email" id="presaleEmail" class="form-input" placeholder="Enter your email address" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="presaleLocation">Location</label>
-            <input type="text" id="presaleLocation" class="form-input" placeholder="Enter your location" required>
-          </div>
-          <div class="price-container">
-            <div class="current-price" id="presaleTotalPrice">Summary: 0 Copies, ₦0</div>
-          </div>
-          <button type="submit" class="confirm-btn">Proceed to Payment</button>
-        </form>
-      </div>
-    </div>
+// Initialize selectedDonation
+let selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
 
-    <!-- Paid Session Overlay -->
-    <div class="overlay" id="sessionOverlay">
-      <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlays()">×</span>
-        <h2 class="overlay-title">Book a Paid Session</h2>
-        <form class="newsletter-form" id="sessionForm" onsubmit="handleSessionSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" for="sessionName">Full Name</label>
-            <input type="text" id="sessionName" class="form-input" placeholder="Enter your full name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="sessionEmail">Email Address</label>
-            <input type="email" id="sessionEmail" class="form-input" placeholder="Enter your email address" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="sessionLocation">Location</label>
-            <input type="text" id="sessionLocation" class="form-input" placeholder="Enter your location" required>
-          </div>
-          <div class="price-container">
-            <div class="current-price" id="sessionSummary">Summary: Paid Session, ₦75,000 or $50</div>
-          </div>
-          <button type="submit" class="confirm-btn">Proceed to Payment</button>
-          <div class="payment-options" id="sessionPaymentOptions" style="display: none;">
-            <button class="payment-btn" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Paystack (₦75,000)</button>
-            <button class="payment-btn" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Stripe ($50)</button>
-          </div>
-        </form>
-      </div>
-    </div>
+// Show donation overlay
+function showDonationOverlay() {
+  console.log('Opening donation overlay');
+  document.getElementById('donationOverlay').style.display = 'flex';
+  resetDonationForm();
+}
 
-    <script>
-      // Configuration
-      const config = {
-        pricePerCopyNGN: 20000, // ₦20,000 per copy
-        pricePerCopyUSD: 15,    // $15 per copy
-        sessionPriceNGN: 75000, // ₦75,000 per session
-        sessionPriceUSD: 50,    // $50 per session
-        amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
-        paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack public key
-        stripePublicKey: 'YOUR_STRIPE_PUBLIC_KEY',     // Replace with your Stripe public key
-        web3FormsAccessKey: 'YOUR_ACCESS_KEY',         // Replace with your Web3Forms access key
-        stripeServerEndpoint: 'YOUR_SERVER_ENDPOINT'   // Replace with your server endpoint for Stripe
-      };
+// Calculate donation total
+function calculateDonationTotal() {
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+    if (copies < 1) {
+      document.getElementById('donationTotalPrice').textContent = '₦0 / $0';
+      return;
+    }
+    selectedDonation.copies = copies;
+    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+    const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
+    const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
+    document.getElementById('donationTotalPrice').textContent = `₦${totalNGN} / $${totalUSD}`;
+  } catch (error) {
+    console.error('Error in calculateDonationTotal:', error);
+    alert('Error calculating donation total. Please try again.');
+  }
+}
 
-      let selectedDonation = { copies: 0, reward: '', range: '' };
-      let selectedPresale = { type: '', copies: 0 };
+// Proceed to donation form
+function proceedToDonationForm() {
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+    if (copies < 1) {
+      alert('Please select at least 1 copy to donate.');
+      return;
+    }
+    selectedDonation.copies = copies;
+    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+    document.getElementById('donationOverlay').style.display = 'none';
+    document.getElementById('donationFormOverlay').style.display = 'flex';
+    const donationCopyCountForm = document.getElementById('donationCopyCountForm');
+    const donationPriceNGN = document.getElementById('donationPriceNGN');
+    const donationPriceUSD = document.getElementById('donationPriceUSD');
+    donationCopyCountForm.value = copies;
+    donationPriceNGN.value = config.pricePerCopyNGN;
+    donationPriceUSD.value = config.pricePerCopyUSD;
+    updateDonationSummary();
+  } catch (error) {
+    console.error('Error in proceedToDonationForm:', error);
+    alert('Error proceeding to donation form. Please try again.');
+  }
+}
 
-      // Overlay Management
-      function showDonationOverlay() {
-        console.log('Opening donation quantity overlay');
-        document.getElementById('donationQuantityOverlay').style.display = 'flex';
-        resetDonationForm();
-      }
+// Update donation summary
+function updateDonationSummary() {
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 0;
+    const priceNGN = parseFloat(document.getElementById('donationPriceNGN').value) || config.pricePerCopyNGN;
+    const priceUSD = parseFloat(document.getElementById('donationPriceUSD').value) || config.pricePerCopyUSD;
+    selectedDonation.copies = copies;
+    selectedDonation.totalNGN = copies * priceNGN;
+    selectedDonation.totalUSD = copies * priceUSD;
+    const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
+    const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
+    document.getElementById('donationSummary').textContent = `Summary: ${copies} Copies, ₦${totalNGN} / $${totalUSD}`;
+    document.getElementById('paystackAmount').textContent = totalNGN;
+    document.getElementById('stripeAmount').textContent = totalUSD;
+  } catch (error) {
+    console.error('Error in updateDonationSummary:', error);
+    alert('Error updating donation summary. Please try again.');
+  }
+}
 
-      function showPresaleOverlay() {
-        console.log('Opening presale overlay');
-        document.getElementById('presaleOverlay').style.display = 'flex';
-      }
+// Handle donation form submission
+async function handleDonationSubmit(event) {
+  event.preventDefault();
+  console.log('Submitting donation form');
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 0;
+    const priceNGN = parseFloat(document.getElementById('donationPriceNGN').value) || config.pricePerCopyNGN;
+    const priceUSD = parseFloat(document.getElementById('donationPriceUSD').value) || config.pricePerCopyUSD;
+    const name = document.getElementById('donationName').value;
+    const email = document.getElementById('donationEmail').value;
+    const organization = document.getElementById('donationOrganization').value;
+    const location = document.getElementById('donationLocation').value;
 
-      function showPresaleForm(type) {
-        console.log(`Showing presale form for ${type}`);
-        selectedPresale.type = type;
-        document.getElementById('presaleOverlay').style.display = 'none';
-        document.getElementById('presaleFormOverlay').style.display = 'flex';
-        document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale ($)';
-        resetPresaleForm();
-      }
+    if (copies < 1) {
+      alert('Please select at least 1 copy.');
+      return;
+    }
 
-      function showSessionOverlay() {
-        console.log('Opening session overlay');
-        document.getElementById('sessionOverlay').style.display = 'flex';
-        resetSessionForm();
-      }
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('organization', organization);
+    formData.append('location', location);
+    formData.append('copies', copies);
+    formData.append('totalNGN', selectedDonation.totalNGN);
+    formData.append('totalUSD', selectedDonation.totalUSD);
+    formData.append('type', 'donation');
+    formData.append('access_key', config.web3FormsAccessKey);
 
-      function closeOverlays() {
-        console.log('Closing all overlays');
-        document.querySelectorAll('.overlay').forEach(overlay => {
-          overlay.style.display = 'none';
-        });
-        resetForms();
-      }
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+    if (result.success) {
+      console.log('Donation form submitted successfully');
+      alert(`Thank you, ${name}! Your donation details have been recorded. Please select a payment method.`);
+    } else {
+      console.error('Donation submission failed:', result);
+      alert('Submission failed. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error in handleDonationSubmit:', error);
+    alert('An error occurred during submission. Please try again.');
+  }
+}
 
-      function resetForms() {
-        console.log('Resetting all forms');
-        selectedDonation = { copies: 0, reward: '', range: '' };
-        selectedPresale = { type: '', copies: 0 };
-        const donationCopyCount = document.getElementById('donationCopyCount');
-        if (donationCopyCount) donationCopyCount.value = '';
-        const donationTotalPrice = document.getElementById('donationTotalPrice');
-        if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
-        const donationForm = document.getElementById('donationForm');
-        if (donationForm) donationForm.reset();
-        const donationPaymentOptions = document.getElementById('donationPaymentOptions');
-        if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
-        const paystackAmount = document.getElementById('paystackAmount');
-        if (paystackAmount) paystackAmount.textContent = '0';
-        const stripeAmount = document.getElementById('stripeAmount');
-        if (stripeAmount) stripeAmount.textContent = '0';
-        const presaleQuantity = document.getElementById('presaleQuantity');
-        if (presaleQuantity) presaleQuantity.value = '';
-        const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-        if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
-        const presaleFormOverlay = document.getElementById('presaleFormOverlay');
-        if (presaleFormOverlay) presaleFormOverlay.dataset.type = '';
-        const presaleForm = document.getElementById('presaleForm');
-        if (presaleForm) presaleForm.reset();
-        const sessionForm = document.getElementById('sessionForm');
-        if (sessionForm) sessionForm.reset();
-        const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
-        if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
-        document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-      }
+// Anonymous donation
+function proceedToDonationPayment(isAnonymous) {
+  console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
+  if (selectedDonation.copies < 1) {
+    alert('Please select at least 1 copy to proceed.');
+    return;
+  }
+  try {
+    if (isAnonymous) {
+      document.getElementById('donationName').value = 'Anonymous';
+      document.getElementById('donationEmail').value = 'anonymous@example.com';
+      document.getElementById('donationOrganization').value = '';
+      document.getElementById('donationLocation').value = 'Unknown';
+      handleDonationSubmit(new Event('submit'));
+    }
+  } catch (error) {
+    console.error('Error in proceedToDonationPayment:', error);
+    alert('Error proceeding to payment. Please try again.');
+  }
+}
 
-      // Donation Logic
-      function selectCopyOption(copies, range) {
-        console.log(`Selected ${copies} copies with range ${range}`);
-        selectedDonation.copies = copies;
-        selectedDonation.range = range;
-        document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-        try {
-          event.currentTarget.classList.add('selected');
-        } catch (error) {
-          console.error('Error in selectCopyOption:', error);
-        }
-      }
+// Reset donation form
+function resetDonationForm() {
+  selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+  const donationCopyCount = document.getElementById('donationCopyCount');
+  if (donationCopyCount) donationCopyCount.value = '';
+  const donationTotalPrice = document.getElementById('donationTotalPrice');
+  if (donationTotalPrice) donationTotalPrice.textContent = '₦0 / $0';
+  const donationForm = document.getElementById('donationForm');
+  if (donationForm) donationForm.reset();
+  const donationCopyCountForm = document.getElementById('donationCopyCountForm');
+  if (donationCopyCountForm) donationCopyCountForm.value = '';
+  const donationPriceNGN = document.getElementById('donationPriceNGN');
+  if (donationPriceNGN) donationPriceNGN.value = '';
+  const donationPriceUSD = document.getElementById('donationPriceUSD');
+  if (donationPriceUSD) donationPriceUSD.value = '';
+  const paystackAmount = document.getElementById('paystackAmount');
+  if (paystackAmount) paystackAmount.textContent = '0';
+  const stripeAmount = document.getElementById('stripeAmount');
+  if (stripeAmount) stripeAmount.textContent = '0';
+}
 
-      function calculateDonationTotal() {
-        try {
-          const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-          console.log(`Calculating total for ${copies} copies`);
-          selectedDonation.copies = copies;
-          const totalNGN = copies * config.pricePerCopyNGN;
-          const totalUSD = copies * config.pricePerCopyUSD;
-          const donationTotalPrice = document.getElementById('donationTotalPrice');
-          if (donationTotalPrice) {
-            donationTotalPrice.textContent = `₦${totalNGN.toLocaleString('en-NG')}`;
-          }
-          selectedDonation.reward = getDonationReward(copies);
-        } catch (error) {
-          console.error('Error in calculateDonationTotal:', error);
-          alert('Error calculating total. Please try again.');
-        }
-      }
-
-      function getDonationReward(copies) {
-        if (copies >= 100) return 'Certificate + Website Mention + Brand on Cover';
-        if (copies >= 20) return 'Certificate + Website Mention';
-        if (copies >= 5) return 'Certificate of Appreciation';
-        return 'Select at least 5 copies to see rewards';
-      }
-
-      function confirmDonationQuantity() {
-        console.log('Confirming donation quantity', selectedDonation);
-        if (!selectedDonation.range) {
-          alert('Please select a donation range (5-20, 20-100, or 100+ copies).');
-          return;
-        }
-        try {
-          document.getElementById('donationQuantityOverlay').style.display = 'none';
-          document.getElementById('donationCopiesOverlay').style.display = 'flex';
-          const donationCopyCount = document.getElementById('donationCopyCount');
-          if (donationCopyCount) {
-            donationCopyCount.value = selectedDonation.copies;
-          }
-          calculateDonationTotal();
-        } catch (error) {
-          console.error('Error in confirmDonationQuantity:', error);
-          alert('Error proceeding to next step. Please try again.');
-        }
-      }
-
-      function proceedToDonationForm() {
-        try {
-          const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-          console.log(`Proceeding with ${copies} copies, range: ${selectedDonation.range}`);
-          if (copies < 5) {
-            alert('Please select at least 5 copies to donate.');
-            return;
-          }
-          if (selectedDonation.range === '5-20' && (copies < 5 || copies > 20)) {
-            alert('Please select a number of copies between 5 and 20.');
-            return;
-          }
-          if (selectedDonation.range === '20-100' && (copies < 20 || copies > 100)) {
-            alert('Please select a number of copies between 20 and 100.');
-            return;
-          }
-          if (selectedDonation.range === '100+' && copies < 100) {
-            alert('Please select at least 100 copies.');
-            return;
-          }
-          selectedDonation.copies = copies;
-          document.getElementById('donationCopiesOverlay').style.display = 'none';
-          document.getElementById('donationFormOverlay').style.display = 'flex';
-          const donationSummary = document.getElementById('donationSummary');
-          if (donationSummary) {
-            donationSummary.textContent = `Summary: ${selectedDonation.copies} Copies, ₦${(selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`;
-          }
-        } catch (error) {
-          console.error('Error in proceedToDonationForm:', error);
-          alert('Error proceeding to donation form. Please try again.');
-        }
-      }
-
-      async function handleDonationSubmit(event) {
-        event.preventDefault();
-        console.log('Submitting donation form');
-        try {
-          const name = document.getElementById('donationName').value;
-          const email = document.getElementById('donationEmail').value;
-          const organization = document.getElementById('donationOrganization').value;
-          const location = document.getElementById('donationLocation').value;
-
-          const formData = new FormData();
-          formData.append('name', name);
-          formData.append('email', email);
-          formData.append('organization', organization);
-          formData.append('location', location);
-          formData.append('copies', selectedDonation.copies);
-          formData.append('reward', selectedDonation.reward);
-          formData.append('type', 'donation');
-          formData.append('access_key', config.web3FormsAccessKey);
-
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
-          const result = await response.json();
-          if (result.success) {
-            console.log('Form submitted successfully');
-            document.getElementById('donationForm').style.display = 'none';
-            document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
-            document.getElementById('donationPaymentOptions').style.display = 'block';
-            const paystackAmount = document.getElementById('paystackAmount');
-            const stripeAmount = document.getElementById('stripeAmount');
-            if (paystackAmount && stripeAmount) {
-              paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
-              stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
-            }
-          } else {
-            console.error('Form submission failed:', result);
-            alert('Submission failed. Please try again.');
-          }
-        } catch (error) {
-          console.error('Error in handleDonationSubmit:', error);
-          alert('An error occurred during submission. Please try again.');
-        }
-      }
-
-      function proceedToDonationPayment(isAnonymous) {
-        console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
-        if (selectedDonation.copies < 5) {
-          alert('Please select at least 5 copies to proceed.');
-          return;
-        }
-        try {
-          document.getElementById('donationForm').style.display = 'none';
-          document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
-          document.getElementById('donationPaymentOptions').style.display = 'block';
-          const paystackAmount = document.getElementById('paystackAmount');
-          const stripeAmount = document.getElementById('stripeAmount');
-          if (paystackAmount && stripeAmount) {
-            paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
-            stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
-          }
-        } catch (error) {
-          console.error('Error in proceedToDonationPayment:', error);
-          alert('Error proceeding to payment. Please try again.');
-        }
-      }
-
-      // Presale Logic
-      function calculatePresaleTotal() {
-        try {
-          const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
-          console.log(`Calculating presale total for ${copies} copies`);
-          selectedPresale.copies = copies;
-          const total = selectedPresale.type === 'local' 
-            ? `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`
-            : `$${copies * config.pricePerCopyUSD}`;
-          const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-          if (presaleTotalPrice) {
-            presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
-          }
-        } catch (error) {
-          console.error('Error in calculatePresaleTotal:', error);
-          alert('Error calculating presale total. Please try again.');
-        }
-      }
-
-      async function handlePresaleSubmit(event) {
-        event.preventDefault();
-        console.log('Submitting presale form');
-        try {
-          const quantity = parseInt(document.getElementById('presaleQuantity').value);
-          const name = document.getElementById('presaleName').value;
-          const email = document.getElementById('presaleEmail').value;
-          const location = document.getElementById('presaleLocation').value;
-
-          if (quantity < 1) {
-            alert('Please select at least 1 copy.');
-            return;
-          }
-
-          const formData = new FormData();
-          formData.append('name', name);
-          formData.append('email', email);
-          formData.append('location', location);
-          formData.append('quantity', quantity);
-          formData.append('type', selectedPresale.type);
-          formData.append('access_key', config.web3FormsAccessKey);
-
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
-          const result = await response.json();
-          if (result.success) {
-            console.log('Presale form submitted successfully');
-            if (selectedPresale.type === 'local') {
-              initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
-            } else {
-              console.log('Redirecting to Amazon for international presale');
-              window.location.href = config.amazonLink;
-            }
-          } else {
-            console.error('Presale submission failed:', result);
-            alert('Submission failed. Please try again.');
-          }
-        } catch (error) {
-          console.error('Error in handlePresaleSubmit:', error);
-          alert('An error occurred during submission. Please try again.');
-        }
-      }
-
-      // Session Logic
-      async function handleSessionSubmit(event) {
-        event.preventDefault();
-        console.log('Submitting session form');
-        try {
-          const name = document.getElementById('sessionName').value;
-          const email = document.getElementById('sessionEmail').value;
-          const location = document.getElementById('sessionLocation').value;
-
-          const formData = new FormData();
-          formData.append('name', name);
-          formData.append('email', email);
-          formData.append('location', location);
-          formData.append('type', 'session');
-          formData.append('access_key', config.web3FormsAccessKey);
-
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
-          const result = await response.json();
-          if (result.success) {
-            console.log('Session form submitted successfully');
-            document.getElementById('sessionForm').style.display = 'none';
-            document.getElementById('sessionPaymentOptions').style.display = 'block';
-          } else {
-            console.error('Session submission failed:', result);
-            alert('Submission failed. Please try again.');
-          }
-        } catch (error) {
-          console.error('Error in handleSessionSubmit:', error);
-          alert('An error occurred during submission. Please try again.');
-        }
-      }
-
-      // Payment Gateway Integration
-      function initiatePaystackPayment(amount, email, type) {
-        console.log(`Initiating Paystack payment for ${type}, amount: ${amount}, email: ${email}`);
-        try {
-          const handler = PaystackPop.setup({
-            key: config.paystackPublicKey,
-            email: email,
-            amount: amount,
-            currency: 'NGN',
-            metadata: { type: type },
-            callback: function (response) {
-              console.log('Paystack payment successful:', response);
-              alert(`Payment successful! Reference: ${response.reference}`);
-              closeOverlays();
-            },
-            onClose: function () {
-              console.log('Paystack payment window closed');
-              alert('Payment window closed.');
-            }
-          });
-          handler.openIframe();
-        } catch (error) {
-          console.error('Paystack Error:', error);
-          alert('Failed to initialize Paystack payment. Please try again.');
-        }
-      }
-
-      function initiateStripePayment(amount, email, type) {
-        console.log(`Initiating Stripe payment for ${type}, amount: ${amount}, email: ${email}`);
-        try {
-          const stripe = Stripe(config.stripePublicKey);
-          fetch(config.stripeServerEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              amount: amount,
-              email: email,
-              type: type,
-              currency: 'usd'
-            })
-          })
-          .then(response => response.json())
-          .then(session => {
-            console.log('Stripe session created:', session);
-            return stripe.redirectToCheckout({ sessionId: session.id });
-          })
-          .then(result => {
-            if (result.error) {
-              console.error('Stripe checkout error:', result.error);
-              alert(result.error.message);
-            }
-          })
-          .catch(error => {
-            console.error('Stripe Error:', error);
-            alert('Failed to initialize Stripe payment. Please try again.');
-          });
-        } catch (error) {
-          console.error('Stripe Error:', error);
-          alert('Failed to initialize Stripe payment. Please try again.');
-        }
-      }
-    </script>
-  </body>
+// Update existing resetForms to include new donation form reset
+function resetForms() {
+  console.log('Resetting all forms');
+  selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+  selectedPresale = { type: '', copies: 0 };
+  resetDonationForm();
+  resetPresaleForm();
+  resetSessionForm();
+}
+  </script>
+  <div class="overlay-content"><span class="close-btn" onclick="closeOverlays()">×</span><h2 class="overlay-title">Select Donation Copies</h2><div class="copy-option"><div class="copy-option-title">A. 5-20 Copies</div><div class="copy-option-reward">Receive Certificate of Appreciation</div></div><div class="copy-option"><div class="copy-option-title">B. 20-100 Copies</div><div class="copy-option-reward">A+Website Appreciation Mention</div></div><div class="copy-option"><div class="copy-option-title">C. 100+Copies</div><div class="copy-option-reward">A+B+Your Brand/Name Printed on the Book Cover</div>
+</body>
 </html>
-
 

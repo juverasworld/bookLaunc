@@ -37,2184 +37,7 @@
     <link rel="icon" href="bg1.jpg" type="image/png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 
-    <style>
-      /* .form-input[type="number"] {
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-}
-.form-input[type="textarea"] {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.form-input[type="number"]::-webkit-inner-spin-button,
-.form-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
-#rewardDisplay {
-  background: #f0fff4;
-  border: 1px solid #38a169;
-}
-
-#totalPriceDisplay {
-  text-align: center;
-  margin: 20px 0;
-}
-
-#totalPrice {
-  color: #1a202c;
-  font-weight: 800;
-}
-      .containerss {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .presale-section {
-          background: #172536
-
-     ;
-            /* background: linear-gradient(135deg, #ff6b6b, #ee5a24); */
-            border-radius: 20px;
-            padding: 40px;
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .presale-section:hover {
-            transform: translateY(-5px);
-        }
-        .back-btn {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 24px;
-  color: #FF0000; /* YouTube red to match your previous request */
-  cursor: pointer;
-  transition: color 0.3s ease;
-  z-index: 1100; /* Above overlay content */
-}
-
-.back-btn:hover {
-  color: #CC0000; /* Darker red on hover */
-}
-     
-.a{
-  color: inherit;
-  text-decoration: none;
-}
-/* .a:hover{
-  color: #fff;
-  text-decoration: none;
-} */
-        .presale-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(180deg, rgba(23, 37, 54, 0.9), rgba(40, 100, 150, 0.5));
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .presale-badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: inline-block;
-            backdrop-filter: blur(10px);
-        }
-
-        .presale-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        .presale-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-
-        .price-container {
-            margin: 30px 0;
-        }
-
-        .current-price {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .original-price {
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            opacity: 0.7;
-            margin-bottom: 10px;
-        }
-
-        .savings {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .countdown {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 30px 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .countdown-title {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .time-unit {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 10px;
-            min-width: 60px;
-        }
-
-        .time-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            display: block;
-        }
-
-        .time-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-        }
-
-        .cta-button {
-            background: white;
-            color: #ee5a24;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            background: #f8f9fa;
-        }
-
-        .newsletter-section {
-            background: linear-gradient(135deg, #4c63d2, #2d3748);
-            border-radius: 20px;
-            padding: 40px;
-            color: white;
-        }
-/* More Link Styling */
-.more-link {
-  color: #000;
-  text-decoration: none;
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.more-link:hover {
-  text-decoration: underline;
-}
-
-/* Popup Styling */
-.popup-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-  border: 10px solid black;
-}
-
-.popup-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.close-popup {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-}
-
-.close-popup:hover {
-  color: #ff0000;
-}
-
-.popup-text {
-  line-height: 1.6;
-  color: #333;
-  text-align: justify;
-}
-
-.popup-text p {
-  margin-bottom: 15px;
-}
-/* .popup-text {
-margin-bottom: 5%;
-} */
-.popup-text em {
-  font-style: italic;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .popup-content {
-    width: 95%;
-    padding: 20px;
-  }
-}
-        .newsletter-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.3;
-        }
-        .newsletter-titles {
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 16px;
-            line-height: 1.3;
-            /* color: #ed8936; */
-        }
-        .newsletter-titless {
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 16px;
-            line-height: 1.3;
-            /* color: #ed8936; */
-        }
-.spans{
-  color: #ed8936;
-
-}
-        .newsletter-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .benefits-list {
-            list-style: none;
-            margin-bottom: 10px;
-        }
-
-        .benefits-list li {
-            padding: 4px 0;
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-            opacity: 0.95;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .benefits-list li {
-    display: flex;
-    align-items: center;
-  color: #1a202c;
-
-    gap: 12px; /* Replaces margin-right for better spacing control */
-}
-
-.benefits-list li i {
-  color: #1a202c;
-    font-size: 1.2rem;
-}
-
-.benefits-list li::before {
-    content: none; /* Remove the default ✨ emoji */
-}
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align:left;
-        }
-
-        .form-group {
-        margin-bottom: 15px;
-      }
-
-      .form-label {
-        font-weight: 600;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        color: #1a202c;
-        margin-bottom: 8px;
-      }
-
-      .form-input {
-        padding: 12px;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        width: 100%;
-        font-size: 1rem;
-        color: #1a202c;
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-      footer {
-  /* background-color: #0088CC;  */
-     color: #374151;
-  padding: 15px;
-  font-size: 16px;
-  /* border-top: 2px solid gray; */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center ;
-  align-items: center;
-}
-      .form-input:focus {
-        outline: none;
-        border-color: #38a169;
-        transform: scale(1.02);
-      }
-
-        .confirm-btn, .payment-btn, .payment-btns, .payment-btnss {
-        background: #1f2d3d;
-        color: white;
-        padding: 14px 28px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin: 10px 0;
-        transition: all 0.2s ease;
-      }
-
-      .confirm-btn:hover, .payment-btn:hover, .payment-btns:hover, .payment-btnss:hover {
-        background: #38a169;
-
-        transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
-      }
-        /* .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-1px);
-        } */
-
-        .newsletter-button {
-            /* background: linear-gradient(135deg, #10b981, #059669); */
-        background: #1f2d3d;
-
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
-        }
-
-        .newsletter-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
-            background: linear-gradient(135deg, #059669, #047857);
-        }
-
-        .privacy-note {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-top: 15px;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 768px) {
-            .containerss {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 30px 20px;
-            }
-
-            .presale-title {
-                font-size: 2rem;
-            }
-            .newsletter-titless {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 16px;
-            line-height: 1.3;
-            /* color: #ed8936; */
-        }
-
-            .current-price {
-                font-size: 2.8rem;
-            }
-
-            .newsletter-title {
-                font-size: 1.8rem;
-            }
-
-            .countdown-timer {
-                gap: 10px;
-            }
-
-            .time-unit {
-                min-width: 50px;
-            }
-
-            .time-number {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .presale-section, .newsletter-section {
-                padding: 30px 20px;
-                
-            }
-            .newsletter-section{
-              text-align: center;
-            }
-            .presale-title {
-                font-size: 1.8rem;
-            }
-
-            .current-price {
-                font-size: 2.5rem;
-            }
-
-            .newsletter-title {
-                font-size: 1.6rem;
-            }
-        }
-
-      .topics-container {
-  display: flex;
-  /* justify-content: center; */
-  /* padding: 10px; */
-  /* border:4px solid black; */
-  width: 100%;
-  box-sizing: border-box;
-
-
-}
-
-.topics-list {
-  display: inline-flex;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 900;
-  color: #333;
-  margin-bottom:10px ;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.topics-list li {
-  position: relative;
-}
-
-.topics-list li:not(:last-child)::after {
-  content: '·';
-  margin: 0 5px;
-  color: #666;
-}
-
-/* Responsive design */
-@media (max-width: 600px) {
-  .topics-list {
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 400;
-    /* Maintain 14px font size */
-  }
-
-  .topics-list li:not(:last-child)::after {
-    margin: 0 4px;
-  }
-}
-      /* Existing styles remain unchanged */
-      .timer-container {
-  display: flex;
-  padding-bottom: 20px;
-  justify-content: center;
-  
-  width: 100%;
-  box-sizing: border-box;
-  /* border:10px solid black; */
-}
-
-.timer {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.time-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 60px;
-  padding: 10px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.time-unit span {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.time-unit .label {
-  font-size: 1rem;
-  color: #666;
-  text-transform: uppercase;
-  margin-top: 5px;
-}
-
-/* Responsive design */
-@media (max-width: 600px) {
-  .timer {
-    gap: 10px;
-  }
-
-  .time-unit {
-    min-width: 50px;
-    padding: 8px;
-  }
-
-  .time-unit span {
-    font-size: 1.5rem;
-  }
-
-  .time-unit .label {
-    font-size: 0.8rem;
-  }
-}
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      .body {
-        font-family: 'Montserrat', sans-serif;
-
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* padding: 20px; */
-      }
-
-      body {
-        font-family: 'Montserrat', sans-serif;
-
-        line-height: 1.6;
-        color: #1a202c;
-        background-color: #ffffff;
-        overflow-x: hidden;
-      }
-
-      /* Header */
-      .header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 20px 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-      }
-
-      .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        font-size: 28px;
-        font-weight: 700;
-        color: #1a202c;
-        letter-spacing: -0.5px;
-        /* border-bottom: 2px solid #fbbf24; */
-
-      }
-     
-/* Logo Styles */
-.logo {
-  display: flex;
-  align-items: center;
-  /* border: 10px solid pink; */
-  justify-content: center; /* Center the logo */
-}
-
-/* Logo Icon */
-.logo-icon {
-  width: 60px; 
-  height: 60px;
-  /* border: 10px solid pink; */
-
-  border-radius: 8px;
-  /* background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%); */
-  padding: 8px;
-  display: block; /* Ensure it behaves as a block for centering */
-  position: relative;
-}
-
-
-/* Nav Container */
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-/* Hamburger Menu Icon */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
-  z-index: 2001;
-}
-
-.hamburger span {
-  width: 100%;
-  height: 3px;
-  background: #1a202c;
-  /* border: 5px solid black; */
-  transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* Mobile Menu */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 80px;
-  left: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  padding: 20px 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* border: 10px solid pink; */
-
-  z-index: 2000;
-  border-top: 1px solid rgba(226, 232, 240, 0.5);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-menu a {
-  text-decoration: none;
-  color: #4a5568;
-  font-weight: 500;
-  font-size: 18px;
-  /* border: 10px solid pink; */
-  padding: 15px 20px;
-  display: block;
-  text-align: center;
-  transition: color 0.2s ease;
-}
-
-.mobile-menu a:hover {
-  color: #1a202c;
-}
-
-/* Center Navigation Links on Large Screens */
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-menu a {
-  text-decoration: none;
-  color: #4a5568;
-  font-weight: 500;
-  font-size: 15px;
-  transition: color 0.2s ease;
-  letter-spacing: -0.2px;
-}
-
-.nav-menu a:hover {
-  color: #059669;
-}
-
-/* Contact Button */
-.contact-btn {
-  background: #1f2d3d;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: -0.2px;
-}
-
-.contact-btn:hover {
-  background: #38a169;
-  transform: translateY(-1px);
-}
-
-.contact-btn::after {
-  content: "→";
-  font-size: 14px;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none; /* Hide nav links on small screens */
-  }
-
-  .hamburger {
-    display: flex; /* Show hamburger on small screens */
-  /* border: 10px solid pink; */
-    
-  }
-
-  .mobile-menu.active {
-    display: flex; /* Show mobile menu when active */
-  }
-
-  .nav-container {
-    flex-wrap: nowrap; /* Prevent wrapping */
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    flex: 0 0 auto; /* Prevent logo from shrinking */
-  }
-
-  .logo-icon {
-    /* width: 40px; 
-    height: 40px; */
-  }
-
-  .contact-btn {
-    flex: 0 0 auto;
-    padding: 10px 15px;
-    font-size: 12px;
-  }
-}
-
-/* Ensure header remains fixed and full-width */
-.header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  padding: 20px 0;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-}
-
-
-      .logo-icon {
-        /* width: 42px;
-        height: 42px;
-        margin-right: 8px;
-      
-        position: relative;
-  display: inline-block;
-  text-align: none;
-        padding: 10px;
-        background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 16px;
-        font-weight: 600; */
-        border-radius: 8px;
-        /* width: 42px;
-        height: 42px; */
-        /* border: #000 2px solid; */
-      }
-      
-      .nav-menu {
-        display: flex;
-        list-style: none;
-        gap: 32px;
-        align-items: center;
-      }
-
-      .nav-menu a {
-        text-decoration: none;
-        color: #4a5568;
-        font-weight: 500;
-        font-size: 15px;
-        transition: color 0.2s ease;
-        letter-spacing: -0.2px;
-      }
-
-      .nav-menu a:hover {
-        color: #059669;
-      }
-
-      .contact-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        letter-spacing: -0.2px;
-      }
-
-      .contact-btn:hover {
-        background: #38a169;
-        transform: translateY(-1px);
-      }
-
-      .contact-btn::after {
-        content: "→";
-        font-size: 14px;
-      }
-
-      /* Main Content */
-      .main-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 140px 20px 80px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-      }
-
-      .hero-image {
-        position: relative;
-        width: 100%;
-        height: 520px;
-      }
-
-      .main-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      }
-
-      .winner-badge {
-        position: absolute;
-        top: -15px;
-        right: -15px;
-        width: 90px;
-        height: 90px;
-        background: #ed8936;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 10px;
-        font-weight: 700;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        line-height: 1.1;
-        box-shadow: 0 10px 25px rgba(237, 137, 54, 0.4);
-        z-index: 10;
-      }
-
-      .winner-badge::before {
-        /* content: "♥"; */
-        font-size: 16px;
-        margin-bottom: 2px;
-      }
-
-      .winner-text {
-        margin-top: 2px;
-      }
-
-      .productivity-card {
-        position: absolute;
-        bottom: -40px;
-        left: -40px;
-        background: white;
-        padding: 32px;
-        border-radius: 16px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        max-width: 280px;
-        z-index: 5;
-      }
-
-      .productivity-title {
-        color: #38a169;
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        line-height: 1.2;
-        letter-spacing: -0.5px;
-      }
-
-      .productivity-subtitle {
-        color: #4a5568;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1.2px;
-        line-height: 1.4;
-        font-weight: 500;
-      }
-
-      .leaf-decoration {
-        position: absolute;
-        bottom: -25px;
-        right: 30px;
-        width: 80px;
-        height: 100px;
-        z-index: 3;
-      }
-
-      .leaf-decoration::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100"><path d="M40 15 Q55 25 50 50 Q45 75 40 50 Q35 75 30 50 Q25 25 40 15 Z" fill="%2338a169" stroke="%232f855a" stroke-width="1"/><path d="M40 25 Q48 30 45 45 Q42 60 40 45 Q38 60 35 45 Q32 30 40 25 Z" fill="%234fd1c7"/></svg>')
-          center/contain no-repeat;
-      }
-
-      .hero-content {
-        padding-left: 0;
-      }
-
-      .author-tag {
-        color: #ed8936;
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 24px;
-      }
-.her{
-text-align: justify;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-}
-      .hero-title {
-        font-size: 46px;
-        font-weight: 800;
-        color: #1a202c;
-        line-height: 1.1;
-        margin-bottom: 24px;
-        letter-spacing: -1px;
-      }
-
-      .hero-descript {
-        color: #4a5568;
-        /* font-size: 18px; */
-        text-align: justify;
-        font-size: 15px;
-
-        line-height: 1.6;
-        /* margin-bottom: 40px; */
-        font-weight: 400;
-        letter-spacing: -0.2px;
-      }
-      .hero-description {
-        color: #4a5568;
-        /* font-size: 18px; */
-        font-size: 15px;
-        text-align: justify;
-
-        line-height: 1.6;
-        margin-bottom: 40px;
-        font-weight: 400;
-        letter-spacing: -0.2px;
-      }
-
-      .cta-section {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-      }
-
-      .more-info-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 16px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 15px;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        letter-spacing: -0.2px;
-      }
-
-      .more-info-btn:hover {
-        background: #38a169;
-        transform: translateY(-2px);
-      }
-
-      .more-info-btn::after {
-        content: "→";
-        font-size: 16px;
-      }
-
-      .social-proof {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-
-      .user-avatars {
-        display: flex;
-        margin-right: 0;
-      }
-
-      .avatar {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 2px solid white;
-        margin-left: -8px;
-        background-size: cover;
-        background-position: center;
-      }
-
-      .avatar:first-child {
-        margin-left: 0;
-      }
-
-      .avatar:nth-child(1) {
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="%234299e1"/><circle cx="18" cy="14" r="6" fill="white"/><ellipse cx="18" cy="28" rx="10" ry="8" fill="white"/></svg>');
-      }
-      .avatar:nth-child(2) {
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="%23ed8936"/><circle cx="18" cy="14" r="6" fill="white"/><ellipse cx="18" cy="28" rx="10" ry="8" fill="white"/></svg>');
-      }
-      .avatar:nth-child(3) {
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="%2338a169"/><circle cx="18" cy="14" r="6" fill="white"/><ellipse cx="18" cy="28" rx="10" ry="8" fill="white"/></svg>');
-      }
-      .avatar:nth-child(4) {
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="%239f7aea"/><circle cx="18" cy="14" r="6" fill="white"/><ellipse cx="18" cy="28" rx="10" ry="8" fill="white"/></svg>');
-      }
-
-      .rating {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .stars {
-        color: #ed8936;
-        font-size: 16px;
-        letter-spacing: 1px;
-      }
-
-      .rating-text {
-        color: #4a5568;
-        font-size: 13px;
-        font-weight: 500;
-        letter-spacing: -0.1px;
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 768px) {
-        .nav-menu {
-          display: none;
-        }
-        .portfolio-card{
-          padding: 10px;
-        }
-        .stats-container{
-          padding: 10px;
-        }
-        .content-section{
-          padding: 4px;
-        }
-        .main-heading {
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 1.1;
-        color: #111827;
-        margin-bottom: 24px;
-      }
-   
-      .cta-button{
-        width: 100%;
-        margin-top: 4px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        
-      }
-        .more-info-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 16px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 15px;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        letter-spacing: -0.2px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-      }
-
-        .logo {
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        font-weight: 700;
-        color: #1a202c;
-        letter-spacing: -0.5px;
-      }
-      .contact-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 10px;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        letter-spacing: -0.2px;
-      }
-
-      .logo-icon {
-        /* width: 42px;
-        height: 42px;
-        margin-right: 8px;
-        padding: 10px;
-        background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);
-        border-radius: 8px;
-      
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 16px;
-        font-weight: 600; */
-        
-      }
-
-
-        .main-content {
-          grid-template-columns: 1fr;
-          gap: 60px;
-          padding: 120px 20px 60px;
-        }
-
-        .hero-title {
-          font-size: 30px;
-          text-align: center;
-        }
-
-        .hero-content {
-          order: 2;
-        }
-
-        .hero-image {
-          order: 1;
-          height: 400px;
-        }
-
-        .cta-section {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 24px;
-        }
-
-        .productivity-card {
-          bottom: -70px;
-          left: -20px;
-          max-width: 240px;
-          padding: 24px;
-        }
-
-        .productivity-title {
-          font-size: 24px;
-        }
-      }
-      .portfolio-card {
-        background: white;
-        border-radius: 24px;
-        padding: 48px;
-        max-width: 1200px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 60px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .portfolio-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(0, 0, 0, 0.1),
-          transparent
-        );
-      }
-
-      .content-section {
-        flex: 1;
-        /* border:10px solid black */
-      }
-
-      .tagline {
-        color: #6b7280;
-        font-size: 11px;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 16px;
-      }
-
-      .main-heading {
-        font-size: 48px;
-        font-weight: 700;
-        line-height: 1.1;
-        color: #111827;
-        margin-bottom: 24px;
-      }
-
-      .description {
-        color: #4b5563;
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 32px;
-        max-width: 400px;
-      }
-
-      .stats-container {
-        display: flex;
-        gap: 32px;
-        margin-bottom: 40px;
-      }
-
-      .stat-item {
-        display: flex;
-        align-items: baseline;
-        gap: 2px;
-      }
-
-      .stat-number {
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 1;
-      }
-
-      .stat-number.green {
-        color: #1f2d3d;
-      }
-
-      .stat-number.blue {
-        color: #3b82f6;
-      }
-
-      .stat-number.orange {
-        color: #f59e0b;
-      }
-
-      .stat-suffix {
-        font-size: 24px;
-        font-weight: 700;
-        color: inherit;
-      }
-
-      .stat-label {
-        display: block;
-        color: #6b7280;
-        font-size: 13px;
-        font-weight: 500;
-        margin-top: 4px;
-      }
-
-      .cta-button {
-        background: #1f2d3d;
-        color: white;
-        border: none;
-        padding: 14px 28px;
-        border-radius: 50px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-      }
-
-      .cta-button:hover {
-        background: #059669;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-      }
-
-      .cta-button::after {
-        content: "→";
-        font-size: 16px;
-        transition: transform 0.3s ease;
-      }
-
-      .cta-button:hover::after {
-        transform: translateX(4px);
-      }
-
-      .profile-section {
-        position: relative;
-      }
-
-      .profile-image {
-        width: 350px;
-        height: 350px;
-        border-radius: 20px;
-    /* margin-top: 20%; */
-        background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
-        position: relative;
-        overflow: hidden;
-        border: 3px solid #f8fafc;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      }
-
-      .profile-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        /* padding-top: 10px; */
-        /* border: 10px black solid ; */
-        /* margin-top: 10; */
-      }
-
-      .chat-bubble {
-        position: absolute;
-        bottom: -20px;
-        right: -30px;
-        background: linear-gradient(135deg, #fb923c, #f97316);
-        color: white;
-        padding: 16px 20px;
-        border-radius: 20px 20px 4px 20px;
-        font-size: 14px;
-        font-weight: 600;
-        box-shadow: 0 8px 30px rgba(251, 146, 60, 0.4);
-        max-width: 200px;
-        animation: float 3s ease-in-out infinite;
-      }
-
-      .chat-bubble::before {
-        /* content: "👋"; */
-        margin-right: 8px;
-        font-size: 16px;
-      }
-
-      .chat-header {
-        font-size: 11px;
-        opacity: 0.9;
-        margin-bottom: 4px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-
-        50% {
-          transform: translateY(-8px);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .portfolio-card {
-          flex-direction: column-reverse;
-          text-align: center;
-          padding: 32px 24px;
-          gap: 40px;
-        }
-
-        .main-heading {
-          font-size: 36px;
-        }
-
-        .stats-container {
-          justify-content: center;
-        }
-
-        .profile-image {
-          width: 240px;
-          height: 300px;
-          margin: 0 auto;
-        }
-
-        .chat-bubble {
-          right: 50%;
-          transform: translateX(50%);
-        }
-      }
-
-      .testimonial-section {
-        background: linear-gradient(135deg, #1f2d3d 0%, #059669 100%);
-        border-radius: 32px;
-        padding: 80px 60px;
-        max-width: 1200px;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .testimonial-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="white" opacity="0.05"/><circle cx="75" cy="75" r="0.5" fill="white" opacity="0.05"/><circle cx="50" cy="10" r="0.3" fill="white" opacity="0.03"/><circle cx="10" cy="50" r="0.3" fill="white" opacity="0.03"/><circle cx="90" cy="30" r="0.3" fill="white" opacity="0.03"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
-        pointer-events: none;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .section-label {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 16px;
-      }
-
-      .section-title {
-        color: white;
-        font-size: 40px;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      .testimonials-marquee {
-        display: flex;
-        gap: 24px;
-        overflow: hidden;
-        position: relative;
-        z-index: 2;
-        width: 100%;
-      }
-
-      .marquee-content {
-        display: flex;
-        gap: 24px;
-        animation: marquee 20s linear infinite;
-      }
-
-      .marquee-content:hover {
-        animation-play-state: paused;
-      }
-
-      .testimonial-card {
-        background: white;
-        border-radius: 20px;
-        padding: 32px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        flex: 0 0 320px; /* Fixed width for cards */
-      }
-
-      .testimonial-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      }
-
-      .stars {
-        display: flex;
-        gap: 2px;
-        margin-bottom: 20px;
-      }
-
-      .star {
-        color: #fbbf24;
-        font-size: 16px;
-      }
-
-      .testimonial-text {
-        color: #374151;
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 24px;
-        font-weight: 400;
-      }
-
-      .testimonial-author {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .imgs{
-        width: 60px;
-        height: 40px;
-        border-radius: 100%;
-        background: linear-gradient(135deg, #e5e7eb, #d1d5db);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        color: #6b7280;
-        font-size: 16px;
-      }
-      .imgss{
-        width: 60px;
-        height: 50px;
-        border-radius: 100%;
-        background: linear-gradient(135deg, #e5e7eb, #d1d5db);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        color: #6b7280;
-        font-size: 16px;
-      }
-
-      .author-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #e5e7eb, #d1d5db);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        color: #6b7280;
-        font-size: 16px;
-      }
-
-      .author-info {
-        flex: 1;
-      }
-
-      .author-name {
-        color: #111827;
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 2px;
-      }
-
-      .author-title {
-        color: #6b7280;
-        font-size: 13px;
-        font-weight: 500;
-      }
-
-      @keyframes marquee {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(
-            -50%
-          ); /* Move by half since content is duplicated */
-        }
-      }
-
-      @media (max-width: 768px) {
-        .testimonial-section {
-          padding: 60px 30px;
-          border-radius: 24px;
-        }
-
-        .section-title {
-          font-size: 30px;
-        }
-
-        .testimonial-card {
-          padding: 24px;
-          flex: 0 0 280px; /* Slightly smaller cards on smaller screens */
-        }
-      }
-
-      @media (max-width: 480px) {
-        .testimonial-section {
-          padding: 40px 20px;
-        }
-
-        .section-title {
-          font-size: 28px;
-        }
-
-        .testimonial-card {
-          flex: 0 0 240px;
-        }
-      }
-         .section {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-    /* View More Button */
-.view-more {
-  background: #1f2d3d;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif; /* Matches your site */
-}
-
-.view-more:hover {
-  background: #059669;
-}
-
-/* Click Animation Class */
-.view-more.shake {
-  animation: shake 0.5s;
-}
-
-/* Shake Animation */
-@keyframes shake {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  20% { transform: translate(-2px, 0) rotate(-2deg); }
-  40% { transform: translate(2px, 0) rotate(2deg); }
-  60% { transform: translate(-2px, 0) rotate(-2deg); }
-  80% { transform: translate(2px, 0) rotate(2deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .card {
-          background: rgba(255, 255, 255, 0.15); /* Semi-transparent white background */
-    backdrop-filter: blur(10px); /* Glassy blur effect */
-    -webkit-backdrop-filter: blur(10px); 
-            border-radius: 10px;
-            height: 150px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-icon.green {
-            background: #1f2d3d;
-            border-radius: 50%;
-            color: white;
-            font-size: 18px;
-        }
-
-        .card-icon.black {
-            background: #000;
-            border-radius: 5px;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .card-content {
-            flex: 1;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 5px;
-        }
-
-        .card-subtitle {
-            font-size: 12px;
-            color: #1f2d3d;
-        }
-  .bodys {
-            padding-top: 20px;
-            padding-left: 12px;
-            padding-right: 12px;
-            padding-bottom: 20px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-
-          
-        font-family: 'Montserrat', sans-serif;
-        /* border: #000 1px solid; */
-
-        }
-
-        @media (max-width: 600px) {
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-        }
-      /* Add new styles for overlay and dropdown */
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 2000;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .overlay-content {
-        background: white;
-        padding: 40px;
-        border-radius: 16px;
-        max-width: 500px;
-        width: 90%;
-        position: relative;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        animation: bounceIn 0.5s ease-out;
-
-      }
-      @keyframes bounceIn {
-        0% {
-          transform: scale(0.8);
-          opacity: 0;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-
-      .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #4a5568;
-        transition: transform 0.2s ease;
-      }
-
-      .close-btn:hover {
-        transform: scale(1.2);
-      }
-
-      .overlay-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: #1a202c;
-      }
-.current-prices{
-  font-size: 24px;
-  font-weight: 700;
-
-
-}
-
-      .copy-option {
-        margin: 15px 0;
-        padding: 15px;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        /* opacity: 0; */
-        transform: translateY(20px);
-        animation: fadeInUp 0.5s ease-out forwards;
-      }
-
-      .copy-option:nth-child(1) { animation-delay: 0.1s; }
-      .copy-option:nth-child(2) { animation-delay: 0.2s; }
-      .copy-option:nth-child(3) { animation-delay: 0.3s; }
-
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .copy-option:hover {
-        background: #f7fafc;
-        border-color: #38a169;
-        transform: scale(1.02);
-
-      }
-
-      .copy-option.selected {
-        background: #f0fff4;
-        border-color: #38a169;
-      }
-
-      .copy-option-title {
-        font-weight: 600;
-        color: #1a202c;
-      }
-
-      .copy-option-reward {
-        font-size: 14px;
-        color: #4a5568;
-      }
-      .price-container {
-        text-align: center;
-        margin: 20px 0;
-      }
-
-      .current-price {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1a202c;
-      }
-
-      .confirm-btn {
-        background: #1f2d3d;
-        color: white;
-        padding: 14px 28px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 20px;
-        transition: all 0.2s ease;
-      }
-
-      .confirm-btn:hover {
-        background: #38a169;
-      }
-
-      .payment-options {
-        display: none;
-        margin-top: 20px;
-      }
-
-      .payment-btn {
-        background: #edf2f7;
-        color: #1a202c;
-        padding: 12px 20px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 48%;
-        margin: 1%;
-        transition: all 0.2s ease;
-        width: 100%;
-      }
-      .payment-btns {
-        background: #fff;
-        color: #1a202c;
-        padding: 12px 20px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 48%;
-        margin: 1%;
-        transition: all 0.2s ease;
-        width: 100%;
-      }
-      .payment-btnss {
-        background: #fff;
-        color: #1a202c;
-        padding: 12px 20px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        width: 48%;
-        margin: 1%;
-        transition: all 0.2s ease;
-        width: 100%;
-      }
-
-      .payment-btn:hover {
-        background: #e2e8f0;
-      }
-      .payment-btns:hover {
-        background: #25D366;
-color: white;
-      }
-      .payment-btnss:hover {
-        background: #0088CC;
-color: white;
-      }
-
-/* Dropdown styles */
-.sam {
-  position: relative;
-  display: flex;
-  gap: 16px;
-  z-index: 10; /* Ensure .sam is above other elements */
-}
-
-.cta-button {
-  position: relative; /* Anchor for dropdown */
-  z-index: 11; /* Ensure button is above dropdown */
-}
-
-.session-dropdown {
-  position: absolute;
-  top: calc(100% + 8px); /* Position directly below button with slight gap */
-  left: 0; /* Align with left edge of button */
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  display: none; /* Hidden by default */
-  z-index: 100; /* Ensure dropdown is above other content */
-  min-width: 200px; /* Sufficient width */
-  overflow: visible; /* Prevent clipping */
-}
-
-.session-option {
-  display: block;
-  padding: 12px 20px;
-  color: #1a202c;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.session-option:hover {
-  background: #f7fafc;
-}
-
-/* Ensure parent containers don't clip the dropdown */
-.portfolio-card {
-  overflow: visible !important; /* Prevent clipping */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .sam {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .session-dropdown {
-    width: 100%; /* Full width on mobile */
-    left: 0;
-  }
-}
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .overlay-content {
-          padding: 20px;
-        }
-        .payment-btn {
-          width: 100%;
-          margin: 5px 0;
-        }
-        .payment-btns {
-          width: 100%;
-          margin: 5px 0;
-        }
-        .payment-btnss {
-          width: 100%;
-          margin: 5px 0;
-        }
-      }
-      #back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: none; /* Hidden by default */
-  background: linear-gradient(135deg, #1f2d3d 0%, #1f2d3d 100%);/* Button background color */
-  color: white; /* Icon color */
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px; /* Center icon vertically */
-  border-radius: 50%; /* Circular button */
-  font-size: 20px;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 1000; /* Ensure it’s above other content */
-}
-
-#back-to-top:hover {
-  background-color: #0056b3; /* Darker on hover */
-  transform: translateY(-2px); /* Slight lift effect */
-}
-
-#back-to-top.show {
-  display: block; /* Show when scrolled */
-}
-    </style>
+   <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <!-- Existing header and main content -->
@@ -2303,80 +126,135 @@ color: white;
       </div>
     </main>
 
-      <!-- Donation Quantity Overlay -->
-      <div class="overlay" id="donationQuantityOverlay">
-        <div class="overlay-content">
-          <span class="close-btn" onclick="closeOverlays()">×</span>
-          <h2 class="overlay-title">Select Donation Copies</h2>
-          <div class="copy-option" onclick="selectCopyOption(5, '5-20')">
-            <div class="copy-option-title">A. 5-20 Copies</div>
-            <div class="copy-option-reward">Receive Certificate of Appreciation</div>
-          </div>
-          <div class="copy-option" onclick="selectCopyOption(20, '20-100')">
-            <div class="copy-option-title">B. 20-100 Copies</div>
-            <div class="copy-option-reward">A + Website Appreciation Mention</div>
-          </div>
-          <div class="copy-option" onclick="selectCopyOption(100, '100+')">
-            <div class="copy-option-title">C. 100+ Copies</div>
-            <div class="copy-option-reward">A + B + Your Brand/Name Printed on the Book Cover</div>
-          </div>
-          <button class="confirm-btn" onclick="confirmDonationQuantity()">Confirm Selection</button>
-        </div>
+   <!-- Donation Overlay (Replaces donationQuantityOverlay and donationCopiesOverlay) -->
+<!-- Donation Overlay -->
+<div class="overlay" id="donationOverlay">
+  <div class="overlay-content">
+    <span class="close-btn" onclick="closeOverlays()">×</span>
+    <h2 class="overlay-title">Select Donation Copies</h2>
+    <div class="copy-option">
+      <div class="copy-option-title">A. 5-20 Copies</div>
+      <div class="copy-option-reward">Receive Certificate of Appreciation</div>
+    </div>
+    <div class="copy-option">
+      <div class="copy-option-title">B. 20-100 Copies</div>
+      <div class="copy-option-reward">A + Website Appreciation Mention</div>
+    </div>
+    <div class="copy-option">
+      <div class="copy-option-title">C. 100+ Copies</div>
+      <div class="copy-option-reward">A + B + Your Brand/Name Printed on the Book Cover</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="donationCopyCount">Number of Copies</label>
+      <input
+        type="number"
+        id="donationCopyCount"
+        class="form-input"
+        placeholder="Enter number of copies"
+        min="1"
+        step="1"
+        oninput="this.value = Math.max(1, parseInt(this.value) || 1); calculateDonationTotal()"
+        required
+      />
+    </div>
+    <div class="price-container">
+      <div class="current-price" id="donationTotalPrice">₦0 / $0</div>
+    </div>
+    <button class="confirm-btn" onclick="proceedToDonationForm()">Continue</button>
+  </div>
+</div>
+
+<!-- Donation Form Overlay -->
+<div class="overlay" id="donationFormOverlay">
+  <div class="overlay-content">
+    <span class="close-btn" onclick="closeOverlays()">×</span>
+    <h2 class="overlay-title">
+      <div class="topics-container">
+        <ul class="topics-list">
+          <li>One Book</li>
+          <li>One Gift</li>
+          <li>One Family Saved</li>
+        </ul>
       </div>
-  
-      <!-- Donation Copies Overlay -->
-      <div class="overlay" id="donationCopiesOverlay">
-        <div class="overlay-content">
-          <span class="close-btn" onclick="closeOverlays()">×</span>
-          <h2 class="overlay-title">Thank You for Donating!</h2>
-          <p style="margin-bottom: 20px;">Hey, thank you for donating! Now, how many copies would you like to donate?</p>
-          <div class="form-group">
-            <label class="form-label" for="donationCopyCount">Number of Copies</label>
-            <input type="number" id="donationCopyCount" class="form-input" placeholder="Enter number of copies" min="5" required oninput="calculateDonationTotal()">
-          </div>
-          <div class="price-container">
-            <div class="current-price" id="donationTotalPrice">₦0</div>
-          </div>
-          <button class="confirm-btn" onclick="proceedToDonationForm()">Continue</button>
-        </div>
+    </h2>
+    <p style="margin-bottom: 20px;" class="donate-p">
+      Your Gift is helping us prevent one maternal and child death every 30 seconds in Communities across Africa
+    </p>
+    <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" for="donationCopyCountForm">Number of Copies</label>
+        <input
+          type="number"
+          id="donationCopyCountForm"
+          class="form-input"
+          placeholder="Enter number of copies"
+          min="1"
+          step="1"
+          oninput="this.value = Math.max(1, parseInt(this.value) || 1); updateDonationSummary()"
+          required
+        />
       </div>
-  
-      <!-- Donation Form and Payment Overlay -->
-      <div class="overlay" id="donationFormOverlay">
-        <div class="overlay-content">
-          <span class="close-btn" onclick="closeOverlays()">×</span>
-          <h2 class="overlay-title" id="donationOverlayTitle">Donation Details</h2>
-          <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
-            <div class="form-group">
-              <label class="form-label" for="donationName">First name</label>
-              <input type="text" id="donationName" class="form-input" placeholder="Enter your First name" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="donationEmail">Email Address</label>
-              <input type="email" id="donationEmail" class="form-input" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="donationOrganization">Organization Name</label>
-              <input type="text" id="donationOrganization" class="form-input" placeholder="Enter organization name (optional)">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="donationLocation">Location</label>
-              <input type="text" id="donationLocation" class="form-input" placeholder="Enter your location" required>
-            </div>
-            <div class="price-container">
-              <div class="current-price" id="donationSummary">Summary: 0 Copies, ₦0</div>
-            </div>
-            <button type="submit" class="confirm-btn">Proceed to Payment</button>
-            <button type="button" class="anonymous-btn" onclick="proceedToDonationPayment(true)">Donate Anonymously</button>
-            <div class="payment-options" id="donationPaymentOptions" style="display: none;">
-              <h2 class="overlay-title">Select Payment Method</h2>
-              <p style="margin-bottom: 20px; color: #1a202c;">Choose your preferred payment method:</p>
-              <button class="payment-btn" onclick="initiatePaystackPayment(selectedDonation.copies * config.pricePerCopyNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')">Pay with Paystack (₦<span id="paystackAmount">0</span>)</button>
-              <button class="payment-btn" onclick="initiateStripePayment(selectedDonation.copies * config.pricePerCopyUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')">Pay with Stripe ($<span id="stripeAmount">0</span>)</button>
-            </div>
-          </form>
-        </div>
+      <div class="form-group">
+        <label class="form-label" for="donationName">First Name</label>
+        <input
+          type="text"
+          id="donationName"
+          class="form-input"
+          placeholder="Enter your First name"
+          required
+        />
       </div>
+      <div class="form-group">
+        <label class="form-label" for="donationEmail">Email Address</label>
+        <input
+          type="email"
+          id="donationEmail"
+          class="form-input"
+          placeholder="Enter your email address"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="donationOrganization">Organization Name</label>
+        <input
+          type="text"
+          id="donationOrganization"
+          class="form-input"
+          placeholder="Enter organization name (optional)"
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="donationLocation">Location</label>
+        <input
+          type="text"
+          id="donationLocation"
+          class="form-input"
+          placeholder="Enter your location"
+          required
+        />
+      </div>
+      <div class="price-container">
+        <div class="current-prices" id="donationSummary">Summary: 0 Copies, ₦0 / $0</div>
+      </div>
+      <div class="payment-optionsa">
+        <button
+          type="button"
+          class="payment-btna"
+          onclick="initiatePaystackPayment(selectedDonation.totalNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
+        >
+            (₦<span id="paystackAmount">0</span>)
+        </button>
+        <button
+          type="button"
+          class="payment-btna"
+          onclick="initiateStripePayment(selectedDonation.totalUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
+        >
+          ($<span id="stripeAmount">0</span>)
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
   
       <!-- Presale Overlay -->
       <div class="overlay" id="presaleOverlay">
@@ -2505,13 +383,16 @@ color: white;
               <label class="form-label" for="sessionLocation">Location</label>
               <input type="text" id="sessionLocation" class="form-input" placeholder="Enter your location" required>
             </div>
-            <div class="price-container">
+            <!-- <div class="price-container">
               <div class="current-price" id="sessionSummary">Summary: Paid Session, ₦75,000 or $50</div>
-            </div>
-            <button type="submit" class="confirm-btn">Proceed to Payment</button>
-            <div class="payment-options" id="sessionPaymentOptions" style="display: none;">
-              <button class="payment-btn" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Paystack (₦75,000)</button>
-              <button class="payment-btn" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Stripe ($50)</button>
+            </div> -->
+            <!-- <button type="submit" class="confirm-btn">Proceed to Payment</button> -->
+         
+            <div class="payment-optionsa"  id="sessionPaymentOptions" >
+              <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')"> (₦75,000)</button>
+
+              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">Pay with Stripe ($50)</button>
+
             </div>
           </form>
         </div>
@@ -2930,15 +811,177 @@ viewMoreButton.addEventListener('click', () => {
         const startYear = 2023;
 const currentYear = new Date().getFullYear();
 document.getElementById('copyright-year').textContent =  `${currentYear}`;
-        let selectedDonation = { copies: 0, reward: '', range: '' };
+        // let selectedDonation = { copies: 0, reward: '', range: '' };
         let selectedPresale = { type: '', copies: 0 };
       
-        // Overlay Management
-        function showDonationOverlay() {
-          console.log('Opening donation quantity overlay');
-          document.getElementById('donationQuantityOverlay').style.display = 'flex';
-          resetDonationForm();
-        }
+        let selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+
+// Show donation overlay
+function showDonationOverlay() {
+  console.log('Opening donation overlay');
+  document.getElementById('donationOverlay').style.display = 'flex';
+  resetDonationForm();
+}
+
+// Calculate donation total
+function calculateDonationTotal() {
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+    if (copies < 1) {
+      document.getElementById('donationTotalPrice').textContent = '₦0 / $0';
+      return;
+    }
+    selectedDonation.copies = copies;
+    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+    const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
+    const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
+    document.getElementById('donationTotalPrice').textContent = `₦${totalNGN} / $${totalUSD}`;
+  } catch (error) {
+    console.error('Error in calculateDonationTotal:', error);
+    alert('Error calculating donation total. Please try again.');
+  }
+}
+
+// Proceed to donation form
+function proceedToDonationForm() {
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+    if (copies < 1) {
+      alert('Please select at least 1 copy to donate.');
+      return;
+    }
+    selectedDonation.copies = copies;
+    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+    document.getElementById('donationOverlay').style.display = 'none';
+    document.getElementById('donationFormOverlay').style.display = 'flex';
+    const donationCopyCountForm = document.getElementById('donationCopyCountForm');
+    donationCopyCountForm.value = copies;
+    updateDonationSummary();
+  } catch (error) {
+    console.error('Error in proceedToDonationForm:', error);
+    alert('Error proceeding to donation form. Please try again.');
+  }
+}
+
+// Update donation summary
+function updateDonationSummary() {
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 0;
+    selectedDonation.copies = copies;
+    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+    const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
+    const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
+    document.getElementById('donationSummary').textContent = `Summary: ${copies} Copies, ₦${totalNGN} / $${totalUSD}`;
+    document.getElementById('paystackAmount').textContent = totalNGN;
+    document.getElementById('stripeAmount').textContent = totalUSD;
+  } catch (error) {
+    console.error('Error in updateDonationSummary:', error);
+    alert('Error updating donation summary. Please try again.');
+  }
+}
+
+// Handle donation form submission
+async function handleDonationSubmit(event) {
+  event.preventDefault();
+  console.log('Submitting donation form');
+  try {
+    const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 0;
+    const name = document.getElementById('donationName').value;
+    const email = document.getElementById('donationEmail').value;
+    const organization = document.getElementById('donationOrganization').value;
+    const location = document.getElementById('donationLocation').value;
+
+    if (copies < 1) {
+      alert('Please select at least 1 copy.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('organization', organization);
+    formData.append('location', location);
+    formData.append('copies', copies);
+    formData.append('totalNGN', selectedDonation.totalNGN);
+    formData.append('totalUSD', selectedDonation.totalUSD);
+    formData.append('type', 'donation');
+    formData.append('access_key', config.web3FormsAccessKey);
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+    if (result.success) {
+      console.log('Donation form submitted successfully');
+      alert(`Thank you, ${name}! Your donation details have been recorded. Please select a payment method.`);
+    } else {
+      console.error('Donation submission failed:', result);
+      alert('Submission failed. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error in handleDonationSubmit:', error);
+    alert('An error occurred during submission. Please try again.');
+  }
+}
+
+// Anonymous donation
+function proceedToDonationPayment(isAnonymous) {
+  console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
+  if (selectedDonation.copies < 1) {
+    alert('Please select at least 1 copy to proceed.');
+    return;
+  }
+  try {
+    if (isAnonymous) {
+      document.getElementById('donationName').value = 'Anonymous';
+      document.getElementById('donationEmail').value = 'anonymous@example.com';
+      document.getElementById('donationOrganization').value = '';
+      document.getElementById('donationLocation').value = 'Unknown';
+      handleDonationSubmit(new Event('submit'));
+    }
+  } catch (error) {
+    console.error('Error in proceedToDonationPayment:', error);
+    alert('Error proceeding to payment. Please try again.');
+  }
+}
+
+// Reset donation form
+function resetDonationForm() {
+  selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+  const donationCopyCount = document.getElementById('donationCopyCount');
+  if (donationCopyCount) donationCopyCount.value = '';
+  const donationTotalPrice = document.getElementById('donationTotalPrice');
+  if (donationTotalPrice) donationTotalPrice.textContent = '₦0 / $0';
+  const donationForm = document.getElementById('donationForm');
+  if (donationForm) donationForm.reset();
+  const donationCopyCountForm = document.getElementById('donationCopyCountForm');
+  if (donationCopyCountForm) donationCopyCountForm.value = '';
+  const paystackAmount = document.getElementById('paystackAmount');
+  if (paystackAmount) paystackAmount.textContent = '0';
+  const stripeAmount = document.getElementById('stripeAmount');
+  if (stripeAmount) stripeAmount.textContent = '0';
+}
+
+// Close overlays
+function closeOverlays() {
+  document.getElementById('donationOverlay').style.display = 'none';
+  document.getElementById('donationFormOverlay').style.display = 'none';
+  resetDonationForm();
+}
+// Update existing resetForms to include new donation form reset
+function resetForms() {
+  console.log('Resetting all forms');
+  selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+  selectedPresale = { type: '', copies: 0 };
+  resetDonationForm();
+  resetPresaleForm();
+  resetSessionForm();
+}
+  
       
         function showPresaleOverlay() {
           console.log('Opening presale overlay');
@@ -3050,17 +1093,7 @@ document.getElementById('copyright-year').textContent =  `${currentYear}`;
           document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
         }
       
-        function resetDonationForm() {
-          const donationForm = document.getElementById('donationForm');
-          if (donationForm) donationForm.reset();
-          const donationCopyCount = document.getElementById('donationCopyCount');
-          if (donationCopyCount) donationCopyCount.value = '';
-          const donationTotalPrice = document.getElementById('donationTotalPrice');
-          if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
-          const donationPaymentOptions = document.getElementById('donationPaymentOptions');
-          if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
-        }
-      
+        
         function resetPresaleForm() {
           const presaleForm = document.getElementById('presaleForm');
           if (presaleForm) presaleForm.reset();
@@ -3077,18 +1110,6 @@ document.getElementById('copyright-year').textContent =  `${currentYear}`;
           if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
         }
       
-        // Donation Logic
-        function selectCopyOption(copies, range) {
-          console.log(`Selected ${copies} copies with range ${range}`);
-          selectedDonation.copies = copies;
-          selectedDonation.range = range;
-          document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-          try {
-            event.currentTarget.classList.add('selected');
-          } catch (error) {
-            console.error('Error in selectCopyOption:', error);
-          }
-        }
       
         function calculatePresaleTotal() {
     try {
@@ -3108,181 +1129,9 @@ document.getElementById('copyright-year').textContent =  `${currentYear}`;
     }
   }
   
-  async function handlePresaleSubmit(event) {
-    event.preventDefault();
-    console.log('Submitting presale form');
-    try {
-      const name = document.getElementById('presaleName').value;
-      const email = document.getElementById('presaleEmail').value;
-      const location = selectedPresale.type === 'local' 
-        ? document.getElementById('presaleLocationLocal').value 
-        : document.getElementById('presaleLocationInternational').value;
-      const quantity = selectedPresale.type === 'local' 
-        ? parseInt(document.getElementById('presaleQuantity').value) 
-        : 1; // Default to 1 for international
-  
-      if (selectedPresale.type === 'local' && quantity < 1) {
-        alert('Please select at least 1 copy.');
-        return;
-      }
-  
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('location', location);
-      formData.append('quantity', quantity);
-      formData.append('type', selectedPresale.type);
-      formData.append('access_key', config.web3FormsAccessKey);
-  
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-      const result = await response.json();
-      if (result.success) {
-        console.log('Presale form submitted successfully');
-        if (selectedPresale.type === 'local') {
-          initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
-        } else {
-          console.log('Redirecting to Amazon for international presale');
-          window.location.href = config.amazonLink;
-        }
-      } else {
-        console.error('Presale submission failed:', result);
-        alert('Submission failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error in handlePresaleSubmit:', error);
-      alert('An error occurred during submission. Please try again.');
-    }
-  }
-        function getDonationReward(copies) {
-          if (copies >= 100) return 'Certificate + Website Mention + Brand on Cover';
-          if (copies >= 20) return 'Certificate + Website Mention';
-          if (copies >= 5) return 'Certificate of Appreciation';
-          return 'Select at least 5 copies to see rewards';
-        }
-      
-        function confirmDonationQuantity() {
-          console.log('Confirming donation quantity', selectedDonation);
-          if (!selectedDonation.range) {
-            alert('Please select a donation range (5-20, 20-100, or 100+ copies).');
-            return;
-          }
-          try {
-            document.getElementById('donationQuantityOverlay').style.display = 'none';
-            document.getElementById('donationCopiesOverlay').style.display = 'flex';
-            const donationCopyCount = document.getElementById('donationCopyCount');
-            if (donationCopyCount) {
-              donationCopyCount.value = selectedDonation.copies;
-            }
-            calculateDonationTotal();
-          } catch (error) {
-            console.error('Error in confirmDonationQuantity:', error);
-            alert('Error proceeding to next step. Please try again.');
-          }
-        }
-      
-        function proceedToDonationForm() {
-          try {
-            const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-            console.log(`Proceeding with ${copies} copies, range: ${selectedDonation.range}`);
-            if (copies < 5) {
-              alert('Please select at least 5 copies to donate.');
-              return;
-            }
-            if (selectedDonation.range === '5-20' && (copies < 5 || copies > 20)) {
-              alert('Please select a number of copies between 5 and 20.');
-              return;
-            }
-            if (selectedDonation.range === '20-100' && (copies < 20 || copies > 100)) {
-              alert('Please select a number of copies between 20 and 100.');
-              return;
-            }
-            if (selectedDonation.range === '100+' && copies < 100) {
-              alert('Please select at least 100 copies.');
-              return;
-            }
-            selectedDonation.copies = copies;
-            document.getElementById('donationCopiesOverlay').style.display = 'none';
-            document.getElementById('donationFormOverlay').style.display = 'flex';
-            const donationSummary = document.getElementById('donationSummary');
-            if (donationSummary) {
-              donationSummary.textContent = `Summary: ${selectedDonation.copies} Copies, ₦${(selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`;
-            }
-          } catch (error) {
-            console.error('Error in proceedToDonationForm:', error);
-            alert('Error proceeding to donation form. Please try again.');
-          }
-        }
-      
-        async function handleDonationSubmit(event) {
-          event.preventDefault();
-          console.log('Submitting donation form');
-          try {
-            const name = document.getElementById('donationName').value;
-            const email = document.getElementById('donationEmail').value;
-            const organization = document.getElementById('donationOrganization').value;
-            const location = document.getElementById('donationLocation').value;
-      
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('organization', organization);
-            formData.append('location', location);
-            formData.append('copies', selectedDonation.copies);
-            formData.append('reward', selectedDonation.reward);
-            formData.append('type', 'donation');
-            formData.append('access_key', config.web3FormsAccessKey);
-      
-            const response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              body: formData
-            });
-            const result = await response.json();
-            if (result.success) {
-              console.log('Form submitted successfully');
-              document.getElementById('donationForm').style.display = 'none';
-              document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
-              document.getElementById('donationPaymentOptions').style.display = 'block';
-              const paystackAmount = document.getElementById('paystackAmount');
-              const stripeAmount = document.getElementById('stripeAmount');
-              if (paystackAmount && stripeAmount) {
-                paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
-                stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
-              }
-            } else {
-              console.error('Form submission failed:', result);
-              alert('Submission failed. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error in handleDonationSubmit:', error);
-            alert('An error occurred during submission. Please try again.');
-          }
-        }
-      
-        function proceedToDonationPayment(isAnonymous) {
-          console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
-          if (selectedDonation.copies < 5) {
-            alert('Please select at least 5 copies to proceed.');
-            return;
-          }
-          try {
-            document.getElementById('donationForm').style.display = 'none';
-            document.getElementById('donationOverlayTitle').textContent = 'Select Payment Method';
-            document.getElementById('donationPaymentOptions').style.display = 'block';
-            const paystackAmount = document.getElementById('paystackAmount');
-            const stripeAmount = document.getElementById('stripeAmount');
-            if (paystackAmount && stripeAmount) {
-              paystackAmount.textContent = (selectedDonation.copies * config.pricePerCopyNGN).toLocaleString('en-NG');
-              stripeAmount.textContent = (selectedDonation.copies * config.pricePerCopyUSD).toLocaleString('en-US');
-            }
-          } catch (error) {
-            console.error('Error in proceedToDonationPayment:', error);
-            alert('Error proceeding to payment. Please try again.');
-          }
-        }
-      
+
+
+
         // Presale Logic
         function calculatePresaleTotal() {
           try {
