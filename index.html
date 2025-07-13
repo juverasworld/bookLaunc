@@ -171,9 +171,13 @@
 </div>
 
 <!-- Donation Form Overlay -->
+<!-- Donation Form Overlay -->
 <div class="overlay" id="donationFormOverlay">
   <div class="overlay-content">
-    <span class="close-btn" onclick="closeOverlays()">×</span>
+    <div class="overlay-header">
+      <button class="back-btn" onclick="closeOverlays()">&larr; Back</button>
+      <span class="close-btn" onclick="closeOverlays()">×</span>
+    </div>
     <h2 class="overlay-title">
       <div class="topics-container">
         <ul class="topics-list">
@@ -265,6 +269,7 @@
       <!-- Presale Overlay -->
       <div class="overlay" id="presaleOverlay">
         <div class="overlay-content">
+         
           <span class="close-btn" onclick="closeOverlays()">×</span>
           <h2 class="overlay-title">Presale Order</h2>
           <div class="form-group">
@@ -277,6 +282,10 @@
   
       <div class="overlay" id="presaleFormOverlay">
         <div class="overlay-content">
+          <div class="overlay-header">
+            <button class="back-btn" onclick="closeOverlays()">&larr; Back</button>
+            <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
+          </div>
           <span class="close-btn" onclick="closeOverlays()">×</span>
           <h2 class="overlay-title" id="presaleFormTitle">Presale Details</h2>
           <form class="newsletter-form" id="presaleForm" onsubmit="handlePresaleSubmit(event)">
@@ -374,6 +383,10 @@
       <!-- Paid Session Overlay -->
       <div class="overlay" id="sessionOverlay">
         <div class="overlay-content">
+          <div class="overlay-header">
+            <button class="back-btn" onclick="closeOverlays()">&larr; Back</button>
+            <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
+          </div>
           <span class="close-btn" onclick="closeOverlays()">×</span>
           <h2 class="overlay-title">Book a Paid Session</h2>
           <form class="newsletter-form" id="sessionForm" onsubmit="handleSessionSubmit(event)">
@@ -451,6 +464,10 @@
           <!-- Free Weekly Session Overlay -->
 <div class="overlay" id="freeSessionOverlay">
   <div class="overlay-content">
+    <div class="overlay-header">
+      <button class="back-btn" onclick="closeOverlays()">&larr; Back</button>
+      <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
+    </div>
     <span class="close-btn" onclick="closeOverlays()">×</span>
     <h2 class="overlay-title">Join Free Weekly Sessions</h2>
     <form class="newsletter-form" onsubmit="handleFreeSessionSubmit(event)">
@@ -474,6 +491,10 @@
 <!-- Invite to Speak Overlay -->
 <div class="overlay" id="inviteSpeakOverlay">
   <div class="overlay-content">
+    <div class="overlay-header">
+      <button class="back-btn" onclick="closeOverlays()">&larr; Back</button>
+      <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
+    </div>
     <span class="close-btn" onclick="closeOverlays()">×</span>
     <h2 class="overlay-title">Invite Dr. OVO to Speak</h2>
     <form class="newsletter-form" onsubmit="handleInviteSpeakSubmit(event)">
