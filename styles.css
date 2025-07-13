@@ -2045,7 +2045,7 @@ text-align: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 .back-btn {
@@ -2124,7 +2124,7 @@ text-align: none;
 .overlay-title {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     color: #1a202c;
 }
 
