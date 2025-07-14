@@ -1822,6 +1822,19 @@ text-align: none;
     font-size: 16px;
 }
 
+.imgsss {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 16px;
+}
+
 .author-avatar {
     width: 44px;
     height: 44px;
