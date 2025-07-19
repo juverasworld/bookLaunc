@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisan Stories</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+ <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #667eea;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 80px;
+}
+
+.hero-content {
+  color: white;
+  max-width: 600px;
+  animation: fadeInUp 1s ease;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta-button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  z-index: 10; /* Ensure clickable */
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+/* Blog Section */
+.blog-section {
+  background: white;
+  padding: 5rem 0;
+  margin-top: -50px;
+  border-radius: 50px 50px 0 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.section-title p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.post-form {
+  background: #fff;
+  padding: 30px;
+  margin: 40px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-form h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.post-form input,
+.post-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+}
+
+.post-form input[type="file"] {
+  padding: 5px;
+}
+
+.post-form button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.post-form button:hover {
+  background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.blog-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.blog-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.blog-content {
+  padding: 2rem;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.blog-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.read-time {
+  background: #ecf0f1;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.blog-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blog-excerpt {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.read-more {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #764ba2;
+}
+
+/* Single Post Section */
+.post-section {
+  background: white;
+  padding: 5rem 0;
+}
+
+.post-full {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+
+.post-content p {
+  margin-bottom: 1rem;
+}
+
+.post-content strong {
+  font-weight: bold;
+}
+
+.post-content em {
+  font-style: italic;
+}
+
+.post-content a {
+  color: #667eea;
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  color: #764ba2;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  margin: 1.5rem 0 1rem;
+  color: #2c3e50;
+}
+
+.post-content h1 {
+  font-size: 2rem;
+}
+
+.post-content h2 {
+  font-size: 1.8rem;
+}
+
+.post-content h3 {
+  font-size: 1.6rem;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #667eea;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Quill Editor Styles */
+#editor {
+  margin: 10px 0;
+}
+
+#editor .ql-editor {
+  min-height: 200px;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.blog-card { animation: fadeInUp 0.6s ease forwards; }
+.blog-card:nth-child(2) { animation-delay: 0.1s; }
+.blog-card:nth-child(3) { animation-delay: 0.2s; }
+.blog-card:nth-child(4) { animation-delay: 0.3s; }
+.blog-card:nth-child(5) { animation-delay: 0.4s; }
+.blog-card:nth-child(6) { animation-delay: 0.5s; }
+
+/* Floating Shapes */
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.shape:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero-meta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .nav-links { display: none; }
+  .blog-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .post-image { height: 300px; }
+}
+ </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/index.html" class="">
+
+            <img src="./logo.jpg" style="border-radius: 30%;" alt="My Family Companion Logo" class="logo-icon">
+          </a>
+        <ul class="nav-links">
+          <li><a href="/blog.html">Home</a></li>
+          <li><a href="/login.html" id="loginLink">Login</a></li>
+          <li><a href="#" id="logoutLink" style="display: none;">Logout</a></li>
+          <li><a href="#add-post" id="addPostLink" style="display: none;">Add Post</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero" id="hero">
+ <div class="floating-shapes">
+ <div class="shape"></div>
+ <div class="shape"></div>
+ <div class="shape"></div>
+ </div>
+ <div class="container">
+ <div class="hero-content" id="heroContent">
+ <div class="hero-badge">✨ Featured Story</div>
+ <h1 id="heroTitle"></h1>
+ <p id="heroExcerpt"></p>
+ <div class="hero-meta">
+ <span id="heroDate"></span>
+ <span id="heroReadTime"></span>
+ <span>✍️ By Admin</span>
+ </div>
+ <a href="#" id="heroReadMore" class="cta-button">Read Full Story</a>
+ </div>
+ </div>
+</section>
+
+  <!-- Blog Section -->
+  <section class="blog-section" id="add-post">
+    <div class="container">
+      <div class="section-title">
+        <h2>More Stories</h2>
+        <p>Explore our collection of thoughtful articles on creativity, technology, and life</p>
+      </div>
+
+      <!-- Add Post Form (admin only) -->
+      <div id="addPostForm" class="post-form" style="display: none;">
+        <h2>Add New Post</h2>
+        <input type="text" id="postTitle" placeholder="Enter post title" required>
+        <div id="editor" style="min-height: 200px; background: white; border: 1px solid #ddd; border-radius: 6px;"></div>
+        <input type="file" id="postImage" accept="image/*">
+        <button onclick="addPost()">Publish Post</button>
+      </div>
+
+      <div id="postsContainer" class="blog-grid"></div>
+    </div>
+  </section>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>

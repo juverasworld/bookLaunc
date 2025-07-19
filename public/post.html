@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Post - Artisan Stories</title>
+ <link rel="stylesheet" href="./styles.css">
+ <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+ <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #667eea;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 80px;
+}
+
+.hero-content {
+  color: white;
+  max-width: 600px;
+  animation: fadeInUp 1s ease;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta-button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  z-index: 10; /* Ensure clickable */
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+/* Blog Section */
+.blog-section {
+  background: white;
+  padding: 5rem 0;
+  margin-top: -50px;
+  border-radius: 50px 50px 0 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.section-title p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.post-form {
+  background: #fff;
+  padding: 30px;
+  margin: 40px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-form h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.post-form input,
+.post-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+}
+
+.post-form input[type="file"] {
+  padding: 5px;
+}
+
+.post-form button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.post-form button:hover {
+  background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.blog-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.blog-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.blog-content {
+  padding: 2rem;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.blog-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.read-time {
+  background: #ecf0f1;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.blog-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blog-excerpt {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.read-more {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #764ba2;
+}
+
+/* Single Post Section */
+.post-section {
+  background: white;
+  padding: 5rem 0;
+}
+
+.post-full {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+
+.post-content p {
+  margin-bottom: 1rem;
+}
+
+.post-content strong {
+  font-weight: bold;
+}
+
+.post-content em {
+  font-style: italic;
+}
+
+.post-content a {
+  color: #667eea;
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  color: #764ba2;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  margin: 1.5rem 0 1rem;
+  color: #2c3e50;
+}
+
+.post-content h1 {
+  font-size: 2rem;
+}
+
+.post-content h2 {
+  font-size: 1.8rem;
+}
+
+.post-content h3 {
+  font-size: 1.6rem;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #667eea;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Quill Editor Styles */
+#editor {
+  margin: 10px 0;
+}
+
+#editor .ql-editor {
+  min-height: 200px;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.blog-card { animation: fadeInUp 0.6s ease forwards; }
+.blog-card:nth-child(2) { animation-delay: 0.1s; }
+.blog-card:nth-child(3) { animation-delay: 0.2s; }
+.blog-card:nth-child(4) { animation-delay: 0.3s; }
+.blog-card:nth-child(5) { animation-delay: 0.4s; }
+.blog-card:nth-child(6) { animation-delay: 0.5s; }
+
+/* Floating Shapes */
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.shape:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero-meta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .nav-links { display: none; }
+  .blog-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .post-image { height: 300px; }
+}
+ </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+          <nav class="nav">
+            <a href="/index.html" class="">
+
+                <p class="">My Family Companion</p>
+    
+                <!-- <img src="./logo.jpg" style="border-radius: 30%;" alt="My Family Companion Logo" class="logo-icon"> -->
+              </a>
+            <ul class="nav-links">
+              <li><a href="/blog.html">Home</a></li>
+              <li><a href="/login.html" id="loginLink">Login</a></li>
+              <li><a href="#" id="logoutLink" style="display: none;">Logout</a></li>
+              <li><a href="#add-post" id="addPostLink" style="display: none;">Add Post</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+ <section class="post-section">
+ <div class="container">
+ <article class="post-full">
+ <div id="postImage" class="post-image"></div>
+ <h1 id="postTitle"></h1>
+ <div class="post-meta">
+ <span id="postDate"></span>
+ <span id="postReadTime"></span>
+ <span>✍️ By Admin</span>
+ </div>
+ <div id="postContent" class="post-content"></div>
+ </article>
+ </div>
+ </section>
+
+ <script>
+    let token = localStorage.getItem("token");
+let quill;
+
+// Initialize Quill editor and check page
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Page loaded:", window.location.pathname); // Debug: Log current path
+  if (window.location.pathname.includes("/post/")) {
+    fetchSinglePost();
+  } else if (window.location.pathname === "/login") {
+    // Login page: do nothing
+  } else {
+    fetchPosts();
+    updateUIBasedOnAuth();
+    if (document.getElementById("editor")) {
+      quill = new Quill("#editor", {
+        theme: "snow",
+        modules: {
+          toolbar: [
+            ["bold", "italic"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ["link"],
+          ],
+        },
+      });
+    }
+  }
+});
+
+// Fetch and display posts (public)
+async function fetchPosts() {
+  try {
+    const response = await fetch("/api/posts");
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    const posts = await response.json();
+    const postsContainer = document.getElementById("postsContainer");
+    const heroSection = document.getElementById("hero");
+    const heroContent = document.getElementById("heroContent");
+
+    postsContainer.innerHTML = "";
+    if (posts.length > 0) {
+      // Populate hero section with latest post
+      const latestPost = posts[0];
+      document.getElementById("heroTitle").textContent = latestPost.title;
+      // Strip HTML tags for excerpt
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = latestPost.content;
+      document.getElementById("heroExcerpt").textContent =
+        tempDiv.textContent.substring(0, 150) + "...";
+      document.getElementById("heroDate").textContent = `📅 ${new Date(
+        latestPost.createdAt
+      ).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })}`;
+      document.getElementById("heroReadTime").textContent = `⏱️ ${Math.ceil(
+        latestPost.content.length / 200
+      )} min read`;
+      document.getElementById("heroReadMore").href = `/post/${latestPost._id}`;
+      heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${
+        latestPost.image ||
+        `https://picsum.photos/seed/${latestPost._id}/1200/800`
+      })`;
+
+      // Populate blog grid with remaining posts
+      posts.slice(1).forEach((post, index) => {
+        const postElement = document.createElement("article");
+        postElement.classList.add("blog-card");
+        postElement.style.animationDelay = `${(index + 1) * 0.1}s`;
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = post.content;
+        postElement.innerHTML = `
+ ${
+   post.image
+     ? `<img src="${post.image}" alt="${post.title}" class="blog-image">`
+     : ""
+ }
+ <div class="blog-content">
+ <div class="blog-meta">
+ <div class="blog-date">📅 ${new Date(post.createdAt).toLocaleDateString(
+   "en-US",
+   { month: "long", day: "numeric", year: "numeric" }
+ )}</div>
+ <div class="read-time">${Math.ceil(post.content.length / 200)} min read</div>
+ </div>
+ <h3 class="blog-title">${post.title}</h3>
+ <p class="blog-excerpt">${tempDiv.textContent.substring(0, 150)}...</p>
+ <a href="/post/${post._id}" class="read-more">See More →</a>
+ </div>
+ `;
+        postsContainer.appendChild(postElement);
+      });
+    } else {
+      // Fallback for no posts
+      heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://picsum.photos/1200/800)`;
+      heroContent.innerHTML = `
+ <div class="hero-badge">✨ Welcome</div>
+ <h1>No Posts Yet</h1>
+ <p>Check back soon for new stories!</p>
+ `;
+    }
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    const heroSection = document.getElementById("hero");
+    heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://picsum.photos/1200/800)`;
+    document.getElementById("heroContent").innerHTML = `
+ <div class="hero-badge">✨ Error</div>
+ <h1>Error Loading Posts</h1>
+ <p>Please try again later.</p>
+ `;
+  }
+}
+
+// Fetch single post for post.html
+async function fetchSinglePost() {
+  const postId = window.location.pathname.split("/").pop();
+  console.log("Fetching post with ID:", postId); // Debug: Log post ID
+  try {
+    const response = await fetch(`/api/posts/${postId}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const post = await response.json();
+    console.log("Post data:", post); // Debug: Log post data
+    document.getElementById("postTitle").textContent = post.title || "No Title";
+    document.getElementById("postContent").innerHTML =
+      post.content || "<p>No content available</p>"; // Render HTML
+    document.getElementById("postDate").textContent = post.createdAt
+      ? `📅 ${new Date(post.createdAt).toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}`
+      : "📅 Unknown Date";
+    document.getElementById("postReadTime").textContent = post.content
+      ? `⏱️ ${Math.ceil(post.content.length / 200)} min read`
+      : "⏱️ 0 min read";
+    if (post.image) {
+      document.getElementById(
+        "postImage"
+      ).innerHTML = `<img src="${post.image}" alt="${post.title}" class="post-image">`;
+    } else {
+      document.getElementById("postImage").innerHTML = ""; // Clear image if none
+    }
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    document.getElementById("postContent").innerHTML =
+      "<p>Post not found or an error occurred. Please try again later.</p>";
+    document.getElementById("postTitle").textContent = "Error";
+    document.getElementById("postDate").textContent = "";
+    document.getElementById("postReadTime").textContent = "";
+    document.getElementById("postImage").innerHTML = "";
+  }
+}
+
+// Login function
+async function login() {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  if (!email || !password) {
+    alert("Please fill in both email and password");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      token = data.token;
+      localStorage.setItem("token", token);
+      window.location.href = "/";
+    } else {
+      const error = await response.json();
+      alert(`Error: ${error.error}`);
+    }
+  } catch (error) {
+    console.error("Error logging in:", error);
+    alert("Failed to login");
+  }
+}
+
+// Logout function
+function logout() {
+  token = null;
+  localStorage.removeItem("token");
+  updateUIBasedOnAuth();
+}
+
+// Add post function (admin only)
+async function addPost() {
+  const title = document.getElementById("postTitle").value;
+  const content = quill.root.innerHTML; // Get HTML content from Quill
+  const image = document.getElementById("postImage").files[0];
+
+  if (!title || !content || content === "<p><br></p>") {
+    alert("Please fill in both title and content");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  if (image) formData.append("image", image);
+
+  try {
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
+
+    if (response.ok) {
+      document.getElementById("postTitle").value = "";
+      quill.setContents([]); // Clear editor
+      document.getElementById("postImage").value = "";
+      fetchPosts();
+    } else {
+      const error = await response.json();
+      alert(`Error: ${error.error}`);
+    }
+  } catch (error) {
+    console.error("Error adding post:", error);
+    alert("Failed to add post");
+  }
+}
+
+// Update UI based on authentication status
+function updateUIBasedOnAuth() {
+  const addPostSection = document.getElementById("addPostForm");
+  const loginLink = document.getElementById("loginLink");
+  const logoutLink = document.getElementById("logoutLink");
+  const addPostLink = document.getElementById("addPostLink");
+
+  if (token) {
+    fetch("/api/posts", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (res.ok) {
+          addPostSection.style.display = "block";
+          loginLink.style.display = "none";
+          logoutLink.style.display = "inline";
+          addPostLink.style.display = "inline";
+        } else {
+          token = null;
+          localStorage.removeItem("token");
+          addPostSection.style.display = "none";
+          loginLink.style.display = "inline";
+          logoutLink.style.display = "none";
+          addPostLink.style.display = "none";
+        }
+      })
+      .catch(() => {
+        token = null;
+        localStorage.removeItem("token");
+        addPostSection.style.display = "none";
+        loginLink.style.display = "inline";
+        logoutLink.style.display = "none";
+        addPostLink.style.display = "none";
+      });
+  } else {
+    addPostSection.style.display = "none";
+    loginLink.style.display = "inline";
+    logoutLink.style.display = "none";
+    addPostLink.style.display = "none";
+  }
+}
+
+// Attach logout event listener
+document.getElementById("logoutLink")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  logout();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+});
+
+// Parallax effect for floating shapes
+document.addEventListener("mousemove", function (e) {
+  const shapes = document.querySelectorAll(".shape");
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+
+  shapes.forEach((shape, index) => {
+    const rate = (index + 1) * 0.5;
+    const x = (mouseX * rate) / 100;
+    const y = (mouseY * rate) / 100;
+    shape.style.transform = `translate(${x}px, ${y}px)`;
+  });
+});
+
+// Header background on scroll
+window.addEventListener("scroll", function () {
+  const header = document.querySelector(".header");
+  if (window.scrollY > 100) {
+    header.style.background = "rgba(255, 255, 255, 0.98)";
+  } else {
+    header.style.background = "rgba(255, 255, 255, 0.95)";
+  }
+});
+
+ </script>
+</body>
+</html>
