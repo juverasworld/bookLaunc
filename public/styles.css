@@ -514,6 +514,7 @@ footer {
 .confirm-btn,
 .payment-btn,
 .payment-btns,
+.payment-btna,
 .payment-btnss {
     background: #1f2d3d;
     color: white;
@@ -529,6 +530,7 @@ footer {
 
 .confirm-btn:hover,
 .payment-btn:hover,
+.payment-btna:hover,
 .payment-btns:hover,
 .payment-btnss:hover {
     background: #38a169;
