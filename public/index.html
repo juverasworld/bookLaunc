@@ -184,14 +184,18 @@
       <div class="topics-containers">
 
         <ul class="topics-lists">
-          <li>One Book</li>
-          <li>One Gift</li>
-          <li>One Family Saved</li>
+          <li>
+            <b>
+              One Book
+            </b>
+            </li>
+          <li><b>One Gift</b></li>
+          <li><b>One Family Saved</b></li>
         </ul>
       </div>
     </h2>
     <p style="margin-bottom: 20px;" class="donate-p">
-      Your Gift is helping us prevent one maternal and child death every 30 seconds in Communities across Africa
+      Your gift is helping us prevent one maternal and child death every 30 seconds in communities across Africa
     </p>
     <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
       <div class="form-group">
@@ -447,7 +451,7 @@
           class="payment-btna"
           onclick="initiatePaystackPayment(selectedDonation.totalNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
         >
-            (₦ <span id="paystackAmount">0</span>) <br>
+            ₦ <span id="paystackAmount">0</span> <br>
             Local Payment
 
         </button>
@@ -456,7 +460,7 @@
           class="payment-btna"
           onclick="initiateStripePayment(selectedDonation.totalUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
         >
-          ($<span id="stripeAmount">0</span>) <br> 
+          $<span id="stripeAmount">0</span> <br> 
          Int'l Payment
         </button>
       </div>
@@ -1456,7 +1460,7 @@
         </div>
         <div class="profile-section">
           <div class="profile-image">
-            <img src="./author2.jpg" alt="Dr Oto Profile" />
+            <img src="./author2.jpg" alt="Dr Obo Profile picture" />
           </div>
           <div class="chat-bubble">
             <div class="chat-header">Dr OVO</div>
