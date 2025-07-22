@@ -447,14 +447,17 @@
           class="payment-btna"
           onclick="initiatePaystackPayment(selectedDonation.totalNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
         >
-            (₦ Paystack-<span id="paystackAmount">0</span>)
+            (₦ <span id="paystackAmount">0</span>) <br>
+            Local Payment
+
         </button>
         <button
           type="button"
           class="payment-btna"
           onclick="initiateStripePayment(selectedDonation.totalUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
         >
-          ($ Stripe-<span id="stripeAmount">0</span>)
+          ($<span id="stripeAmount">0</span>) <br> 
+         Int'l Payment
         </button>
       </div>
     </form>
