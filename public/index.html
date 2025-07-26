@@ -29,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="author" content="Dr. Otubo Victor" />
   <script src="https://js.stripe.com/v3/"></script>
-  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title> My Family Companion– Family Health Guide by Dr. OVO
     </title>
@@ -38,19 +38,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 
    <link rel="stylesheet" href="./styles.css">
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+   <script type="text/javascript">
+     (function(){
+         // This is your EmailJS Public Key
+         emailjs.init({ publicKey: "wYOLVvExDoBUBzO12" });
+     })();
+   </script>
   </head>
   <body>
     <!-- Existing header and main content -->
     <header class="header">
       <div class="nav-container">
-        <!-- <div class="logo">
-      
-        </div> -->
+       
         <a href="/index.html" class="">
 
           <img src="./logo.jpg" style="border-radius: 30%;" alt="My Family Companion Logo" class="logo-icon">
         </a>
-        <!-- Navigation Links for Large Screens -->
+       
         <nav class="nav-menu">
 
           <a href="./blog.html">Blog</a>
@@ -77,7 +82,9 @@
         <a href="mailto:contact@myfamilycompanion.com"   >contact@myfamilycompanion.com</a>
 
         </div>
-        <a href="#payment" class="contact-btn" onclick="showPresaleOverlay()">Presale Order</a>
+        <!-- <a href="#payment" class="contact-btn" onclick="showPresaleOverlay()">Presale Order</a> -->
+        <a href="#" class="contact-btn" onclick="openOverlay('presale')">Presale Order</a>
+
      
       </div>
     </header>
@@ -109,10 +116,14 @@
           <p class="hero-description" style="">In <em>My Family Companion</em>, Dr. OVO draws from years of medical education and practice, real-life stories, and personal experience to guide you through every stage of family life—from choosing the right partner  <a href="#" class="more-link" onclick="showMorePopup()">...  more</a></p>
         </div>
 
-        <div class="cta-section">
+        <!-- <div class="cta-section">
           <a href="#donate" class="more-info-btn" onclick="showDonationOverlay()">Donate Copy</a>
           <a href="#payment" class="more-info-btn" onclick="showPresaleOverlay()">Presale Order</a>
-        </div>
+        </div> -->
+        <div class="cta-section">
+          <a href="#" class="more-info-btn" onclick="openOverlay('donation')">Donate Copy</a>
+          <a href="#" class="more-info-btn" onclick="openOverlay('presale')">Presale Order</a>
+      </div>
       </div>
     
       <!-- Popup Container -->
@@ -174,347 +185,84 @@
 <!-- Donation Form Overlay -->
 <div class="overlay" id="donationFormOverlay">
   <div class="overlay-content">
-    <div class="overlay-header">
-      <button class="back-btn" onclick="closeOverlays()"> <i class="fas fa-arrow-left"></i> </button>
-     
-      <span class="close-btn" onclick="closeOverlays()">×</span>
-    </div>
-    <h2 class="overlay-title">
-
-      <div class="topics-containers">
-
-        <ul class="topics-lists">
-          <li>
-            <b>
-              One Book
-            </b>
-            </li>
-          <li><b>One Gift</b></li>
-          <li><b>One Family Saved</b></li>
-        </ul>
-      </div>
-    </h2>
-    <p style="margin-bottom: 20px;" class="donate-p">
-      Your gift is helping us prevent one maternal and child death every 30 seconds in communities across Africa
-    </p>
-    <form class="newsletter-form" id="donationForm" onsubmit="handleDonationSubmit(event)">
-      <div class="form-group">
-        <label class="form-label" for="donationCopyCountForm">Number of Copies</label>
-        <input
-          type="number"
-          id="donationCopyCountForm"
-          class="form-input"
-          placeholder="Enter number of copies"
-          min="1"
-          step="1"
-          oninput="this.value = Math.max(1, parseInt(this.value) || 1); updateDonationSummary()"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="donationName">First Name</label>
-        <input
-          type="text"
-          id="donationName"
-          class="form-input"
-          placeholder="Enter your First name"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="donationEmail">Email Address</label>
-        <input
-          type="email"
-          id="donationEmail"
-          class="form-input"
-          placeholder="Enter your email address"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="donationOrganization">Organization Name</label>
-        <input
-          type="text"
-          id="donationOrganization"
-          class="form-input"
-          placeholder="Enter organization name (optional)"
-        />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="donationLocation">Location</label>
-        <select id="donationLocation" class="form-input" required>
-          <option value="" disabled selected>Select your country</option>
-          <option value="Afghanistan">Afghanistan</option>
-          <option value="Albania">Albania</option>
-          <option value="Algeria">Algeria</option>
-          <option value="Andorra">Andorra</option>
-          <option value="Angola">Angola</option>
-          <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Armenia">Armenia</option>
-          <option value="Australia">Australia</option>
-          <option value="Austria">Austria</option>
-          <option value="Azerbaijan">Azerbaijan</option>
-          <option value="Bahamas">Bahamas</option>
-          <option value="Bahrain">Bahrain</option>
-          <option value="Bangladesh">Bangladesh</option>
-          <option value="Barbados">Barbados</option>
-          <option value="Belarus">Belarus</option>
-          <option value="Belgium">Belgium</option>
-          <option value="Belize">Belize</option>
-          <option value="Benin">Benin</option>
-          <option value="Bhutan">Bhutan</option>
-          <option value="Bolivia">Bolivia</option>
-          <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-          <option value="Botswana">Botswana</option>
-          <option value="Brazil">Brazil</option>
-          <option value="Brunei">Brunei</option>
-          <option value="Bulgaria">Bulgaria</option>
-          <option value="Burkina Faso">Burkina Faso</option>
-          <option value="Burundi">Burundi</option>
-          <option value="Cabo Verde">Cabo Verde</option>
-          <option value="Cambodia">Cambodia</option>
-          <option value="Cameroon">Cameroon</option>
-          <option value="Canada">Canada</option>
-          <option value="Central African Republic">Central African Republic</option>
-          <option value="Chad">Chad</option>
-          <option value="Chile">Chile</option>
-          <option value="China">China</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Comoros">Comoros</option>
-          <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
-          <option value="Costa Rica">Costa Rica</option>
-          <option value="Croatia">Croatia</option>
-          <option value="Cuba">Cuba</option>
-          <option value="Cyprus">Cyprus</option>
-          <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
-          <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
-          <option value="Denmark">Denmark</option>
-          <option value="Djibouti">Djibouti</option>
-          <option value="Dominica">Dominica</option>
-          <option value="Dominican Republic">Dominican Republic</option>
-          <option value="Ecuador">Ecuador</option>
-          <option value="Egypt">Egypt</option>
-          <option value="El Salvador">El Salvador</option>
-          <option value="Equatorial Guinea">Equatorial Guinea</option>
-          <option value="Eritrea">Eritrea</option>
-          <option value="Estonia">Estonia</option>
-          <option value="Eswatini (fmr. Swaziland)">Eswatini (fmr. Swaziland)</option>
-          <option value="Ethiopia">Ethiopia</option>
-          <option value="Fiji">Fiji</option>
-          <option value="Finland">Finland</option>
-          <option value="France">France</option>
-          <option value="Gabon">Gabon</option>
-          <option value="Gambia">Gambia</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Germany">Germany</option>
-          <option value="Ghana">Ghana</option>
-          <option value="Greece">Greece</option>
-          <option value="Grenada">Grenada</option>
-          <option value="Guatemala">Guatemala</option>
-          <option value="Guinea">Guinea</option>
-          <option value="Guinea-Bissau">Guinea-Bissau</option>
-          <option value="Guyana">Guyana</option>
-          <option value="Haiti">Haiti</option>
-          <option value="Honduras">Honduras</option>
-          <option value="Hungary">Hungary</option>
-          <option value="Iceland">Iceland</option>
-          <option value="India">India</option>
-          <option value="Indonesia">Indonesia</option>
-          <option value="Iran">Iran</option>
-          <option value="Iraq">Iraq</option>
-          <option value="Ireland">Ireland</option>
-          <option value="Israel">Israel</option>
-          <option value="Italy">Italy</option>
-          <option value="Jamaica">Jamaica</option>
-          <option value="Japan">Japan</option>
-          <option value="Jordan">Jordan</option>
-          <option value="Kazakhstan">Kazakhstan</option>
-          <option value="Kenya">Kenya</option>
-          <option value="Kiribati">Kiribati</option>
-          <option value="Kuwait">Kuwait</option>
-          <option value="Kyrgyzstan">Kyrgyzstan</option>
-          <option value="Laos">Laos</option>
-          <option value="Latvia">Latvia</option>
-          <option value="Lebanon">Lebanon</option>
-          <option value="Lesotho">Lesotho</option>
-          <option value="Liberia">Liberia</option>
-          <option value="Libya">Libya</option>
-          <option value="Liechtenstein">Liechtenstein</option>
-          <option value="Lithuania">Lithuania</option>
-          <option value="Luxembourg">Luxembourg</option>
-          <option value="Madagascar">Madagascar</option>
-          <option value="Malawi">Malawi</option>
-          <option value="Malaysia">Malaysia</option>
-          <option value="Maldives">Maldives</option>
-          <option value="Mali">Mali</option>
-          <option value="Malta">Malta</option>
-          <option value="Marshall Islands">Marshall Islands</option>
-          <option value="Mauritania">Mauritania</option>
-          <option value="Mauritius">Mauritius</option>
-          <option value="Mexico">Mexico</option>
-          <option value="Micronesia">Micronesia</option>
-          <option value="Moldova">Moldova</option>
-          <option value="Monaco">Monaco</option>
-          <option value="Mongolia">Mongolia</option>
-          <option value="Montenegro">Montenegro</option>
-          <option value="Morocco">Morocco</option>
-          <option value="Mozambique">Mozambique</option>
-          <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
-          <option value="Namibia">Namibia</option>
-          <option value="Nauru">Nauru</option>
-          <option value="Nepal">Nepal</option>
-          <option value="Netherlands">Netherlands</option>
-          <option value="New Zealand">New Zealand</option>
-          <option value="Nicaragua">Nicaragua</option>
-          <option value="Niger">Niger</option>
-          <option value="Nigeria">Nigeria</option>
-          <option value="North Korea">North Korea</option>
-          <option value="North Macedonia">North Macedonia</option>
-          <option value="Norway">Norway</option>
-          <option value="Oman">Oman</option>
-          <option value="Pakistan">Pakistan</option>
-          <option value="Palau">Palau</option>
-          <option value="Palestine State">Palestine State</option>
-          <option value="Panama">Panama</option>
-          <option value="Papua New Guinea">Papua New Guinea</option>
-          <option value="Paraguay">Paraguay</option>
-          <option value="Peru">Peru</option>
-          <option value="Philippines">Philippines</option>
-          <option value="Poland">Poland</option>
-          <option value="Portugal">Portugal</option>
-          <option value="Qatar">Qatar</option>
-          <option value="Romania">Romania</option>
-          <option value="Russia">Russia</option>
-          <option value="Rwanda">Rwanda</option>
-          <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-          <option value="Saint Lucia">Saint Lucia</option>
-          <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-          <option value="Samoa">Samoa</option>
-          <option value="San Marino">San Marino</option>
-          <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-          <option value="Saudi Arabia">Saudi Arabia</option>
-          <option value="Senegal">Senegal</option>
-          <option value="Serbia">Serbia</option>
-          <option value="Seychelles">Seychelles</option>
-          <option value="Sierra Leone">Sierra Leone</option>
-          <option value="Singapore">Singapore</option>
-          <option value="Slovakia">Slovakia</option>
-          <option value="Slovenia">Slovenia</option>
-          <option value="Solomon Islands">Solomon Islands</option>
-          <option value="Somalia">Somalia</option>
-          <option value="South Africa">South Africa</option>
-          <option value="South Korea">South Korea</option>
-          <option value="South Sudan">South Sudan</option>
-          <option value="Spain">Spain</option>
-          <option value="Sri Lanka">Sri Lanka</option>
-          <option value="Sudan">Sudan</option>
-          <option value="Suriname">Suriname</option>
-          <option value="Sweden">Sweden</option>
-          <option value="Switzerland">Switzerland</option>
-          <option value="Syria">Syria</option>
-          <option value="Taiwan">Taiwan</option>
-          <option value="Tajikistan">Tajikistan</option>
-          <option value="Tanzania">Tanzania</option>
-          <option value="Thailand">Thailand</option>
-          <option value="Timor-Leste">Timor-Leste</option>
-          <option value="Togo">Togo</option>
-          <option value="Tonga">Tonga</option>
-          <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-          <option value="Tunisia">Tunisia</option>
-          <option value="Turkey">Turkey</option>
-          <option value="Turkmenistan">Turkmenistan</option>
-          <option value="Tuvalu">Tuvalu</option>
-          <option value="Uganda">Uganda</option>
-          <option value="Ukraine">Ukraine</option>
-          <option value="United Arab Emirates">United Arab Emirates</option>
-          <option value="United Kingdom">United Kingdom</option>
-          <option value="United States">United States</option>
-          <option value="Uruguay">Uruguay</option>
-          <option value="Uzbekistan">Uzbekistan</option>
-          <option value="Vanuatu">Vanuatu</option>
-          <option value="Vatican City">Vatican City</option>
-          <option value="Venezuela">Venezuela</option>
-          <option value="Vietnam">Vietnam</option>
-          <option value="Yemen">Yemen</option>
-          <option value="Zambia">Zambia</option>
-          <option value="Zimbabwe">Zimbabwe</option>
-        </select>
-      </div>
-      
-      <div class="price-container">
-        <div class="current-prices" id="donationSummary">Summary: 0 Copies, ₦0 / $0</div>
-      </div>
-      <div class="payment-optionsa">
-        <button
-          type="button"
-          class="payment-btna"
-          onclick="initiatePaystackPayment(selectedDonation.totalNGN * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
-        >
-            ₦ <span id="paystackAmount">0</span> <br>
-            Local Payment
-
-        </button>
-        <button
-          type="button"
-          class="payment-btna"
-          onclick="initiateStripePayment(selectedDonation.totalUSD * 100, document.getElementById('donationEmail').value || 'anonymous@example.com', 'donation')"
-        >
-          $<span id="stripeAmount">0</span> <br> 
-         Int'l Payment
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-  
-      <!-- Presale Overlay -->
-      <div class="overlay" id="presaleOverlay">
-        <div class="overlay-content">
-         
+      <div class="overlay-header">
+          <button class="back-btn" onclick="closeOverlays()"><i class="fas fa-arrow-left"></i></button>
           <span class="close-btn" onclick="closeOverlays()">×</span>
-          <h2 class="overlay-title">Presale Order</h2>
+      </div>
+      <h2 class="overlay-title">
+          <div class="topics-containers">
+              <ul class="topics-lists">
+                  <li><b>One Book</b></li>
+                  <li><b>One Gift</b></li>
+                  <li><b>One Family Saved</b></li>
+              </ul>
+          </div>
+      </h2>
+      <p style="margin-bottom: 20px;" class="donate-p">
+          Your gift is helping us prevent one maternal and child death every 30 seconds in communities across Africa
+      </p>
+      <form class="newsletter-form" id="donationForm">
           <div class="form-group">
-            <label class="form-label">Select Currency</label>
-            <button class="payment-btn" onclick="showPresaleForm('local')">Local (₦20,000/copy)</button>
-            <button class="payment-btn" onclick="showPresaleForm('international')">International (Amazon)</button>
+              <label class="form-label" for="donationCopyCountForm">Number of Copies</label>
+              <input
+                  type="number"
+                  id="donationCopyCountForm"
+                  class="form-input"
+                  placeholder="Enter number of copies (5-10000)"
+                  min="5"
+                  max="10000"
+                  step="1"
+                  oninput="this.value = Math.max(5, Math.min(10000, parseInt(this.value) || 5)); updateDonationSummary()"
+                  required
+              />
           </div>
-        </div>
-      </div>
-  
-      <div class="overlay" id="presaleFormOverlay">
-        <div class="overlay-content">
-          <div class="overlay-header">
-            <button class="back-btn" onclick="closeOverlays()"> <i class="fas fa-arrow-left"></i> </button>
-
-            <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
+          <div class="form-group">
+              <label class="form-label" for="donationName">First Name</label>
+              <input
+                  type="text"
+                  id="donationName"
+                  class="form-input"
+                  placeholder="Enter your First name"
+                  maxlength="100"
+                  required
+              />
           </div>
-          <span class="close-btn" onclick="closeOverlays()">×</span>
-          <h2 class="overlay-title" id="presaleFormTitle">Presale Details</h2>
-          <form class="newsletter-form" id="presaleForm" onsubmit="handlePresaleSubmit(event)">
-            <!-- Number of Copies (Local Only) -->
-            <div class="form-group" id="quantityGroup">
-              <label class="form-label" for="presaleQuantity">Number of Copies</label>
-              <input type="number" id="presaleQuantity" class="form-input" placeholder="Enter number of copies" min="1" required oninput="calculatePresaleTotal()">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="presaleName">First name</label>
-              <input type="text" id="presaleName" class="form-input" placeholder="Enter your First name" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="presaleEmail">Email Address</label>
-              <input type="email" id="presaleEmail" class="form-input" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="presaleEmail">Phone Number</label>
-         <input type="tel" id="sessionPhone" name="sessionPhone" class="form-input" placeholder="Enter your phone number">
-
-            </div>
-            <!-- Local Location (Cities) -->
-            <div class="form-group" id="localLocationGroup">
-              <label class="form-label" for="presaleLocationLocal">Nearest City</label>
-              <select id="presaleLocationInternational" class="form-input" required>
-                <option value="" disabled selected>Select your country</option>
+          <div class="form-group">
+              <label class="form-label" for="donationEmail">Email Address</label>
+              <input
+                  type="email"
+                  id="donationEmail"
+                  class="form-input"
+                  placeholder="Enter your email address"
+                  required
+              />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="donationPhoneNumber">Phone Number (Optional)</label>
+              <input
+                  type="tel"
+                  id="donationPhoneNumber"
+                  class="form-input"
+                  placeholder="Enter your phone number"
+                  maxlength="20"
+              />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="donationOrganization">Organization Name (Optional)</label>
+              <input
+                  type="text"
+                  id="donationOrganization"
+                  class="form-input"
+                  placeholder="Enter organization name"
+                  maxlength="200"
+              />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="donationLocation">Location (Optional)</label>
+              <select id="donationLocation" class="form-input">
+                <option value="" disabled selected>
+                  Select your country
+                </option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -559,7 +307,9 @@
                 <option value="Cuba">Cuba</option>
                 <option value="Cyprus">Cyprus</option>
                 <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
-                <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                <option value="Democratic Republic of the Congo">
+                  Democratic Republic of the Congo
+                </option>
                 <option value="Denmark">Denmark</option>
                 <option value="Djibouti">Djibouti</option>
                 <option value="Dominica">Dominica</option>
@@ -660,7 +410,9 @@
                 <option value="Rwanda">Rwanda</option>
                 <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
                 <option value="Saint Lucia">Saint Lucia</option>
-                <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                <option value="Saint Vincent and the Grenadines">
+                  Saint Vincent and the Grenadines
+                </option>
                 <option value="Samoa">Samoa</option>
                 <option value="San Marino">San Marino</option>
                 <option value="Sao Tome and Principe">Sao Tome and Principe</option>
@@ -710,7 +462,128 @@
                 <option value="Yemen">Yemen</option>
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
-              </select>
+              </select>;
+              
+          </div>
+          <div class="price-container">
+              <div class="current-prices" id="donationSummary">Summary: 0 Copies, ₦0 / $0</div>
+          </div>
+          <div class="payment-optionsa">
+              <button
+                  type="button"
+                  class="payment-btna"
+                  onclick="handlePayment('paystack-ngn')"
+              >
+                  ₦<span id="paystackAmountNGN">0</span><br>
+                  Local Payment (NGN)
+              </button>
+              <button
+                  type="button"
+                  class="payment-btna"
+                  onclick="handlePayment('paystack-usd')"
+              >
+                  $<span id="paystackAmountUSD">0</span><br>
+                  Int'l Payment (USD)
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
+  
+      <!-- Presale Overlay -->
+      <div class="overlay" id="presaleOverlay">
+        <div class="overlay-content">
+         
+          <span class="close-btn" onclick="closeOverlays()">×</span>
+          <h2 class="overlay-title">Presale Order</h2>
+          <div class="form-group">
+            <label class="form-label">Select Currency</label>
+            <button class="payment-btn" onclick="showPresaleForm('local')">Local (₦20,000/copy)</button>
+            <button class="payment-btn" onclick="showPresaleForm('international')">International (Amazon)</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="overlay" id="presaleFormOverlay">
+        <div class="overlay-content">
+          <div class="overlay-header">
+            <button class="back-btn" onclick="closeOverlays()"> <i class="fas fa-arrow-left"></i> </button>
+
+            <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
+          </div>
+          <span class="close-btn" onclick="closeOverlays()">×</span>
+          <h2 class="overlay-title" id="presaleFormTitle">Presale Details</h2>
+          <form class="newsletter-form" id="presaleForm" onsubmit="handlePresaleSubmit(event)">
+            <!-- Number of Copies (Local Only) -->
+            <div class="form-group" id="quantityGroup">
+              <label class="form-label" for="presaleQuantity">Number of Copies</label>
+              <input type="number" id="presaleQuantity" class="form-input" placeholder="Enter number of copies" min="1" required oninput="calculatePresaleTotal()">
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="presaleName">First Name</label>
+              <input type="text" id="presaleName" class="form-input" placeholder="Enter your First name" required>
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="presaleEmail">Email Address</label>
+              <input type="email" id="presaleEmail" class="form-input" placeholder="Enter your email address" required>
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="presalePhone">Phone Number</label>
+              <input type="tel" id="presalePhone" name="presalePhone" class="form-input" placeholder="Enter your phone number">
+          </div>
+            <!-- Local Location (Cities) -->
+            <div class="form-group" id="localLocationGroup">
+              <label class="form-label" for="presaleLocationLocal">Nearest City</label>
+              <select id="presaleLocationLocal" class="form-input" required>
+                <option value="" disabled selected>
+                  Select city nearest to you
+                </option>
+                <option value="Aba">Aba</option>
+                <option value="Abakaliki">Abakaliki</option>
+                <option value="Abeokuta">Abeokuta</option>
+                <option value="Abuja">Abuja</option>
+                <option value="Ado-Ekiti">Ado-Ekiti</option>
+                <option value="Akure">Akure</option>
+                <option value="Asaba">Asaba</option>
+                <option value="Awka">Awka</option>
+                <option value="Bauchi">Bauchi</option>
+                <option value="Benin City">Benin City</option>
+                <option value="Birnin Kebbi">Birnin Kebbi</option>
+                <option value="Calabar">Calabar</option>
+                <option value="Damaturu">Damaturu</option>
+                <option value="Dutse">Dutse</option>
+                <option value="Enugu">Enugu</option>
+                <option value="Gombe">Gombe</option>
+                <option value="Gusau">Gusau</option>
+                <option value="Ibadan">Ibadan</option>
+                <option value="Ikeja">Ikeja</option>
+                <option value="Ilorin">Ilorin</option>
+                <option value="Jalingo">Jalingo</option>
+                <option value="Jos">Jos</option>
+                <option value="Kaduna">Kaduna</option>
+                <option value="Kano">Kano</option>
+                <option value="Katsina">Katsina</option>
+                <option value="Lafia">Lafia</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Lekki">Lekki</option>
+                <option value="Maiduguri">Maiduguri</option>
+                <option value="Makurdi">Makurdi</option>
+                <option value="Minna">Minna</option>
+                <option value="Nnewi">Nnewi</option>
+                <option value="Ogbomosho">Ogbomosho</option>
+                <option value="Onitsha">Onitsha</option>
+                <option value="Osogbo">Osogbo</option>
+                <option value="Owerri">Owerri</option>
+                <option value="Port Harcourt">Port Harcourt</option>
+                <option value="Sokoto">Sokoto</option>
+                <option value="Umuahia">Umuahia</option>
+                <option value="Uyo">Uyo</option>
+                <option value="Warri">Warri</option>
+                <option value="Yenagoa">Yenagoa</option>
+                <option value="Yola">Yola</option>
+                <option value="Zaria">Zaria</option>
+                <option value="FCT">FCT</option>
+              </select>;
             </div>
             <!-- International Location (Countries) -->
             <div class="form-group" id="internationalLocationGroup" style="display: none;">
@@ -926,243 +799,238 @@
       <!-- Paid Session Overlay -->
       <div class="overlay" id="sessionOverlay">
         <div class="overlay-content">
-          <div class="overlay-header">
-            <button class="back-btn" onclick="closeOverlays()"> <i class="fas fa-arrow-left"></i> </button>
-
-            <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
-          </div>
-          <span class="close-btn" onclick="closeOverlays()">×</span>
-          <h2 class="overlay-title">Book a Paid Session</h2>
-          <form class="newsletter-form" id="sessionForm" onsubmit="handleSessionSubmit(event)">
-            <div class="form-group">
-              <label class="form-label" for="sessionName">First name</label>
-              <input type="text" id="sessionName" class="form-input" placeholder="Enter your First name" required>
+            <div class="overlay-header">
+                <button class="back-btn" onclick="closeOverlays()"><i class="fas fa-arrow-left"></i></button>
+                <span class="close-btn" onclick="closeOverlays()">×</span>
             </div>
-            <div class="form-group">
-              <label class="form-label" for="sessionEmail">Email Address</label>
-              <input type="email" id="sessionEmail" class="form-input" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="sessionLocation">Location</label>
-              <select id="sessionLocation" class="form-input" required>
-            
-            
-                <option value="" disabled selected>Select your country</option>
-                <option value="Afghanistan">Afghanistan</option>
-                <option value="Albania">Albania</option>
-                <option value="Algeria">Algeria</option>
-                <option value="Andorra">Andorra</option>
-                <option value="Angola">Angola</option>
-                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Armenia">Armenia</option>
-                <option value="Australia">Australia</option>
-                <option value="Austria">Austria</option>
-                <option value="Azerbaijan">Azerbaijan</option>
-                <option value="Bahamas">Bahamas</option>
-                <option value="Bahrain">Bahrain</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Barbados">Barbados</option>
-                <option value="Belarus">Belarus</option>
-                <option value="Belgium">Belgium</option>
-                <option value="Belize">Belize</option>
-                <option value="Benin">Benin</option>
-                <option value="Bhutan">Bhutan</option>
-                <option value="Bolivia">Bolivia</option>
-                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                <option value="Botswana">Botswana</option>
-                <option value="Brazil">Brazil</option>
-                <option value="Brunei">Brunei</option>
-                <option value="Bulgaria">Bulgaria</option>
-                <option value="Burkina Faso">Burkina Faso</option>
-                <option value="Burundi">Burundi</option>
-                <option value="Cabo Verde">Cabo Verde</option>
-                <option value="Cambodia">Cambodia</option>
-                <option value="Cameroon">Cameroon</option>
-                <option value="Canada">Canada</option>
-                <option value="Central African Republic">Central African Republic</option>
-                <option value="Chad">Chad</option>
-                <option value="Chile">Chile</option>
-                <option value="China">China</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Comoros">Comoros</option>
-                <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
-                <option value="Costa Rica">Costa Rica</option>
-                <option value="Croatia">Croatia</option>
-                <option value="Cuba">Cuba</option>
-                <option value="Cyprus">Cyprus</option>
-                <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
-                <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
-                <option value="Denmark">Denmark</option>
-                <option value="Djibouti">Djibouti</option>
-                <option value="Dominica">Dominica</option>
-                <option value="Dominican Republic">Dominican Republic</option>
-                <option value="Ecuador">Ecuador</option>
-                <option value="Egypt">Egypt</option>
-                <option value="El Salvador">El Salvador</option>
-                <option value="Equatorial Guinea">Equatorial Guinea</option>
-                <option value="Eritrea">Eritrea</option>
-                <option value="Estonia">Estonia</option>
-                <option value="Eswatini (fmr. Swaziland)">Eswatini (fmr. Swaziland)</option>
-                <option value="Ethiopia">Ethiopia</option>
-                <option value="Fiji">Fiji</option>
-                <option value="Finland">Finland</option>
-                <option value="France">France</option>
-                <option value="Gabon">Gabon</option>
-                <option value="Gambia">Gambia</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Germany">Germany</option>
-                <option value="Ghana">Ghana</option>
-                <option value="Greece">Greece</option>
-                <option value="Grenada">Grenada</option>
-                <option value="Guatemala">Guatemala</option>
-                <option value="Guinea">Guinea</option>
-                <option value="Guinea-Bissau">Guinea-Bissau</option>
-                <option value="Guyana">Guyana</option>
-                <option value="Haiti">Haiti</option>
-                <option value="Honduras">Honduras</option>
-                <option value="Hungary">Hungary</option>
-                <option value="Iceland">Iceland</option>
-                <option value="India">India</option>
-                <option value="Indonesia">Indonesia</option>
-                <option value="Iran">Iran</option>
-                <option value="Iraq">Iraq</option>
-                <option value="Ireland">Ireland</option>
-                <option value="Israel">Israel</option>
-                <option value="Italy">Italy</option>
-                <option value="Jamaica">Jamaica</option>
-                <option value="Japan">Japan</option>
-                <option value="Jordan">Jordan</option>
-                <option value="Kazakhstan">Kazakhstan</option>
-                <option value="Kenya">Kenya</option>
-                <option value="Kiribati">Kiribati</option>
-                <option value="Kuwait">Kuwait</option>
-                <option value="Kyrgyzstan">Kyrgyzstan</option>
-                <option value="Laos">Laos</option>
-                <option value="Latvia">Latvia</option>
-                <option value="Lebanon">Lebanon</option>
-                <option value="Lesotho">Lesotho</option>
-                <option value="Liberia">Liberia</option>
-                <option value="Libya">Libya</option>
-                <option value="Liechtenstein">Liechtenstein</option>
-                <option value="Lithuania">Lithuania</option>
-                <option value="Luxembourg">Luxembourg</option>
-                <option value="Madagascar">Madagascar</option>
-                <option value="Malawi">Malawi</option>
-                <option value="Malaysia">Malaysia</option>
-                <option value="Maldives">Maldives</option>
-                <option value="Mali">Mali</option>
-                <option value="Malta">Malta</option>
-                <option value="Marshall Islands">Marshall Islands</option>
-                <option value="Mauritania">Mauritania</option>
-                <option value="Mauritius">Mauritius</option>
-                <option value="Mexico">Mexico</option>
-                <option value="Micronesia">Micronesia</option>
-                <option value="Moldova">Moldova</option>
-                <option value="Monaco">Monaco</option>
-                <option value="Mongolia">Mongolia</option>
-                <option value="Montenegro">Montenegro</option>
-                <option value="Morocco">Morocco</option>
-                <option value="Mozambique">Mozambique</option>
-                <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
-                <option value="Namibia">Namibia</option>
-                <option value="Nauru">Nauru</option>
-                <option value="Nepal">Nepal</option>
-                <option value="Netherlands">Netherlands</option>
-                <option value="New Zealand">New Zealand</option>
-                <option value="Nicaragua">Nicaragua</option>
-                <option value="Niger">Niger</option>
-                <option value="Nigeria">Nigeria</option>
-                <option value="North Korea">North Korea</option>
-                <option value="North Macedonia">North Macedonia</option>
-                <option value="Norway">Norway</option>
-                <option value="Oman">Oman</option>
-                <option value="Pakistan">Pakistan</option>
-                <option value="Palau">Palau</option>
-                <option value="Palestine State">Palestine State</option>
-                <option value="Panama">Panama</option>
-                <option value="Papua New Guinea">Papua New Guinea</option>
-                <option value="Paraguay">Paraguay</option>
-                <option value="Peru">Peru</option>
-                <option value="Philippines">Philippines</option>
-                <option value="Poland">Poland</option>
-                <option value="Portugal">Portugal</option>
-                <option value="Qatar">Qatar</option>
-                <option value="Romania">Romania</option>
-                <option value="Russia">Russia</option>
-                <option value="Rwanda">Rwanda</option>
-                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                <option value="Saint Lucia">Saint Lucia</option>
-                <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-                <option value="Samoa">Samoa</option>
-                <option value="San Marino">San Marino</option>
-                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                <option value="Saudi Arabia">Saudi Arabia</option>
-                <option value="Senegal">Senegal</option>
-                <option value="Serbia">Serbia</option>
-                <option value="Seychelles">Seychelles</option>
-                <option value="Sierra Leone">Sierra Leone</option>
-                <option value="Singapore">Singapore</option>
-                <option value="Slovakia">Slovakia</option>
-                <option value="Slovenia">Slovenia</option>
-                <option value="Solomon Islands">Solomon Islands</option>
-                <option value="Somalia">Somalia</option>
-                <option value="South Africa">South Africa</option>
-                <option value="South Korea">South Korea</option>
-                <option value="South Sudan">South Sudan</option>
-                <option value="Spain">Spain</option>
-                <option value="Sri Lanka">Sri Lanka</option>
-                <option value="Sudan">Sudan</option>
-                <option value="Suriname">Suriname</option>
-                <option value="Sweden">Sweden</option>
-                <option value="Switzerland">Switzerland</option>
-                <option value="Syria">Syria</option>
-                <option value="Taiwan">Taiwan</option>
-                <option value="Tajikistan">Tajikistan</option>
-                <option value="Tanzania">Tanzania</option>
-                <option value="Thailand">Thailand</option>
-                <option value="Timor-Leste">Timor-Leste</option>
-                <option value="Togo">Togo</option>
-                <option value="Tonga">Tonga</option>
-                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                <option value="Tunisia">Tunisia</option>
-                <option value="Turkey">Turkey</option>
-                <option value="Turkmenistan">Turkmenistan</option>
-                <option value="Tuvalu">Tuvalu</option>
-                <option value="Uganda">Uganda</option>
-                <option value="Ukraine">Ukraine</option>
-                <option value="United Arab Emirates">United Arab Emirates</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="United States">United States</option>
-                <option value="Uruguay">Uruguay</option>
-                <option value="Uzbekistan">Uzbekistan</option>
-                <option value="Vanuatu">Vanuatu</option>
-                <option value="Vatican City">Vatican City</option>
-                <option value="Venezuela">Venezuela</option>
-                <option value="Vietnam">Vietnam</option>
-                <option value="Yemen">Yemen</option>
-                <option value="Zambia">Zambia</option>
-                <option value="Zimbabwe">Zimbabwe</option>
-              </select>
-            </div>
-            
-            <div class="price-container">
-              <!-- <div class="current-price" id="sessionSummary">Summary: Paid Session, ₦75,000 or $50</div> -->
-            </div>
-            <p  class="confirm-bt">Choose Your Prefered Payment Method</p>
-            <div class="payment-optionsa" id="sessionPaymentOptions" >
-              <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')"> ₦75,000 <br> Local Payment</button>
-              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')"> $50 <br> Int'l Payment  </button>
-            </div>
-            <div class="payment-optionsa"  id="sessionPaymentOptions" >
-              <button class="payment-btna" onclick="initiatePaystackPayment(75000 * 100, document.getElementById('sessionEmail').value, 'session')"> ₦75,000 <br> Local Payment</button>
-
-              <button class="payment-btna" onclick="initiateStripePayment(50 * 100, document.getElementById('sessionEmail').value, 'session')">$50 <br> Int'l Payment </button>
-
-            </div>
-          </form>
+            <h2 class="overlay-title">Book a Paid Session</h2>
+            <form class="newsletter-form" id="sessionForm">
+                <div class="form-group">
+                    <label class="form-label" for="sessionName">First Name</label>
+                    <input type="text" id="sessionName" class="form-input" placeholder="Enter your First name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="sessionEmail">Email Address</label>
+                    <input type="email" id="sessionEmail" class="form-input" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="sessionLocation">Country</label>
+                    <select id="sessionLocation" class="form-input" required>
+                
+                
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cabo Verde">Cabo Verde</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
+                        <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Eswatini (fmr. Swaziland)">Eswatini (fmr. Swaziland)</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia">Micronesia</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="North Korea">North Korea</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Palestine State">Palestine State</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Timor-Leste">Timor-Leste</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City">Vatican City</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                      </select>
+                </div>
+                <div class="price-container">
+                    <div class="current-price" id="sessionSummary">Summary: Paid Session, ₦75,000 / $50</div>
+                </div>
+                <p class="confirm-bt">Choose Your Preferred Payment Method</p>
+                <div class="payment-optionsa" id="sessionPaymentOptions">
+                    <button type="button" class="payment-btna" onclick="handlePayment('paystack-ngn')">
+                        ₦75,000<br>Local Payment (NGN)
+                    </button>
+                    <button type="button" class="payment-btna" onclick="handlePayment('paystack-usd')">
+                        $50<br>International Payment (USD)
+                    </button>
+                </div>
+            </form>
         </div>
-      </div>
+    </div>
 
   
   
@@ -1188,15 +1056,8 @@
               <span class="stat-label">Years<br />Combined Experience</span>
             </div>
           </div>
+       
           <!-- <div class="sam">
-            <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
-            <div class="session-dropdown" id="sessionDropdown">
-              <a href="https://calendly.com/your-calendly-link" target="_blank" class="session-option">Join Free Weekly Sessions</a>
-              <a href="https://zoom.us/j/your-zoom-id" target="_blank" class="session-option">Book Private Session</a>
-            </div>
-            <button class="cta-button" onclick="handleMoreInfo()">Invite to Speak</button>
-          </div> -->
-          <div class="sam">
             <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
             <div class="session-dropdown" id="sessionDropdown">
               <a href="#" class="session-option" onclick="showFreeSessionOverlay()">Join Free Weekly Sessions</a>
@@ -1204,262 +1065,265 @@
 
             </div>
             <button class="cta-button" onclick="showInviteSpeakOverlay()">Invite to Speak</button>
-          </div>
+          </div> -->
+          <div class="sam">
+            <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
+            <div class="session-dropdown" id="sessionDropdown">
+                <a href="#" class="session-option" onclick="openOverlay('freeSession')">Join Free Weekly Sessions</a>
+                <a href="#" class="session-option" onclick="openOverlay('session')">Book a Paid Private Session</a>
+            </div>
+            <button class="cta-button" onclick="openOverlay('inviteSpeak')">Invite to Speak</button>
+        </div>
           <!-- Free Weekly Session Overlay -->
-<div class="overlay" id="freeSessionOverlay">
-  <div class="overlay-content">
-    <div class="overlay-header">
-      <button class="back-btn" onclick="closeOverlays()"> <i class="fas fa-arrow-left"></i> </button>
-
-      <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
-    </div>
-    <span class="close-btn" onclick="closeOverlays()">×</span>
-    <h2 class="overlay-title">Join Free Weekly Sessions</h2>
-    <form class="newsletter-form" onsubmit="handleFreeSessionSubmit(event)">
-      <div class="form-group">
-        <label class="form-label" for="sessionName">First name</label>
-        <input type="text" id="sessionName" name="sessionName" class="form-input" placeholder="Enter your First name" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="sessionEmail">Email Address</label>
-        <input type="email" id="sessionEmail" name="sessionEmail" class="form-input" placeholder="Enter your email address" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="sessionPhone">Location</label>
-        <select id="sessionCountry" name="sessionCountry" class="form-input" required>
-          <option value="" disabled selected>Select your country</option>
-          <option value="Afghanistan">Afghanistan</option>
-          <option value="Albania">Albania</option>
-          <option value="Algeria">Algeria</option>
-          <option value="Andorra">Andorra</option>
-          <option value="Angola">Angola</option>
-          <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Armenia">Armenia</option>
-          <option value="Australia">Australia</option>
-          <option value="Austria">Austria</option>
-          <option value="Azerbaijan">Azerbaijan</option>
-          <option value="Bahamas">Bahamas</option>
-          <option value="Bahrain">Bahrain</option>
-          <option value="Bangladesh">Bangladesh</option>
-          <option value="Barbados">Barbados</option>
-          <option value="Belarus">Belarus</option>
-          <option value="Belgium">Belgium</option>
-          <option value="Belize">Belize</option>
-          <option value="Benin">Benin</option>
-          <option value="Bhutan">Bhutan</option>
-          <option value="Bolivia">Bolivia</option>
-          <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-          <option value="Botswana">Botswana</option>
-          <option value="Brazil">Brazil</option>
-          <option value="Brunei">Brunei</option>
-          <option value="Bulgaria">Bulgaria</option>
-          <option value="Burkina Faso">Burkina Faso</option>
-          <option value="Burundi">Burundi</option>
-          <option value="Cabo Verde">Cabo Verde</option>
-          <option value="Cambodia">Cambodia</option>
-          <option value="Cameroon">Cameroon</option>
-          <option value="Canada">Canada</option>
-          <option value="Central African Republic">Central African Republic</option>
-          <option value="Chad">Chad</option>
-          <option value="Chile">Chile</option>
-          <option value="China">China</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Comoros">Comoros</option>
-          <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
-          <option value="Costa Rica">Costa Rica</option>
-          <option value="Croatia">Croatia</option>
-          <option value="Cuba">Cuba</option>
-          <option value="Cyprus">Cyprus</option>
-          <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
-          <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
-          <option value="Denmark">Denmark</option>
-          <option value="Djibouti">Djibouti</option>
-          <option value="Dominica">Dominica</option>
-          <option value="Dominican Republic">Dominican Republic</option>
-          <option value="Ecuador">Ecuador</option>
-          <option value="Egypt">Egypt</option>
-          <option value="El Salvador">El Salvador</option>
-          <option value="Equatorial Guinea">Equatorial Guinea</option>
-          <option value="Eritrea">Eritrea</option>
-          <option value="Estonia">Estonia</option>
-          <option value="Eswatini (fmr. Swaziland)">Eswatini (fmr. Swaziland)</option>
-          <option value="Ethiopia">Ethiopia</option>
-          <option value="Fiji">Fiji</option>
-          <option value="Finland">Finland</option>
-          <option value="France">France</option>
-          <option value="Gabon">Gabon</option>
-          <option value="Gambia">Gambia</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Germany">Germany</option>
-          <option value="Ghana">Ghana</option>
-          <option value="Greece">Greece</option>
-          <option value="Grenada">Grenada</option>
-          <option value="Guatemala">Guatemala</option>
-          <option value="Guinea">Guinea</option>
-          <option value="Guinea-Bissau">Guinea-Bissau</option>
-          <option value="Guyana">Guyana</option>
-          <option value="Haiti">Haiti</option>
-          <option value="Honduras">Honduras</option>
-          <option value="Hungary">Hungary</option>
-          <option value="Iceland">Iceland</option>
-          <option value="India">India</option>
-          <option value="Indonesia">Indonesia</option>
-          <option value="Iran">Iran</option>
-          <option value="Iraq">Iraq</option>
-          <option value="Ireland">Ireland</option>
-          <option value="Israel">Israel</option>
-          <option value="Italy">Italy</option>
-          <option value="Jamaica">Jamaica</option>
-          <option value="Japan">Japan</option>
-          <option value="Jordan">Jordan</option>
-          <option value="Kazakhstan">Kazakhstan</option>
-          <option value="Kenya">Kenya</option>
-          <option value="Kiribati">Kiribati</option>
-          <option value="Kuwait">Kuwait</option>
-          <option value="Kyrgyzstan">Kyrgyzstan</option>
-          <option value="Laos">Laos</option>
-          <option value="Latvia">Latvia</option>
-          <option value="Lebanon">Lebanon</option>
-          <option value="Lesotho">Lesotho</option>
-          <option value="Liberia">Liberia</option>
-          <option value="Libya">Libya</option>
-          <option value="Liechtenstein">Liechtenstein</option>
-          <option value="Lithuania">Lithuania</option>
-          <option value="Luxembourg">Luxembourg</option>
-          <option value="Madagascar">Madagascar</option>
-          <option value="Malawi">Malawi</option>
-          <option value="Malaysia">Malaysia</option>
-          <option value="Maldives">Maldives</option>
-          <option value="Mali">Mali</option>
-          <option value="Malta">Malta</option>
-          <option value="Marshall Islands">Marshall Islands</option>
-          <option value="Mauritania">Mauritania</option>
-          <option value="Mauritius">Mauritius</option>
-          <option value="Mexico">Mexico</option>
-          <option value="Micronesia">Micronesia</option>
-          <option value="Moldova">Moldova</option>
-          <option value="Monaco">Monaco</option>
-          <option value="Mongolia">Mongolia</option>
-          <option value="Montenegro">Montenegro</option>
-          <option value="Morocco">Morocco</option>
-          <option value="Mozambique">Mozambique</option>
-          <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
-          <option value="Namibia">Namibia</option>
-          <option value="Nauru">Nauru</option>
-          <option value="Nepal">Nepal</option>
-          <option value="Netherlands">Netherlands</option>
-          <option value="New Zealand">New Zealand</option>
-          <option value="Nicaragua">Nicaragua</option>
-          <option value="Niger">Niger</option>
-          <option value="Nigeria">Nigeria</option>
-          <option value="North Korea">North Korea</option>
-          <option value="North Macedonia">North Macedonia</option>
-          <option value="Norway">Norway</option>
-          <option value="Oman">Oman</option>
-          <option value="Pakistan">Pakistan</option>
-          <option value="Palau">Palau</option>
-          <option value="Palestine State">Palestine State</option>
-          <option value="Panama">Panama</option>
-          <option value="Papua New Guinea">Papua New Guinea</option>
-          <option value="Paraguay">Paraguay</option>
-          <option value="Peru">Peru</option>
-          <option value="Philippines">Philippines</option>
-          <option value="Poland">Poland</option>
-          <option value="Portugal">Portugal</option>
-          <option value="Qatar">Qatar</option>
-          <option value="Romania">Romania</option>
-          <option value="Russia">Russia</option>
-          <option value="Rwanda">Rwanda</option>
-          <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-          <option value="Saint Lucia">Saint Lucia</option>
-          <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-          <option value="Samoa">Samoa</option>
-          <option value="San Marino">San Marino</option>
-          <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-          <option value="Saudi Arabia">Saudi Arabia</option>
-          <option value="Senegal">Senegal</option>
-          <option value="Serbia">Serbia</option>
-          <option value="Seychelles">Seychelles</option>
-          <option value="Sierra Leone">Sierra Leone</option>
-          <option value="Singapore">Singapore</option>
-          <option value="Slovakia">Slovakia</option>
-          <option value="Slovenia">Slovenia</option>
-          <option value="Solomon Islands">Solomon Islands</option>
-          <option value="Somalia">Somalia</option>
-          <option value="South Africa">South Africa</option>
-          <option value="South Korea">South Korea</option>
-          <option value="South Sudan">South Sudan</option>
-          <option value="Spain">Spain</option>
-          <option value="Sri Lanka">Sri Lanka</option>
-          <option value="Sudan">Sudan</option>
-          <option value="Suriname">Suriname</option>
-          <option value="Sweden">Sweden</option>
-          <option value="Switzerland">Switzerland</option>
-          <option value="Syria">Syria</option>
-          <option value="Taiwan">Taiwan</option>
-          <option value="Tajikistan">Tajikistan</option>
-          <option value="Tanzania">Tanzania</option>
-          <option value="Thailand">Thailand</option>
-          <option value="Timor-Leste">Timor-Leste</option>
-          <option value="Togo">Togo</option>
-          <option value="Tonga">Tonga</option>
-          <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-          <option value="Tunisia">Tunisia</option>
-          <option value="Turkey">Turkey</option>
-          <option value="Turkmenistan">Turkmenistan</option>
-          <option value="Tuvalu">Tuvalu</option>
-          <option value="Uganda">Uganda</option>
-          <option value="Ukraine">Ukraine</option>
-          <option value="United Arab Emirates">United Arab Emirates</option>
-          <option value="United Kingdom">United Kingdom</option>
-          <option value="United States">United States</option>
-          <option value="Uruguay">Uruguay</option>
-          <option value="Uzbekistan">Uzbekistan</option>
-          <option value="Vanuatu">Vanuatu</option>
-          <option value="Vatican City">Vatican City</option>
-          <option value="Venezuela">Venezuela</option>
-          <option value="Vietnam">Vietnam</option>
-          <option value="Yemen">Yemen</option>
-          <option value="Zambia">Zambia</option>
-          <option value="Zimbabwe">Zimbabwe</option>
-        </select>
-        <!-- <input type="tel" id="sessionPhone" name="sessionPhone" class="form-input" placeholder="Enter your phone number"> -->
-      </div>
-      <button type="submit" class="confirm-btn">Join Now</button>
-    </form>
-  </div>
-</div>
+          <div class="overlay" id="freeSessionOverlay">
+            <div class="overlay-content">
+                <div class="overlay-header">
+                    <button class="back-btn" onclick="closeOverlays()"><i class="fas fa-arrow-left"></i></button>
+                    <span class="close-btn" onclick="closeOverlays()">×</span>
+                </div>
+                <h2 class="overlay-title">Join Free Weekly Sessions</h2>
+                <form class="newsletter-form" id="freeSessionForm" onsubmit="handleFreeSessionSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="sessionName">First Name</label>
+                        <input type="text" id="sessionName" name="sessionName" class="form-input" placeholder="Enter your First name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="sessionEmail">Email Address</label>
+                        <input type="email" id="sessionEmail" name="sessionEmail" class="form-input" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="sessionCountry">Country</label>
+                        <select id="sessionCountry" name="sessionCountry" class="form-input" required>
+                            <option value="" disabled selected>Select your country</option>
+                            <option value="Afghanistan">Afghanistan</option>
+                            <option value="Albania">Albania</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="Andorra">Andorra</option>
+                            <option value="Angola">Angola</option>
+                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Armenia">Armenia</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Austria">Austria</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
+                            <option value="Bahamas">Bahamas</option>
+                            <option value="Bahrain">Bahrain</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Barbados">Barbados</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Belgium">Belgium</option>
+                            <option value="Belize">Belize</option>
+                            <option value="Benin">Benin</option>
+                            <option value="Bhutan">Bhutan</option>
+                            <option value="Bolivia">Bolivia</option>
+                            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                            <option value="Botswana">Botswana</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Brunei">Brunei</option>
+                            <option value="Bulgaria">Bulgaria</option>
+                            <option value="Burkina Faso">Burkina Faso</option>
+                            <option value="Burundi">Burundi</option>
+                            <option value="Cabo Verde">Cabo Verde</option>
+                            <option value="Cambodia">Cambodia</option>
+                            <option value="Cameroon">Cameroon</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Central African Republic">Central African Republic</option>
+                            <option value="Chad">Chad</option>
+                            <option value="Chile">Chile</option>
+                            <option value="China">China</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Comoros">Comoros</option>
+                            <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
+                            <option value="Costa Rica">Costa Rica</option>
+                            <option value="Croatia">Croatia</option>
+                            <option value="Cuba">Cuba</option>
+                            <option value="Cyprus">Cyprus</option>
+                            <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
+                            <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                            <option value="Denmark">Denmark</option>
+                            <option value="Djibouti">Djibouti</option>
+                            <option value="Dominica">Dominica</option>
+                            <option value="Dominican Republic">Dominican Republic</option>
+                            <option value="Ecuador">Ecuador</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="El Salvador">El Salvador</option>
+                            <option value="Equatorial Guinea">Equatorial Guinea</option>
+                            <option value="Eritrea">Eritrea</option>
+                            <option value="Estonia">Estonia</option>
+                            <option value="Eswatini (fmr. Swaziland)">Eswatini (fmr. Swaziland)</option>
+                            <option value="Ethiopia">Ethiopia</option>
+                            <option value="Fiji">Fiji</option>
+                            <option value="Finland">Finland</option>
+                            <option value="France">France</option>
+                            <option value="Gabon">Gabon</option>
+                            <option value="Gambia">Gambia</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Ghana">Ghana</option>
+                            <option value="Greece">Greece</option>
+                            <option value="Grenada">Grenada</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="Guinea">Guinea</option>
+                            <option value="Guinea-Bissau">Guinea-Bissau</option>
+                            <option value="Guyana">Guyana</option>
+                            <option value="Haiti">Haiti</option>
+                            <option value="Honduras">Honduras</option>
+                            <option value="Hungary">Hungary</option>
+                            <option value="Iceland">Iceland</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Iran">Iran</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Ireland">Ireland</option>
+                            <option value="Israel">Israel</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Jamaica">Jamaica</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Kazakhstan">Kazakhstan</option>
+                            <option value="Kenya">Kenya</option>
+                            <option value="Kiribati">Kiribati</option>
+                            <option value="Kuwait">Kuwait</option>
+                            <option value="Kyrgyzstan">Kyrgyzstan</option>
+                            <option value="Laos">Laos</option>
+                            <option value="Latvia">Latvia</option>
+                            <option value="Lebanon">Lebanon</option>
+                            <option value="Lesotho">Lesotho</option>
+                            <option value="Liberia">Liberia</option>
+                            <option value="Libya">Libya</option>
+                            <option value="Liechtenstein">Liechtenstein</option>
+                            <option value="Lithuania">Lithuania</option>
+                            <option value="Luxembourg">Luxembourg</option>
+                            <option value="Madagascar">Madagascar</option>
+                            <option value="Malawi">Malawi</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Maldives">Maldives</option>
+                            <option value="Mali">Mali</option>
+                            <option value="Malta">Malta</option>
+                            <option value="Marshall Islands">Marshall Islands</option>
+                            <option value="Mauritania">Mauritania</option>
+                            <option value="Mauritius">Mauritius</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Micronesia">Micronesia</option>
+                            <option value="Moldova">Moldova</option>
+                            <option value="Monaco">Monaco</option>
+                            <option value="Mongolia">Mongolia</option>
+                            <option value="Montenegro">Montenegro</option>
+                            <option value="Morocco">Morocco</option>
+                            <option value="Mozambique">Mozambique</option>
+                            <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
+                            <option value="Namibia">Namibia</option>
+                            <option value="Nauru">Nauru</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Netherlands">Netherlands</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="Nicaragua">Nicaragua</option>
+                            <option value="Niger">Niger</option>
+                            <option value="Nigeria">Nigeria</option>
+                            <option value="North Korea">North Korea</option>
+                            <option value="North Macedonia">North Macedonia</option>
+                            <option value="Norway">Norway</option>
+                            <option value="Oman">Oman</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Palau">Palau</option>
+                            <option value="Palestine State">Palestine State</option>
+                            <option value="Panama">Panama</option>
+                            <option value="Papua New Guinea">Papua New Guinea</option>
+                            <option value="Paraguay">Paraguay</option>
+                            <option value="Peru">Peru</option>
+                            <option value="Philippines">Philippines</option>
+                            <option value="Poland">Poland</option>
+                            <option value="Portugal">Portugal</option>
+                            <option value="Qatar">Qatar</option>
+                            <option value="Romania">Romania</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Rwanda">Rwanda</option>
+                            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                            <option value="Saint Lucia">Saint Lucia</option>
+                            <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                            <option value="Samoa">Samoa</option>
+                            <option value="San Marino">San Marino</option>
+                            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="Senegal">Senegal</option>
+                            <option value="Serbia">Serbia</option>
+                            <option value="Seychelles">Seychelles</option>
+                            <option value="Sierra Leone">Sierra Leone</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Slovakia">Slovakia</option>
+                            <option value="Slovenia">Slovenia</option>
+                            <option value="Solomon Islands">Solomon Islands</option>
+                            <option value="Somalia">Somalia</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="South Korea">South Korea</option>
+                            <option value="South Sudan">South Sudan</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="Sudan">Sudan</option>
+                            <option value="Suriname">Suriname</option>
+                            <option value="Sweden">Sweden</option>
+                            <option value="Switzerland">Switzerland</option>
+                            <option value="Syria">Syria</option>
+                            <option value="Taiwan">Taiwan</option>
+                            <option value="Tajikistan">Tajikistan</option>
+                            <option value="Tanzania">Tanzania</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Timor-Leste">Timor-Leste</option>
+                            <option value="Togo">Togo</option>
+                            <option value="Tonga">Tonga</option>
+                            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                            <option value="Tunisia">Tunisia</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Turkmenistan">Turkmenistan</option>
+                            <option value="Tuvalu">Tuvalu</option>
+                            <option value="Uganda">Uganda</option>
+                            <option value="Ukraine">Ukraine</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <option value="Uruguay">Uruguay</option>
+                            <option value="Uzbekistan">Uzbekistan</option>
+                            <option value="Vanuatu">Vanuatu</option>
+                            <option value="Vatican City">Vatican City</option>
+                            <option value="Venezuela">Venezuela</option>
+                            <option value="Vietnam">Vietnam</option>
+                            <option value="Yemen">Yemen</option>
+                            <option value="Zambia">Zambia</option>
+                            <option value="Zimbabwe">Zimbabwe</option>
+                          </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">Join Now</button>
+                </form>
+            </div>
+        </div>
 
 <!-- Invite to Speak Overlay -->
 <div class="overlay" id="inviteSpeakOverlay">
   <div class="overlay-content">
-    <div class="overlay-header">
-      <button class="back-btn" onclick="closeOverlays()"> <i class="fas fa-arrow-left"></i> </button>
-
-      <!-- <span class="close-btn" onclick="closeOverlays()">×</span> -->
-    </div>
-    <span class="close-btn" onclick="closeOverlays()">×</span>
-    <h2 class="overlay-title">Invite Dr. OVO to Speak</h2>
-    <form class="newsletter-form" onsubmit="handleInviteSpeakSubmit(event)">
-      <div class="form-group">
-        <label class="form-label" for="inviteName">First name</label>
-        <input type="text" id="inviteName" name="inviteName" class="form-input" placeholder="Enter your First name" required>
+      <div class="overlay-header">
+          <button class="back-btn" onclick="closeOverlays()"><i class="fas fa-arrow-left"></i></button>
+          <span class="close-btn" onclick="closeOverlays()">×</span>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="inviteEmail">Email Address</label>
-        <input type="email" id="inviteEmail" name="inviteEmail" class="form-input" placeholder="Enter your email address" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="inviteOrganization">Organization/Event Name</label>
-        <input type="text" id="inviteOrganization" name="inviteOrganization" class="form-input" placeholder="Enter organization or event name" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="inviteDetails">Event Details</label>
-        <textarea id="inviteDetails" name="inviteDetails" class="form-input" placeholder="Provide details about the event (date, location, topic, etc.)" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="confirm-btn">Submit Request</button>
-    </form>
+      <h2 class="overlay-title">Invite Dr. OVO to Speak</h2>
+      <form class="newsletter-form" id="inviteSpeakForm" onsubmit="handleInviteSpeakSubmit(event)">
+          <div class="form-group">
+              <label class="form-label" for="inviteName">First Name</label>
+              <input type="text" id="inviteName" name="inviteName" class="form-input" placeholder="Enter your First name" required>
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="inviteEmail">Email Address</label>
+              <input type="email" id="inviteEmail" name="inviteEmail" class="form-input" placeholder="Enter your email address" required>
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="inviteOrganization">Organization/Event Name</label>
+              <input type="text" id="inviteOrganization" name="inviteOrganization" class="form-input" placeholder="Enter organization or event name" required>
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="inviteDetails">Event Details</label>
+              <textarea id="inviteDetails" name="inviteDetails" class="form-input" placeholder="Provide details about the event (date, location, topic, etc.)" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="confirm-btn">Submit Request</button>
+      </form>
   </div>
 </div>
         </div>
@@ -1483,6 +1347,30 @@
           <div class="testimonials-marquee">
               <div class="marquee-content">
                   <!-- First set of cards -->
+                  <div class="testimonial-card">
+                      <div class="stars">
+                          <span class="star">★</span>
+                          <span class="star">★</span>
+                          <span class="star">★</span>
+                          <span class="star">★</span>
+                          <span class="star">★</span>
+                      </div>
+                      <p class="testimonial-text">
+                          "
+                          Inspired by a painful lived experience, Dr. Victor Otubo wrote this lifesaving masterpiece. Indeed, this book is a lifecourse companion that couldn't have been published at a better time than this period of unprecedented brain drain in the health sector (in developing nations). The use of real-life stories written in a culturally sensitive manner made it easily comprehensible & tremendously relatable. 
+                          Couples of reproductive age, medical students, researchers, and foreigners who seek basic knowledge of reproductive, maternal, & child  health in Africa would find  "My Family Companion" incredibly resourceful.
+                          
+                          "
+                      </p>
+                      <div class="testimonial-author">
+                          <div class="author-avatar"><img class="imgss" src="./WhatsApp Image 2025-07-25 at 23.15.17_633bbef5.jpg" alt=""></div>
+                          <div class="author-info">
+                              <div class="author-name">Dr. Laz Ude Eze</div>
+                              <div class="author-title">TalkHealth9ja
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                   <div class="testimonial-card">
                       <div class="stars">
                           <span class="star">★</span>
@@ -1636,6 +1524,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="testimonial-card">
+                  <div class="stars">
+                      <span class="star">★</span>
+                      <span class="star">★</span>
+                      <span class="star">★</span>
+                      <span class="star">★</span>
+                      <span class="star">★</span>
+                  </div>
+                  <p class="testimonial-text">
+                      "
+                      Inspired by a painful lived experience, Dr. Victor Otubo wrote this lifesaving masterpiece. Indeed, this book is a lifecourse companion that couldn't have been published at a better time than this period of unprecedented brain drain in the health sector (in developing nations). The use of real-life stories written in a culturally sensitive manner made it easily comprehensible & tremendously relatable. 
+                      Couples of reproductive age, medical students, researchers, and foreigners who seek basic knowledge of reproductive, maternal, & child  health in Africa would find  "My Family Companion" incredibly resourceful.
+                      
+                      "
+                  </p>
+                  <div class="testimonial-author">
+                      <div class="author-avatar"><img class="imgss" src="./WhatsApp Image 2025-07-25 at 23.15.17_633bbef5.jpg" alt=""></div>
+                      <div class="author-info">
+                          <div class="author-name">Dr. Laz Ude Eze</div>
+                          <div class="author-title">TalkHealth9ja
+                          </div>
+                      </div>
+                  </div>
+              </div>
                 <div class="testimonial-card">
                   <div class="stars">
                       <span class="star">★</span>
@@ -1800,7 +1712,7 @@
             <p class="presale-subtitle">30% Discount</p>
           
   
-            <button class="cta-button" onclick="handlePresaleCTA()">Order Presale Now</button>
+            <button class="cta-button" onclick="openOverlay('presale')">Order Presale Now</button>
         </div>
   
         <!-- Newsletter Section -->
@@ -1838,7 +1750,7 @@
             </h2>
             <p class="newsletter-subtitle">Every week, we share honest stories, doctor-backed insights, and practical guides to help you build a healthy, happy home—now or later</p>
   
-            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+            <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
                 <div class="form-group">
                     <label class="form-label" for="name">First name</label>
                     <input type="text" id="name" name="name" class="form-input" placeholder="Enter your First name" required>
@@ -1865,843 +1777,1374 @@
 <a href="#" id="back-to-top" title="Back to Top">
   <i class="fas fa-arrow-up"></i>
 </a>
-       <script>
+<script>
 
-        // View More Button Click Animation
+  // View More Button Click Animation
 // View More Button Click Animation
 const viewMoreButton = document.querySelector('.view-more');
 viewMoreButton.addEventListener('click', () => {
-  viewMoreButton.classList.add('shake');
-  setTimeout(() => {
-    viewMoreButton.classList.remove('shake');
-  }, 500); // Matches animation duration (0.5s)
+viewMoreButton.classList.add('shake');
+setTimeout(() => {
+viewMoreButton.classList.remove('shake');
+}, 500); // Matches animation duration (0.5s)
 });    // Configuration
-        const config = {
-          pricePerCopyNGN: 20000, // ₦20,000 per copy
-          pricePerCopyUSD: 15,    // $15 per copy
-          sessionPriceNGN: 75000, // ₦75,000 per session
-          sessionPriceUSD: 50,    // $50 per session
-          amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
-          paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack public key
-          stripePublicKey: 'YOUR_STRIPE_PUBLIC_KEY',     // Replace with your Stripe public key
-          web3FormsAccessKey: 'YOUR_ACCESS_KEY',         // Replace with your Web3Forms access key
-          stripeServerEndpoint: 'YOUR_SERVER_ENDPOINT'   // Replace with your server endpoint for Stripe
+  const config = {
+    pricePerCopyNGN: 20000, // ₦20,000 per copy
+    pricePerCopyUSD: 15,    // $15 per copy
+    sessionPriceNGN: 75000, // ₦75,000 per session
+    sessionPriceUSD: 50,    // $50 per session
+    amazonLink: 'https://www.amazon.com/your-book-link', // Replace with actual Amazon link
+    paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your Paystack public key
+    stripePublicKey: 'YOUR_STRIPE_PUBLIC_KEY',     // Replace with your Stripe public key
+    web3FormsAccessKey: 'YOUR_ACCESS_KEY',         // Replace with your Web3Forms access key
+    stripeServerEndpoint: 'YOUR_SERVER_ENDPOINT'   // Replace with your server endpoint for Stripe
+  };
+ 
+ 
+  const AppConfig = {
+            paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY',
+            emailJsServiceId: 'YOUR_SERVICE_ID',
+            mailchimpActionUrl: 'https://your-account.us1.list-manage.com/subscribe/post?u=...',
+
+            templates: {
+              owner_subscribe: 'YOUR_OWNER_SUBSCRIBE_TEMPLATE_ID',
+              owner_presale: 'YOUR_OWNER_PRESALE_TEMPLATE_ID',
+              owner_booking: 'YOUR_OWNER_BOOKING_TEMPLATE_ID',
+                owner_invite: 'YOUR_OWNER_INVITE_TEMPLATE_ID',
+                owner_free_session: 'YOUR_OWNER_FREE_SESSION_TEMPLATE_ID',
+              user_invite_speak_confirmation: 'YOUR_USER_INVITE_SPEAK_CONFIRMATION_ID',
+                user_presale_confirmation: 'YOUR_USER_PRESALE_CONFIRMATION_ID',
+                user_donation_confirmation: 'YOUR_USER_DONATION_CONFIRMATION_ID',
+                user_paid_session_confirmation: 'YOUR_USER_PAID_SESSION_CONFIRMATION_ID',
+                user_invite_confirmation: 'YOUR_USER_INVITE_CONFIRMATION_ID',
+                user_free_session_confirmation: 'YOUR_USER_FREE_SESSION_CONFIRMATION_ID'
+            },
+
+            pricePerCopyNGN: 20000,
+            pricePerCopyUSD: 15,
+            amazonLink: 'https://www.amazon.com/your-book-link'
         };
-        const startYear = 2023;
+  // const startYear = 2023;
 const currentYear = new Date().getFullYear();
 document.getElementById('copyright-year').textContent =  `${currentYear}`;
-        // let selectedDonation = { copies: 0, reward: '', range: '' };
-        let selectedPresale = { type: '', copies: 0 };
-      
-        let selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+  // let selectedDonation = { copies: 0, reward: '', range: '' };
+  let selectedPresale = { type: '', copies: 0, totalNGN: 0 };
 
+
+  let selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+
+
+
+
+  function openOverlay(id) { document.getElementById(id + 'Overlay').style.display = 'flex'; }
+        function closeOverlays() { document.querySelectorAll('.overlay').forEach(o => o.style.display = 'none'); }
+        function showMorePopup() { document.getElementById('morePopup').style.display = 'flex'; }
+        function closeMorePopup() { document.getElementById('morePopup').style.display = 'none'; }
 // Show donation overlay
-function showDonationOverlay() {
-  console.log('Opening donation overlay');
-  document.getElementById('donationOverlay').style.display = 'flex';
-  resetDonationForm();
-}
+// function showDonationOverlay() {
+// console.log('Opening donation overlay');
+// document.getElementById('donationOverlay').style.display = 'flex';
+// resetDonationForm();
+// }
 
 // Calculate donation total
 function calculateDonationTotal() {
-  try {
-    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-    if (copies < 1) {
-      document.getElementById('donationTotalPrice').textContent = '₦0 / $0';
-      return;
-    }
-    selectedDonation.copies = copies;
-    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
-    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
-    const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
-    const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
-    document.getElementById('donationTotalPrice').textContent = `₦${totalNGN} / $${totalUSD}`;
-  } catch (error) {
-    console.error('Error in calculateDonationTotal:', error);
-    alert('Error calculating donation total. Please try again.');
-  }
+try {
+const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+if (copies < 1) {
+document.getElementById('donationTotalPrice').textContent = '₦0 / $0';
+return;
+}
+selectedDonation.copies = copies;
+selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
+const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
+document.getElementById('donationTotalPrice').textContent = `₦${totalNGN} / $${totalUSD}`;
+} catch (error) {
+console.error('Error in calculateDonationTotal:', error);
+alert('Error calculating donation total. Please try again.');
+}
 }
 
 // Proceed to donation form
 function proceedToDonationForm() {
-  try {
-    const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
-    if (copies < 1) {
-      alert('Please select at least 1 copy to donate.');
-      return;
-    }
-    selectedDonation.copies = copies;
-    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
-    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
-    document.getElementById('donationOverlay').style.display = 'none';
-    document.getElementById('donationFormOverlay').style.display = 'flex';
-    const donationCopyCountForm = document.getElementById('donationCopyCountForm');
-    donationCopyCountForm.value = copies;
-    updateDonationSummary();
-  } catch (error) {
-    console.error('Error in proceedToDonationForm:', error);
-    alert('Error proceeding to donation form. Please try again.');
-  }
+try {
+const copies = parseInt(document.getElementById('donationCopyCount').value) || 0;
+if (copies < 1) {
+alert('Please select at least 1 copy to donate.');
+return;
+}
+selectedDonation.copies = copies;
+selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
+selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
+document.getElementById('donationOverlay').style.display = 'none';
+document.getElementById('donationFormOverlay').style.display = 'flex';
+const donationCopyCountForm = document.getElementById('donationCopyCountForm');
+donationCopyCountForm.value = copies;
+updateDonationSummary();
+} catch (error) {
+console.error('Error in proceedToDonationForm:', error);
+alert('Error proceeding to donation form. Please try again.');
+}
 }
 
 // Update donation summary
-function updateDonationSummary() {
-  try {
-    const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 0;
-    selectedDonation.copies = copies;
-    selectedDonation.totalNGN = copies * config.pricePerCopyNGN;
-    selectedDonation.totalUSD = copies * config.pricePerCopyUSD;
-    const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
-    const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
-    document.getElementById('donationSummary').textContent = `Summary: ${copies} Copies, ₦${totalNGN} / $${totalUSD}`;
-    document.getElementById('paystackAmount').textContent = totalNGN;
-    document.getElementById('stripeAmount').textContent = totalUSD;
-  } catch (error) {
-    console.error('Error in updateDonationSummary:', error);
-    alert('Error updating donation summary. Please try again.');
-  }
-}
+// function updateDonationSummary() {
+//   try {
+//     const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 5;
+//     selectedDonation.numberOfCopies = Math.max(5, Math.min(10000, copies));
+//     selectedDonation.totalNGN = selectedDonation.numberOfCopies * config.pricePerCopyNGN;
+//     selectedDonation.totalUSD = selectedDonation.numberOfCopies * config.pricePerCopyUSD;
+//     const totalNGN = selectedDonation.totalNGN.toLocaleString('en-NG');
+//     const totalUSD = selectedDonation.totalUSD.toLocaleString('en-US');
+//     document.getElementById('donationSummary').textContent = `Summary: ${selectedDonation.numberOfCopies} Copies, ₦${totalNGN} / $${totalUSD}`;
+//     document.getElementById('paystackAmount').textContent = totalNGN;
+//     document.getElementById('stripeAmount').textContent = totalUSD;
+//   } catch (error) {
+//     console.error('Error in updateDonationSummary:', error);
+//     alert('Error updating donation summary. Please try again.');
+//   }
+// }
+// function updateDonationSummary() {
+//     const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 5;
+//     selectedDonation.copies = copies;
+//     selectedDonation.totalNGN = copies * AppConfig.pricePerCopyNGN;
+//     selectedDonation.totalUSD = copies * AppConfig.pricePerCopyUSD;
+
+//     document.getElementById('donationSummary').textContent = 
+//         `Summary: ${copies} Copies, ₦${selectedDonation.totalNGN.toLocaleString()} / $${selectedDonation.totalUSD.toLocaleString()}`;
+//     document.getElementById('paystackAmountNGN').textContent = selectedDonation.totalNGN.toLocaleString();
+//     document.getElementById('paystackAmountUSD').textContent = selectedDonation.totalUSD.toLocaleString();
+// }
 
 // Handle donation form submission
-async function handleDonationSubmit(event) {
-  event.preventDefault();
-  console.log('Submitting donation form');
-  try {
-    const copies = parseInt(document.getElementById('donationCopyCountForm').value) || 0;
-    const name = document.getElementById('donationName').value;
-    const email = document.getElementById('donationEmail').value;
-    const organization = document.getElementById('donationOrganization').value;
-    const location = document.getElementById('donationLocation').value;
+// async function handleDonationSubmit(event) {
+//   event.preventDefault();
+//   console.log('Submitting donation form');
+//   try {
+//     const numberOfCopies = parseInt(document.getElementById('donationCopyCountForm').value) || 5;
+//     const name = document.getElementById('donationName').value.trim();
+//     const email = document.getElementById('donationEmail').value.trim();
+//     const phoneNumber = document.getElementById('donationPhoneNumber').value.trim() || null;
+//     const organizationName = document.getElementById('donationOrganization').value.trim() || null;
+//     const country = document.getElementById('donationLocation').value || null;
 
-    if (copies < 1) {
-      alert('Please select at least 1 copy.');
-      return;
-    }
+//     // Validate inputs
+//     if (numberOfCopies < 5 || numberOfCopies > 10000) {
+//       alert('Number of copies must be between 5 and 10,000.');
+//       return false;
+//     }
+//     if (name.length < 1 || name.length > 100) {
+//       alert('Name must be between 1 and 100 characters.');
+//       return false;
+//     }
+//     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+//       alert('Please enter a valid email address.');
+//       return false;
+//     }
+//     if (phoneNumber && (phoneNumber.length < 1 || phoneNumber.length > 20)) {
+//       alert('Phone number must be between 1 and 20 characters.');
+//       return false;
+//     }
+//     if (organizationName && (organizationName.length < 1 || organizationName.length > 200)) {
+//       alert('Organization name must be between 1 and 200 characters.');
+//       return false;
+//     }
+//     if (country && (country.length < 1 || country.length > 100)) {
+//       alert('Country name must be between 1 and 100 characters.');
+//       return false;
+//     }
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('organization', organization);
-    formData.append('location', location);
-    formData.append('copies', copies);
-    formData.append('totalNGN', selectedDonation.totalNGN);
-    formData.append('totalUSD', selectedDonation.totalUSD);
-    formData.append('type', 'donation');
-    formData.append('access_key', config.web3FormsAccessKey);
+//     const formData = new FormData();
+//     formData.append('numberOfCopies', numberOfCopies);
+//     formData.append('name', name);
+//     formData.append('email', email);
+//     if (phoneNumber) formData.append('phoneNumber', phoneNumber);
+//     if (country) formData.append('country', country);
+//     if (organizationName) formData.append('organizationName', organizationName);
+//     formData.append('totalNGN', selectedDonation.totalNGN);
+//     formData.append('totalUSD', selectedDonation.totalUSD);
+//     formData.append('access_key', config.web3FormsAccessKey);
 
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    const result = await response.json();
-    if (result.success) {
-      console.log('Donation form submitted successfully');
-      alert(`Thank you, ${name}! Your donation details have been recorded. Please select a payment method.`);
-    } else {
-      console.error('Donation submission failed:', result);
-      alert('Submission failed. Please try again.');
-    }
-  } catch (error) {
-    console.error('Error in handleDonationSubmit:', error);
-    alert('An error occurred during submission. Please try again.');
-  }
-}
+//     const response = await fetch('https://mfc-api.apps.ikem.dev/donate', {
+//       method: 'POST',
+//       body: formData
+//     });
 
-// Anonymous donation
-function proceedToDonationPayment(isAnonymous) {
-  console.log(`Proceeding to donation payment, anonymous: ${isAnonymous}`);
-  if (selectedDonation.copies < 1) {
-    alert('Please select at least 1 copy to proceed.');
-    return;
-  }
-  try {
-    if (isAnonymous) {
-      document.getElementById('donationName').value = 'Anonymous';
-      document.getElementById('donationEmail').value = 'anonymous@example.com';
-      document.getElementById('donationOrganization').value = '';
-      document.getElementById('donationLocation').value = 'Unknown';
-      handleDonationSubmit(new Event('submit'));
-    }
-  } catch (error) {
-    console.error('Error in proceedToDonationPayment:', error);
-    alert('Error proceeding to payment. Please try again.');
-  }
-}
+//     const result = await response.json();
+//     if (response.ok && result.id) { // Assuming 200 status and presence of id indicates success
+//       console.log('Donation form submitted successfully:', result);
+//       alert(`Thank you, ${name}! Your donation details have been recorded.`);
+//       return result; // Return the API response for payment link
+//     } else {
+//       console.error('Donation submission failed:', result);
+//       alert('Submission failed. Please try again.');
+//       return false;
+//     }
+//   } catch (error) {
+//     console.error('Error in handleDonationSubmit:', error);
+//     alert('An error occurred during submission. Please try again.');
+//     return false;
+//   }
+// }
+
+// // Handle payment initiation
+// async function handlePayment(paymentMethod) {
+//   try {
+//     // Validate form inputs
+//     const form = document.getElementById('donationForm');
+//     if (!form.checkValidity()) {
+//       form.reportValidity();
+//       return;
+//     }
+
+//     // Submit the form and wait for response
+//     const submitEvent = new Event('submit', { cancelable: true });
+//     const result = await handleDonationSubmit(submitEvent);
+
+//     if (!result || !result.paymentLink) {
+//       return;
+//     }
+
+//     // Redirect to payment link based on the method
+//     if (paymentMethod === 'paystack' && result.paymentLink) {
+//       window.location.href = result.paymentLink; // Redirect to Paystack payment link
+//     } else if (paymentMethod === 'stripe') {
+//       // Implement Stripe payment (e.g., create Stripe Checkout session)
+//       alert('Stripe payment not implemented. Please use Paystack or contact support.');
+//       // Example Stripe implementation:
+//       /*
+//       const stripeResponse = await fetch('https://your-server.com/create-stripe-session', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           email: document.getElementById('donationEmail').value,
+//           amount: selectedDonation.totalUSD * 100,
+//           donationId: result.id
+//         })
+//       });
+//       const stripeSession = await stripeResponse.json();
+//       const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+//       stripe.redirectToCheckout({ sessionId: stripeSession.sessionId });
+//       */
+//     }
+//   } catch (error) {
+//     console.error('Error in handlePayment:', error);
+//     alert('Error initiating payment. Please try again.');
+//   }
+// }
+
 
 // Reset donation form
 function resetDonationForm() {
-  selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
-  const donationCopyCount = document.getElementById('donationCopyCount');
-  if (donationCopyCount) donationCopyCount.value = '';
-  const donationTotalPrice = document.getElementById('donationTotalPrice');
-  if (donationTotalPrice) donationTotalPrice.textContent = '₦0 / $0';
-  const donationForm = document.getElementById('donationForm');
-  if (donationForm) donationForm.reset();
-  const donationCopyCountForm = document.getElementById('donationCopyCountForm');
-  if (donationCopyCountForm) donationCopyCountForm.value = '';
-  const paystackAmount = document.getElementById('paystackAmount');
-  if (paystackAmount) paystackAmount.textContent = '0';
-  const stripeAmount = document.getElementById('stripeAmount');
-  if (stripeAmount) stripeAmount.textContent = '0';
+selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+const donationCopyCount = document.getElementById('donationCopyCount');
+if (donationCopyCount) donationCopyCount.value = '';
+const donationTotalPrice = document.getElementById('donationTotalPrice');
+if (donationTotalPrice) donationTotalPrice.textContent = '₦0 / $0';
+const donationForm = document.getElementById('donationForm');
+if (donationForm) donationForm.reset();
+const donationCopyCountForm = document.getElementById('donationCopyCountForm');
+if (donationCopyCountForm) donationCopyCountForm.value = '';
+const paystackAmount = document.getElementById('paystackAmount');
+if (paystackAmount) paystackAmount.textContent = '0';
+const stripeAmount = document.getElementById('stripeAmount');
+if (stripeAmount) stripeAmount.textContent = '0';
 }
 
 // Close overlays
-function closeOverlays() {
-  document.getElementById('donationOverlay').style.display = 'none';
-  document.getElementById('donationFormOverlay').style.display = 'none';
-  resetDonationForm();
-}
+// function closeOverlays() {
+// document.getElementById('donationOverlay').style.display = 'none';
+// document.getElementById('donationFormOverlay').style.display = 'none';
+// resetDonationForm();
+// }
 // Update existing resetForms to include new donation form reset
 function resetForms() {
-  console.log('Resetting all forms');
-  selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
-  selectedPresale = { type: '', copies: 0 };
-  resetDonationForm();
-  resetPresaleForm();
-  resetSessionForm();
+console.log('Resetting all forms');
+selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+selectedPresale = { type: '', copies: 0 };
+resetDonationForm();
+resetPresaleForm();
+resetSessionForm();
+}
+
+  // function showPresaleOverlay() {
+  //   console.log('Opening presale overlay');
+  //   document.getElementById('presaleOverlay').style.display = 'flex';
+  // }
+
+  // function showPresaleForm(type) {
+  //   console.log(`Showing presale form for ${type}`);
+  //   selectedPresale.type = type;
+  //   document.getElementById('presaleOverlay').style.display = 'none';
+  //   document.getElementById('presaleFormOverlay').style.display = 'flex';
+  //   document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale ($)';
+  //   resetPresaleForm();
+  // }
+
+  function showPresaleForm(type) {
+console.log(`Showing presale form for ${type}`);
+selectedPresale.type = type;
+document.getElementById('presaleOverlay').style.display = 'none';
+document.getElementById('presaleFormOverlay').style.display = 'flex';
+
+// Update form title
+document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale (Amazon)';
+
+// Get form elements
+const quantityGroup = document.getElementById('quantityGroup');
+const localLocationGroup = document.getElementById('localLocationGroup');
+const internationalLocationGroup = document.getElementById('internationalLocationGroup');
+const presalePriceContainer = document.getElementById('presalePriceContainer');
+const presaleSubmitBtn = document.getElementById('presaleSubmitBtn');
+
+if (type === 'local') {
+quantityGroup.style.display = 'block';
+localLocationGroup.style.display = 'block';
+internationalLocationGroup.style.display = 'none';
+presalePriceContainer.style.display = 'block';
+presaleSubmitBtn.textContent = 'Proceed to Payment';
+document.getElementById('presaleQuantity').required = true;
+document.getElementById('presaleLocationLocal').required = true;
+document.getElementById('presaleLocationInternational').required = false;
+} else {
+quantityGroup.style.display = 'none';
+localLocationGroup.style.display = 'none';
+internationalLocationGroup.style.display = 'block';
+presalePriceContainer.style.display = 'none';
+presaleSubmitBtn.textContent = 'Proceed to Amazon';
+document.getElementById('presaleQuantity').required = false;
+document.getElementById('presaleLocationLocal').required = false;
+document.getElementById('presaleLocationInternational').required = true;
+}
+
+resetPresaleForm();
 }
   
-      
-        function showPresaleOverlay() {
-          console.log('Opening presale overlay');
-          document.getElementById('presaleOverlay').style.display = 'flex';
-        }
-      
-        // function showPresaleForm(type) {
-        //   console.log(`Showing presale form for ${type}`);
-        //   selectedPresale.type = type;
-        //   document.getElementById('presaleOverlay').style.display = 'none';
-        //   document.getElementById('presaleFormOverlay').style.display = 'flex';
-        //   document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale ($)';
-        //   resetPresaleForm();
-        // }
-      
-        function showPresaleForm(type) {
-    console.log(`Showing presale form for ${type}`);
-    selectedPresale.type = type;
-    document.getElementById('presaleOverlay').style.display = 'none';
-    document.getElementById('presaleFormOverlay').style.display = 'flex';
-    
-    // Update form title
-    document.getElementById('presaleFormTitle').textContent = type === 'local' ? 'Local Presale (₦)' : 'International Presale (Amazon)';
-    
-    // Get form elements
-    const quantityGroup = document.getElementById('quantityGroup');
-    const localLocationGroup = document.getElementById('localLocationGroup');
-    const internationalLocationGroup = document.getElementById('internationalLocationGroup');
-    const presalePriceContainer = document.getElementById('presalePriceContainer');
-    const presaleSubmitBtn = document.getElementById('presaleSubmitBtn');
-    
-    if (type === 'local') {
-      quantityGroup.style.display = 'block';
-      localLocationGroup.style.display = 'block';
-      internationalLocationGroup.style.display = 'none';
-      presalePriceContainer.style.display = 'block';
-      presaleSubmitBtn.textContent = 'Proceed to Payment';
-      document.getElementById('presaleQuantity').required = true;
-      document.getElementById('presaleLocationLocal').required = true;
-      document.getElementById('presaleLocationInternational').required = false;
-    } else {
-      quantityGroup.style.display = 'none';
-      localLocationGroup.style.display = 'none';
-      internationalLocationGroup.style.display = 'block';
-      presalePriceContainer.style.display = 'none';
-      presaleSubmitBtn.textContent = 'Proceed to Amazon';
-      document.getElementById('presaleQuantity').required = false;
-      document.getElementById('presaleLocationLocal').required = false;
-      document.getElementById('presaleLocationInternational').required = true;
-    }
-    
-    resetPresaleForm();
+
+// function showSessionOverlay() {
+  //   console.log('Opening session overlay');
+  //   document.getElementById('sessionOverlay').style.display = 'flex';
+  //   resetSessionForm();
+  // }
+
+  // function showFreeSessionOverlay() {
+  //   console.log('Opening free session overlay');
+  //   document.getElementById('freeSessionOverlay').style.display = 'flex';
+  //   document.getElementById('sessionDropdown').style.display = 'none';
+  // }
+
+  // function showInviteSpeakOverlay() {
+  //   console.log('Opening invite to speak overlay');
+  //   document.getElementById('inviteSpeakOverlay').style.display = 'flex';
+  //   document.getElementById('sessionDropdown').style.display = 'none';
+  // }
+
+  // function closeOverlays() {
+  //   console.log('Closing all overlays');
+  //   document.querySelectorAll('.overlay').forEach(overlay => {
+  //     overlay.style.display = 'none';
+  //   });
+  //   document.getElementById('sessionDropdown').style.display = 'none';
+  //   resetForms();
+  // }
+
+  function resetForms() {
+    console.log('Resetting all forms');
+    selectedDonation = { copies: 0, reward: '', range: '' };
+    selectedPresale = { type: '', copies: 0 };
+    const donationCopyCount = document.getElementById('donationCopyCount');
+    if (donationCopyCount) donationCopyCount.value = '';
+    const donationTotalPrice = document.getElementById('donationTotalPrice');
+    if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
+    const donationForm = document.getElementById('donationForm');
+    if (donationForm) donationForm.reset();
+    const donationPaymentOptions = document.getElementById('donationPaymentOptions');
+    if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
+    const paystackAmount = document.getElementById('paystackAmount');
+    if (paystackAmount) paystackAmount.textContent = '0';
+    const stripeAmount = document.getElementById('stripeAmount');
+    if (stripeAmount) stripeAmount.textContent = '0';
+    const presaleQuantity = document.getElementById('presaleQuantity');
+    if (presaleQuantity) presaleQuantity.value = '';
+    const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+    if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
+    const presaleFormOverlay = document.getElementById('presaleFormOverlay');
+    if (presaleFormOverlay) presaleFormOverlay.dataset.type = '';
+    const presaleForm = document.getElementById('presaleForm');
+    if (presaleForm) presaleForm.reset();
+    const sessionForm = document.getElementById('sessionForm');
+    if (sessionForm) sessionForm.reset();
+    const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
+    if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
+    document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
   }
-        function showSessionOverlay() {
-          console.log('Opening session overlay');
-          document.getElementById('sessionOverlay').style.display = 'flex';
-          resetSessionForm();
-        }
-      
-        function showFreeSessionOverlay() {
-          console.log('Opening free session overlay');
-          document.getElementById('freeSessionOverlay').style.display = 'flex';
-          document.getElementById('sessionDropdown').style.display = 'none';
-        }
-      
-        function showInviteSpeakOverlay() {
-          console.log('Opening invite to speak overlay');
-          document.getElementById('inviteSpeakOverlay').style.display = 'flex';
-          document.getElementById('sessionDropdown').style.display = 'none';
-        }
-      
-        function closeOverlays() {
-          console.log('Closing all overlays');
-          document.querySelectorAll('.overlay').forEach(overlay => {
-            overlay.style.display = 'none';
-          });
-          document.getElementById('sessionDropdown').style.display = 'none';
-          resetForms();
-        }
-      
-        function resetForms() {
-          console.log('Resetting all forms');
-          selectedDonation = { copies: 0, reward: '', range: '' };
-          selectedPresale = { type: '', copies: 0 };
-          const donationCopyCount = document.getElementById('donationCopyCount');
-          if (donationCopyCount) donationCopyCount.value = '';
-          const donationTotalPrice = document.getElementById('donationTotalPrice');
-          if (donationTotalPrice) donationTotalPrice.textContent = '₦0';
-          const donationForm = document.getElementById('donationForm');
-          if (donationForm) donationForm.reset();
-          const donationPaymentOptions = document.getElementById('donationPaymentOptions');
-          if (donationPaymentOptions) donationPaymentOptions.style.display = 'none';
-          const paystackAmount = document.getElementById('paystackAmount');
-          if (paystackAmount) paystackAmount.textContent = '0';
-          const stripeAmount = document.getElementById('stripeAmount');
-          if (stripeAmount) stripeAmount.textContent = '0';
-          const presaleQuantity = document.getElementById('presaleQuantity');
-          if (presaleQuantity) presaleQuantity.value = '';
-          const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-          if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
-          const presaleFormOverlay = document.getElementById('presaleFormOverlay');
-          if (presaleFormOverlay) presaleFormOverlay.dataset.type = '';
-          const presaleForm = document.getElementById('presaleForm');
-          if (presaleForm) presaleForm.reset();
-          const sessionForm = document.getElementById('sessionForm');
-          if (sessionForm) sessionForm.reset();
-          const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
-          if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
-          document.querySelectorAll('.copy-option').forEach(opt => opt.classList.remove('selected'));
-        }
-      
-        
-        function resetPresaleForm() {
-          const presaleForm = document.getElementById('presaleForm');
-          if (presaleForm) presaleForm.reset();
-          const presaleQuantity = document.getElementById('presaleQuantity');
-          if (presaleQuantity) presaleQuantity.value = '';
-          const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-          if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
-        }
-      
-        function resetSessionForm() {
-          const sessionForm = document.getElementById('sessionForm');
-          if (sessionForm) sessionForm.reset();
-          const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
-          if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
-        }
-      
-      
-        function calculatePresaleTotal() {
+
+  
+  function resetPresaleForm() {
+    const presaleForm = document.getElementById('presaleForm');
+    if (presaleForm) presaleForm.reset();
+    const presaleQuantity = document.getElementById('presaleQuantity');
+    if (presaleQuantity) presaleQuantity.value = '';
+    const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+    if (presaleTotalPrice) presaleTotalPrice.textContent = 'Summary: 0 Copies, ₦0';
+  }
+
+  function resetSessionForm() {
+    const sessionForm = document.getElementById('sessionForm');
+    if (sessionForm) sessionForm.reset();
+    const sessionPaymentOptions = document.getElementById('sessionPaymentOptions');
+    if (sessionPaymentOptions) sessionPaymentOptions.style.display = 'none';
+  }
+
+
+  function calculatePresaleTotal() {
+try {
+if (selectedPresale.type === 'local') {
+  const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
+  console.log(`Calculating presale total for ${copies} copies`);
+  selectedPresale.copies = copies;
+  const total = `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`;
+  const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+  if (presaleTotalPrice) {
+    presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
+  }
+}
+} catch (error) {
+console.error('Error in calculatePresaleTotal:', error);
+alert('Error calculating presale total. Please try again.');
+}
+}
+
+
+
+
+  // Presale Logic
+  function calculatePresaleTotal() {
     try {
-      if (selectedPresale.type === 'local') {
-        const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
-        console.log(`Calculating presale total for ${copies} copies`);
-        selectedPresale.copies = copies;
-        const total = `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`;
-        const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-        if (presaleTotalPrice) {
-          presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
-        }
+      const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
+      console.log(`Calculating presale total for ${copies} copies`);
+      selectedPresale.copies = copies;
+      const total = selectedPresale.type === 'local' 
+        ? `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`
+        : `$${copies * config.pricePerCopyUSD}`;
+      const presaleTotalPrice = document.getElementById('presaleTotalPrice');
+      if (presaleTotalPrice) {
+        presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
       }
     } catch (error) {
       console.error('Error in calculatePresaleTotal:', error);
       alert('Error calculating presale total. Please try again.');
     }
   }
-  
+
+//   async function handlePresaleSubmit(event) {
+//     event.preventDefault();
+//     console.log('Submitting presale form');
+//     try {
+//       const quantity = parseInt(document.getElementById('presaleQuantity').value);
+//       const name = document.getElementById('presaleName').value;
+//       const email = document.getElementById('presaleEmail').value;
+//       const location = document.getElementById('presaleLocation').value;
+
+//       if (quantity < 1) {
+//         alert('Please select at least 1 copy.');
+//         return;
+//       }
+
+//       const formData = new FormData();
+//       formData.append('name', name);
+//       formData.append('email', email);
+//       formData.append('location', location);
+//       formData.append('quantity', quantity);
+//       formData.append('type', selectedPresale.type);
+//       formData.append('access_key', config.web3FormsAccessKey);
+
+//       const response = await fetch('https://mfc-api.apps.ikem.dev/presale', {
+//         method: 'POST',
+//         body: formData
+//       });
+//       const result = await response.json();
+//       if (result.success) {
+//         console.log('Presale form submitted successfully');
+//         if (selectedPresale.type === 'local') {
+//           initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
+//         } else {
+//           console.log('Redirecting to Amazon for international presale');
+//           window.location.href = config.amazonLink;
+//         }
+//       } else {
+//         console.error('Presale submission failed:', result);
+//         alert('Submission failed. Please try again.');
+//       }
+//     } catch (error) {
+//       console.error('Error in handlePresaleSubmit:', error);
+//       alert('An error occurred during submission. Please try again.');
+//     }
+//   }
+
+//   // Session Logic
+//   async function handleSessionSubmit(event) {
+//     event.preventDefault();
+//     console.log('Submitting session form');
+//     try {
+//       const name = document.getElementById('sessionName').value;
+//       const email = document.getElementById('sessionEmail').value;
+//       const location = document.getElementById('sessionLocation').value;
+
+//       const formData = new FormData();
+//       formData.append('name', name);
+//       formData.append('email', email);
+//       formData.append('location', location);
+//       formData.append('type', 'session');
+//       formData.append('access_key', config.web3FormsAccessKey);
+
+//       const response = await fetch('https://mfc-api.apps.ikem.dev/sessions/book', {
+//         method: 'POST',
+//         body: formData
+//       });
+//       const result = await response.json();
+//       if (result.success) {
+//         console.log('Session form submitted successfully');
+//         document.getElementById('sessionForm').style.display = 'none';
+//         document.getElementById('sessionPaymentOptions').style.display = 'block';
+//       } else {
+//         console.error('Session submission failed:', result);
+//         alert('Submission failed. Please try again.');
+//       }
+//     } catch (error) {
+//       console.error('Error in handleSessionSubmit:', error);
+//       alert('An error occurred during submission. Please try again.');
+//     }
+//   }
+
+//   // Free Session Submission
+//   async function handleFreeSessionSubmit(event) {
+//     event.preventDefault();
+//     console.log('Submitting free session form');
+//     try {
+//       const name = document.getElementById('sessionName').value;
+//       const email = document.getElementById('sessionEmail').value;
+//       const phone = document.getElementById('sessionPhone').value;
+
+//       const formData = new FormData();
+//       formData.append('name', name);
+//       formData.append('email', email);
+//       formData.append('phone', phone);
+//       formData.append('type', 'free_session');
+//       formData.append('access_key', config.web3FormsAccessKey);
+
+//       const response = await fetch('https://api.web3forms.com/submit', {
+//         method: 'POST',
+//         body: formData
+//       });
+//       const result = await response.json();
+//       if (result.success) {
+//         console.log('Free session form submitted successfully');
+//         alert(`Thank you, ${name}! You've signed up for the free weekly sessions. Details will be sent to ${email}.`);
+//         closeOverlays();
+//       } else {
+//         console.error('Free session submission failed:', result);
+//         alert('Submission failed. Please try again.');
+//       }
+//     } catch (error) {
+//       console.error('Error in handleFreeSessionSubmit:', error);
+//       alert('An error occurred during submission. Please try again.');
+//     }
+//   }
+
+//   // Invite to Speak Submission
+//   async function handleInviteSpeakSubmit(event) {
+//   event.preventDefault();
+//   console.log('Submitting invite to speak form');
+//   try {
+//     const name = document.getElementById('inviteName').value;
+//     const email = document.getElementById('inviteEmail').value;
+//     const organizationName = document.getElementById('inviteOrganization').value;
+//     const eventDetails = document.getElementById('inviteDetails').value;
+
+//     if (!name || !email || !organizationName || !eventDetails) {
+//       alert('Please fill in all required fields.');
+//       return;
+//     }
+
+//     const formData = new FormData();
+//     formData.append('name', name);
+//     formData.append('email', email);
+//     formData.append('organizationName', organizationName);
+//     formData.append('eventDetails', eventDetails);
+
+//     const response = await fetch('https://mfc-api.apps.ikem.dev/speaker/invite', {
+//       method: 'POST',
+//       body: formData
+//     });
+//     console.log('Response status:', response.status, 'Headers:', response.headers);
+//     const result = await response.json();
+//     if (response.ok) {
+//       console.log('Invite to speak form submitted successfully:', result);
+//       alert(`Thank you, ${name}! Your request to invite Dr. OVO to speak at ${organization} has been received. We'll contact you at ${email}.`);
+//       closeOverlays();
+//     } else {
+//       console.error('Invite to speak submission failed:', result);
+//       alert(`Submission failed: ${result.message || response.statusText}`);
+//     }
+//   } catch (error) {
+//     console.error('Error in handleInviteSpeakSubmit:', error);
+//     alert(`An error occurred during submission: ${error.message || 'Please try again.'}`);
+//   }
+// }
+//   function initiatePaystackPayment(amount, email, type) {
+//     console.log(`Initiating Paystack payment for ${type}, amount: ${amount}, email: ${email}`);
+//     try {
+//       const handler = PaystackPop.setup({
+//         key: config.paystackPublicKey,
+//         email: email,
+//         amount: amount,
+//         currency: 'NGN',
+//         metadata: { type: type },
+//         callback: function (response) {
+//           console.log('Paystack payment successful:', response);
+//           alert(`Payment successful! Reference: ${response.reference}`);
+//           closeOverlays();
+//         },
+//         onClose: function () {
+//           console.log('Paystack payment window closed');
+//           alert('Payment window closed.');
+//         }
+//       });
+//       handler.openIframe();
+//     } catch (error) {
+//       console.error('Paystack Error:', error);
+//       alert('Failed to initialize Paystack payment. Please try again.');
+//     }
+//   }
+
+
+  // Additional UI Interactions
+  // function showMorePopup() {
+  //   document.getElementById('morePopup').style.display = 'flex';
+  // }
+
+  // function closeMorePopup() {
+  //   document.getElementById('morePopup').style.display = 'none';
+  // }
 
 
 
-        // Presale Logic
-        function calculatePresaleTotal() {
-          try {
-            const copies = parseInt(document.getElementById('presaleQuantity').value) || 0;
-            console.log(`Calculating presale total for ${copies} copies`);
-            selectedPresale.copies = copies;
-            const total = selectedPresale.type === 'local' 
-              ? `₦${(copies * config.pricePerCopyNGN).toLocaleString('en-NG')}`
-              : `$${copies * config.pricePerCopyUSD}`;
-            const presaleTotalPrice = document.getElementById('presaleTotalPrice');
-            if (presaleTotalPrice) {
-              presaleTotalPrice.textContent = `Summary: ${copies} Copies, ${total}`;
+
+
+
+
+
+
+  // --form submission handlers
+  // NEWSLETTER SUBMIT
+document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value
+    };
+
+    try {
+        // Add to Mailchimp
+        await addToMailchimp({
+            FNAME: formData.name,
+            EMAIL: formData.email
+        });
+
+        // Send user confirmation email via EmailJS
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.user_newsletter_confirmation, {
+            user_name: formData.name,
+            user_email: formData.email
+        });
+
+        // Send owner notification email via EmailJS
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.owner_subscribe, {
+            user_name: formData.name,
+            user_email: formData.email
+        });
+
+        // Show success message and reset form
+        alert('Thank you for subscribing to My Family Companion newsletter!');
+        document.getElementById('newsletterForm').reset();
+    } catch (error) {
+        console.error('Error in newsletter submission:', error);
+        alert('An error occurred while subscribing. Please try again later.');
+    }
+});
+
+// presale submit
+async function handlePresaleSubmit(event) {
+    event.preventDefault();
+
+    // Get form data
+    const formData = {
+        name: document.getElementById('presaleName').value,
+        email: document.getElementById('presaleEmail').value,
+        phone: document.getElementById('presalePhone').value,
+        location: selectedPresale.type === 'local' 
+            ? document.getElementById('presaleLocationLocal').value 
+            : document.getElementById('presaleLocationInternational').value,
+        copies: selectedPresale.copies,
+        totalNGN: selectedPresale.totalNGN
+    };
+
+    try {
+        // Add to Mailchimp
+        await addToMailchimp({
+            FNAME: formData.name,
+            EMAIL: formData.email,
+            PHONE: formData.phone,
+            MMERGE3: formData.location, // Custom merge field for location
+            MMERGE4: selectedPresale.type === 'local' ? `Local: ${formData.copies} copies` : 'International'
+        });
+
+        // Send user confirmation email
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.user_presale_confirmation, {
+            user_name: formData.name,
+            user_email: formData.email,
+            user_phone: formData.phone,
+            location: formData.location,
+            copies: formData.copies,
+            total: selectedPresale.type === 'local' ? `₦${formData.totalNGN.toLocaleString()}` : 'Amazon order'
+        });
+
+        // Send owner notification email
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.owner_presale, {
+            user_name: formData.name,
+            user_email: formData.email,
+            user_phone: formData.phone,
+            location: formData.location,
+            copies: formData.copies,
+            total: selectedPresale.type === 'local' ? `₦${formData.totalNGN.toLocaleString()}` : 'Amazon order'
+        });
+
+        // Handle payment or redirect
+        if (selectedPresale.type === 'local') {
+            if (formData.copies < 1) {
+                alert('Please select at least one copy for local orders.');
+                return;
             }
-          } catch (error) {
-            console.error('Error in calculatePresaleTotal:', error);
-            alert('Error calculating presale total. Please try again.');
-          }
+            initiatePaystackPayment(formData.totalNGN * 100, formData.email, 'Presale'); // Convert to kobo
+        } else {
+            window.location.href = AppConfig.amazonLink;
         }
-      
-        async function handlePresaleSubmit(event) {
-          event.preventDefault();
-          console.log('Submitting presale form');
-          try {
-            const quantity = parseInt(document.getElementById('presaleQuantity').value);
-            const name = document.getElementById('presaleName').value;
-            const email = document.getElementById('presaleEmail').value;
-            const location = document.getElementById('presaleLocation').value;
-      
-            if (quantity < 1) {
-              alert('Please select at least 1 copy.');
-              return;
-            }
-      
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('location', location);
-            formData.append('quantity', quantity);
-            formData.append('type', selectedPresale.type);
-            formData.append('access_key', config.web3FormsAccessKey);
-      
-            const response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              body: formData
-            });
-            const result = await response.json();
-            if (result.success) {
-              console.log('Presale form submitted successfully');
-              if (selectedPresale.type === 'local') {
-                initiatePaystackPayment(quantity * config.pricePerCopyNGN * 100, email, 'presale');
-              } else {
-                console.log('Redirecting to Amazon for international presale');
-                window.location.href = config.amazonLink;
-              }
-            } else {
-              console.error('Presale submission failed:', result);
-              alert('Submission failed. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error in handlePresaleSubmit:', error);
-            alert('An error occurred during submission. Please try again.');
+
+        // Reset form and close overlays
+        document.getElementById('presaleForm').reset();
+        closeOverlays();
+    } catch (error) {
+        console.error('Error in presale submission:', error);
+        alert('An error occurred while processing your order. Please try again later.');
+    }
+}
+// Handle Invite to Speak Form Submission
+async function handleInviteSpeakSubmit(event) {
+    event.preventDefault();
+
+    // Get form data
+    const formData = {
+        name: document.getElementById('inviteName').value,
+        email: document.getElementById('inviteEmail').value,
+        organization: document.getElementById('inviteOrganization').value,
+        details: document.getElementById('inviteDetails').value
+    };
+
+    try {
+        // Add to Mailchimp
+        await addToMailchimp({
+            FNAME: formData.name,
+            EMAIL: formData.email,
+            MMERGE3: formData.organization,
+            MMERGE4: 'Invite to Speak',
+            MMERGE5: formData.details
+        });
+
+        // Send user confirmation email via EmailJS
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.user_invite_speak_confirmation, {
+            user_name: formData.name,
+            user_email: formData.email,
+            organization: formData.organization,
+            details: formData.details
+        });
+
+        // Send owner notification email via EmailJS
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.owner_invite_speak, {
+            user_name: formData.name,
+            user_email: formData.email,
+            organization: formData.organization,
+            details: formData.details
+        });
+
+        // Show success message and reset form
+        alert('Thank you for your invitation request! We will get back to you soon.');
+        document.getElementById('inviteSpeakForm').reset();
+        closeOverlays();
+    } catch (error) {
+        console.error('Error in invite to speak submission:', error);
+        alert('An error occurred while submitting your request. Please try again later.');
+    }
+}
+// Handle Free Session Form Submission
+async function handleFreeSessionSubmit(event) {
+    event.preventDefault();
+
+    // Get form data
+    const formData = {
+        name: document.getElementById('sessionName').value,
+        email: document.getElementById('sessionEmail').value,
+        country: document.getElementById('sessionCountry').value
+    };
+
+    try {
+        // Add to Mailchimp
+        await addToMailchimp({
+            FNAME: formData.name,
+            EMAIL: formData.email,
+            MMERGE3: formData.country,
+            MMERGE4: 'Free Session Registration'
+        });
+
+        // Send user confirmation email via EmailJS
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.user_free_session_confirmation, {
+            user_name: formData.name,
+            user_email: formData.email,
+            country: formData.country
+        });
+
+        // Send owner notification email via EmailJS
+        await emailjs.send(AppConfig.emailJsServiceId, AppConfig.templates.owner_free_session, {
+            user_name: formData.name,
+            user_email: formData.email,
+            country: formData.country
+        });
+
+        // Show success message and reset form
+        alert('Thank you for registering for the free weekly sessions!');
+        document.getElementById('freeSessionForm').reset();
+        closeOverlays();
+    } catch (error) {
+        console.error('Error in free session submission:', error);
+        alert('An error occurred while registering. Please try again later.');
+    }
+}
+// Update donation summary
+function updateDonationSummary() {
+  const copies =
+    parseInt(document.getElementById("donationCopyCountForm").value) || 5;
+  selectedDonation.copies = copies;
+  selectedDonation.totalNGN = copies * AppConfig.pricePerCopyNGN;
+  selectedDonation.totalUSD = copies * AppConfig.pricePerCopyUSD;
+
+  document.getElementById(
+    "donationSummary"
+  ).textContent = `Summary: ${copies} Copies, ₦${selectedDonation.totalNGN.toLocaleString()} / $${selectedDonation.totalUSD.toLocaleString()}`;
+  document.getElementById("paystackAmountNGN").textContent =
+    selectedDonation.totalNGN.toLocaleString();
+  document.getElementById("paystackAmountUSD").textContent =
+    selectedDonation.totalUSD.toLocaleString();
+}
+
+// Modified Paystack payment function
+function initiatePaystackPayment(amount, email, type, currency = "NGN") {
+  const handler = PaystackPop.setup({
+    key: AppConfig.paystackPublicKey,
+    email: email,
+    amount: amount * 100, // Convert to kobo for NGN or cents for USD
+    currency: currency, // NGN or USD
+    callback: async function (response) {
+      try {
+        // Add to Mailchimp
+        await addToMailchimp({
+          FNAME: selectedDonation.name,
+          EMAIL: selectedDonation.email,
+          PHONE: selectedDonation.phone,
+          MMERGE3: selectedDonation.organization,
+          MMERGE4: selectedDonation.location,
+          MMERGE5: `Donation: ${selectedDonation.copies} copies`,
+        });
+
+        // Send user confirmation email
+        await emailjs.send(
+          AppConfig.emailJsServiceId,
+          AppConfig.templates.user_donation_confirmation,
+          {
+            user_name: selectedDonation.name,
+            user_email: selectedDonation.email,
+            user_phone: selectedDonation.phone,
+            organization: selectedDonation.organization,
+            location: selectedDonation.location,
+            copies: selectedDonation.copies,
+            total:
+              currency === "NGN"
+                ? `₦${selectedDonation.totalNGN.toLocaleString()}`
+                : `$${selectedDonation.totalUSD.toLocaleString()}`,
           }
+        );
+
+        // Send owner notification email
+        await emailjs.send(
+          AppConfig.emailJsServiceId,
+          AppConfig.templates.owner_subscribe,
+          {
+            user_name: selectedDonation.name,
+            user_email: selectedDonation.email,
+            user_phone: selectedDonation.phone,
+            organization: selectedDonation.organization,
+            location: selectedDonation.location,
+            copies: selectedDonation.copies,
+            total:
+              currency === "NGN"
+                ? `₦${selectedDonation.totalNGN.toLocaleString()}`
+                : `$${selectedDonation.totalUSD.toLocaleString()}`,
+          }
+        );
+
+        alert("Payment Successful! Thank you for your donation.");
+        document.getElementById("donationForm").reset();
+        updateDonationSummary();
+        closeOverlays();
+      } catch (error) {
+        console.error("Error in payment callback:", error);
+        alert(
+          "Payment succeeded, but there was an issue sending confirmation. Please contact support."
+        );
+      }
+    },
+    onClose: () => alert("Payment window closed."),
+  });
+  handler.openIframe();
+}
+
+// Handle payment method selection
+async function handlePayment(method) {
+  // Store form data in selectedDonation
+  selectedDonation.name = document.getElementById("donationName").value;
+  selectedDonation.email = document.getElementById("donationEmail").value;
+  selectedDonation.phone =
+    document.getElementById("donationPhoneNumber").value || "Not provided";
+  selectedDonation.organization =
+    document.getElementById("donationOrganization").value || "Not provided";
+  selectedDonation.location =
+    document.getElementById("donationLocation").value || "Not provided";
+  selectedDonation.copies =
+    parseInt(document.getElementById("donationCopyCountForm").value) || 5;
+  selectedDonation.totalNGN =
+    selectedDonation.copies * AppConfig.pricePerCopyNGN;
+  selectedDonation.totalUSD =
+    selectedDonation.copies * AppConfig.pricePerCopyUSD;
+
+  // Validate required fields
+  if (
+    !selectedDonation.name ||
+    !selectedDonation.email ||
+    selectedDonation.copies < 5
+  ) {
+    alert("Please fill in all required fields and select at least 5 copies.");
+    return;
+  }
+
+  try {
+    // Initiate Paystack payment
+    if (method === "paystack-ngn") {
+      initiatePaystackPayment(
+        selectedDonation.totalNGN,
+        selectedDonation.email,
+        "Donation",
+        "NGN"
+      );
+    } else if (method === "paystack-usd") {
+      initiatePaystackPayment(
+        selectedDonation.totalUSD,
+        selectedDonation.email,
+        "Donation",
+        "USD"
+      );
+    }
+  } catch (error) {
+    console.error("Error initiating payment:", error);
+    alert(
+      "An error occurred while initiating your donation. Please try again later."
+    );
+  }
+}
+
+// Handle Donation Form Submission (fallback for direct form submission)
+function handleDonationSubmit(event) {
+  event.preventDefault();
+  // Default to Paystack NGN for direct form submission
+  handlePayment("paystack-ngn");
+}
+
+// Global state for paid session
+const selectedSession = {
+  name: "",
+  email: "",
+  location: "",
+  amountNGN: 75000,
+  amountUSD: 50,
+};
+
+// Handle payment method selection
+async function handlePayment(method) {
+  // Store form data in selectedSession
+  selectedSession.name = document.getElementById("sessionName").value;
+  selectedSession.email = document.getElementById("sessionEmail").value;
+  selectedSession.location = document.getElementById("sessionLocation").value;
+
+  // Validate required fields
+  if (
+    !selectedSession.name ||
+    !selectedSession.email ||
+    !selectedSession.location
+  ) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+  try {
+    // Initiate Paystack payment
+    if (method === "paystack-ngn") {
+      initiatePaystackPayment(
+        selectedSession.amountNGN,
+        selectedSession.email,
+        "Paid Session",
+        "NGN"
+      );
+    } else if (method === "paystack-usd") {
+      initiatePaystackPayment(
+        selectedSession.amountUSD,
+        selectedSession.email,
+        "Paid Session",
+        "USD"
+      );
+    }
+  } catch (error) {
+    console.error("Error initiating payment:", error);
+    alert(
+      "An error occurred while initiating your payment. Please try again later."
+    );
+  }
+}
+
+// Handle Paid Session Form Submission (fallback for direct form submission)
+function handleSessionSubmit(event) {
+  event.preventDefault();
+  // Default to Paystack NGN for direct form submission
+  handlePayment("paystack-ngn");
+}
+
+// Reusing initiatePaystackPayment from donation form
+function initiatePaystackPayment(amount, email, type, currency = "NGN") {
+  const handler = PaystackPop.setup({
+    key: AppConfig.paystackPublicKey,
+    email: email,
+    amount: amount * 100, // Convert to kobo for NGN or cents for USD
+    currency: currency, // NGN or USD
+    callback: async function (response) {
+      try {
+        // Add to Mailchimp
+        await addToMailchimp({
+          FNAME: selectedSession.name,
+          EMAIL: selectedSession.email,
+          MMERGE3: selectedSession.location,
+          MMERGE4: `Paid Session: ${currency}`,
+        });
+
+        // Send user confirmation email
+        await emailjs.send(
+          AppConfig.emailJsServiceId,
+          AppConfig.templates.user_session_confirmation,
+          {
+            user_name: selectedSession.name,
+            user_email: selectedSession.email,
+            location: selectedSession.location,
+            total:
+              currency === "NGN"
+                ? `₦${selectedSession.amountNGN.toLocaleString()}`
+                : `$${selectedSession.amountUSD.toLocaleString()}`,
+          }
+        );
+
+        // Send owner notification email
+        await emailjs.send(
+          AppConfig.emailJsServiceId,
+          AppConfig.templates.owner_session,
+          {
+            user_name: selectedSession.name,
+            user_email: selectedSession.email,
+            location: selectedSession.location,
+            total:
+              currency === "NGN"
+                ? `₦${selectedSession.amountNGN.toLocaleString()}`
+                : `$${selectedSession.amountUSD.toLocaleString()}`,
+          }
+        );
+
+        alert("Payment Successful! Thank you for booking a paid session.");
+        document.getElementById("sessionForm").reset();
+        closeOverlays();
+      } catch (error) {
+        console.error("Error in payment callback:", error);
+        alert(
+          "Payment succeeded, but there was an issue sending confirmation. Please contact support."
+        );
+      }
+    },
+    onClose: () => alert("Payment window closed."),
+  });
+  handler.openIframe();
+}
+
+
+  function handlePresaleCTA() {
+    showPresaleOverlay();
+  }
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  // Toggle Hamburger Menu
+  document.querySelector('.hamburger').addEventListener('click', function () {
+    this.classList.toggle('active');
+    document.querySelector('.mobile-menu').classList.toggle('active');
+  });
+
+  // Close Mobile Menu When Clicking a Link
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.hamburger').classList.remove('active');
+      document.querySelector('.mobile-menu').classList.remove('active');
+    });
+  });
+
+  // Close Mobile Menu When Clicking Outside
+  document.addEventListener('click', (e) => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+  });
+
+  // Close popup when clicking outside
+  document.getElementById('morePopup').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeMorePopup();
+    }
+  });
+
+  // Close popup with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeMorePopup();
+      closeOverlays();
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('sessionDropdown');
+    const button = e.target.closest('.sam .cta-button');
+    if (!dropdown.contains(e.target) && !button) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  // Add scroll effect to header
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector(".header");
+    if (window.scrollY > 50) {
+      header.style.background = "rgba(255, 255, 255, 0.98)";
+      header.style.backdropFilter = "blur(20px)";
+    } else {
+      header.style.background = "rgba(255, 255, 255, 0.95)";
+      header.style.backdropFilter = "blur(20px)";
+    }
+  });
+
+  // Parallax effect for hero elements
+  window.addEventListener("scroll", function () {
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * -0.5;
+    const heroImage = document.querySelector(".hero-image");
+    if (heroImage) {
+      heroImage.style.transform = `translateY(${rate * 0.3}px)`;
+    }
+  });
+
+  // Animate elements on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    observer.observe(el);
+  });
+
+  // Add micro-interactions
+  document.querySelectorAll(".contact-btn, .more-info-btn").forEach((btn) => {
+    btn.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-2px)";
+      this.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.15)";
+    });
+    btn.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0)";
+      this.style.boxShadow = "none";
+    });
+  });
+
+  // Floating animation for winner badge
+  function animateWinnerBadge() {
+    const badge = document.querySelector(".winner-badge");
+    if (badge) {
+      badge.style.animation = "float 3s ease-in-out infinite";
+    }
+  }
+
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Initialize animations after page load
+  window.addEventListener("load", function () {
+    setTimeout(() => {
+      document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      });
+      animateWinnerBadge();
+    }, 300);
+  });
+
+  // Timer Logic
+  let targetDate = localStorage.getItem('timerTargetDate') ? new Date(localStorage.getItem('timerTargetDate')) : new Date('2025-09-27T15:58:00+01:00'); // WAT is UTC+1
+  if (!localStorage.getItem('timerTargetDate')) {
+    localStorage.setItem('timerTargetDate', targetDate.toISOString());
+  }
+
+  function updateTimer() {
+    const now = new Date();
+    const timeLeft = targetDate - now;
+    if (timeLeft <= 0) {
+      document.getElementById('days').textContent = '00';
+      document.getElementById('hours').textContent = '00';
+      document.getElementById('minutes').textContent = '00';
+      document.getElementById('seconds').textContent = '00';
+      return;
+    }
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  // Parallax effect for testimonial section
+  document.addEventListener("mousemove", (e) => {
+    const section = document.querySelector(".testimonial-sections");
+    const rect = section.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const moveX = (x - 0.5) * 10;
+    const moveY = (y - 0.5) * 10;
+    section.style.transform = `perspective(1000px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`;
+  });
+
+  document.addEventListener("mouseleave", () => {
+    const section = document.querySelector(".testimonial-sections");
+    section.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
+  });
+
+  // Add card hover animations
+  const cards = document.querySelectorAll(".testimonial-card");
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      card.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+    });
+  });
+
+  // Animate stats on scroll/load
+  function animateStats() {
+    const statNumbers = document.querySelectorAll(".stat-number");
+    statNumbers.forEach((stat, index) => {
+      const finalValue = stat.textContent;
+      let currentValue = 0;
+      const increment = parseInt(finalValue) / 30;
+      const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= parseInt(finalValue)) {
+          stat.textContent = finalValue;
+          clearInterval(timer);
+        } else {
+          stat.textContent = Math.floor(currentValue);
         }
-      
-        // Session Logic
-        async function handleSessionSubmit(event) {
-          event.preventDefault();
-          console.log('Submitting session form');
-          try {
-            const name = document.getElementById('sessionName').value;
-            const email = document.getElementById('sessionEmail').value;
-            const location = document.getElementById('sessionLocation').value;
-      
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('location', location);
-            formData.append('type', 'session');
-            formData.append('access_key', config.web3FormsAccessKey);
-      
-            const response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              body: formData
-            });
-            const result = await response.json();
-            if (result.success) {
-              console.log('Session form submitted successfully');
-              document.getElementById('sessionForm').style.display = 'none';
-              document.getElementById('sessionPaymentOptions').style.display = 'block';
-            } else {
-              console.error('Session submission failed:', result);
-              alert('Submission failed. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error in handleSessionSubmit:', error);
-            alert('An error occurred during submission. Please try again.');
-          }
-        }
-      
-        // Free Session Submission
-        async function handleFreeSessionSubmit(event) {
-          event.preventDefault();
-          console.log('Submitting free session form');
-          try {
-            const name = document.getElementById('sessionName').value;
-            const email = document.getElementById('sessionEmail').value;
-            const phone = document.getElementById('sessionPhone').value;
-      
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('phone', phone);
-            formData.append('type', 'free_session');
-            formData.append('access_key', config.web3FormsAccessKey);
-      
-            const response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              body: formData
-            });
-            const result = await response.json();
-            if (result.success) {
-              console.log('Free session form submitted successfully');
-              alert(`Thank you, ${name}! You've signed up for the free weekly sessions. Details will be sent to ${email}.`);
-              closeOverlays();
-            } else {
-              console.error('Free session submission failed:', result);
-              alert('Submission failed. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error in handleFreeSessionSubmit:', error);
-            alert('An error occurred during submission. Please try again.');
-          }
-        }
-      
-        // Invite to Speak Submission
-        async function handleInviteSpeakSubmit(event) {
-          event.preventDefault();
-          console.log('Submitting invite to speak form');
-          try {
-            const name = document.getElementById('inviteName').value;
-            const email = document.getElementById('inviteEmail').value;
-            const organization = document.getElementById('inviteOrganization').value;
-            const details = document.getElementById('inviteDetails').value;
-      
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('organization', organization);
-            formData.append('details', details);
-            formData.append('type', 'invite_speak');
-            formData.append('access_key', config.web3FormsAccessKey);
-      
-            const response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              body: formData
-            });
-            const result = await response.json();
-            if (result.success) {
-              console.log('Invite to speak form submitted successfully');
-              alert(`Thank you, ${name}! Your request to invite Dr. OVO to speak at ${organization} has been received. We'll contact you at ${email}.`);
-              closeOverlays();
-            } else {
-              console.error('Invite to speak submission failed:', result);
-              alert('Submission failed. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error in handleInviteSpeakSubmit:', error);
-            alert('An error occurred during submission. Please try again.');
-          }
-        }
-      
-        // Payment Gateway Integration
-        function initiatePaystackPayment(amount, email, type) {
-          console.log(`Initiating Paystack payment for ${type}, amount: ${amount}, email: ${email}`);
-          try {
-            const handler = PaystackPop.setup({
-              key: config.paystackPublicKey,
-              email: email,
-              amount: amount,
-              currency: 'NGN',
-              metadata: { type: type },
-              callback: function (response) {
-                console.log('Paystack payment successful:', response);
-                alert(`Payment successful! Reference: ${response.reference}`);
-                closeOverlays();
-              },
-              onClose: function () {
-                console.log('Paystack payment window closed');
-                alert('Payment window closed.');
-              }
-            });
-            handler.openIframe();
-          } catch (error) {
-            console.error('Paystack Error:', error);
-            alert('Failed to initialize Paystack payment. Please try again.');
-          }
-        }
-      
-        function initiateStripePayment(amount, email, type) {
-          console.log(`Initiating Stripe payment for ${type}, amount: ${amount}, email: ${email}`);
-          try {
-            const stripe = Stripe(config.stripePublicKey);
-            fetch(config.stripeServerEndpoint, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                amount: amount,
-                email: email,
-                type: type,
-                currency: 'usd'
-              })
-            })
-            .then(response => response.json())
-            .then(session => {
-              console.log('Stripe session created:', session);
-              return stripe.redirectToCheckout({ sessionId: session.id });
-            })
-            .then(result => {
-              if (result.error) {
-                console.error('Stripe checkout error:', result.error);
-                alert(result.error.message);
-              }
-            })
-            .catch(error => {
-              console.error('Stripe Error:', error);
-              alert('Failed to initialize Stripe payment. Please try again.');
-            });
-          } catch (error) {
-            console.error('Stripe Error:', error);
-            alert('Failed to initialize Stripe payment. Please try again.');
-          }
-        }
-      
-        // Additional UI Interactions
-        function showMorePopup() {
-          document.getElementById('morePopup').style.display = 'flex';
-        }
-      
-        function closeMorePopup() {
-          document.getElementById('morePopup').style.display = 'none';
-        }
-      
-        function toggleSessionDropdown() {
-          const dropdown = document.getElementById('sessionDropdown');
-          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        }
-      
-        function handlePresaleCTA() {
-          showPresaleOverlay();
-        }
-      
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              target.scrollIntoView({
-                behavior: "smooth",
-              });
-            }
-          });
-        });
-      
-        // Toggle Hamburger Menu
-        document.querySelector('.hamburger').addEventListener('click', function () {
-          this.classList.toggle('active');
-          document.querySelector('.mobile-menu').classList.toggle('active');
-        });
-      
-        // Close Mobile Menu When Clicking a Link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-          link.addEventListener('click', () => {
-            document.querySelector('.hamburger').classList.remove('active');
-            document.querySelector('.mobile-menu').classList.remove('active');
-          });
-        });
-      
-        // Close Mobile Menu When Clicking Outside
-        document.addEventListener('click', (e) => {
-          const hamburger = document.querySelector('.hamburger');
-          const mobileMenu = document.querySelector('.mobile-menu');
-          if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-          }
-        });
-      
-        // Close popup when clicking outside
-        document.getElementById('morePopup').addEventListener('click', function(event) {
-          if (event.target === this) {
-            closeMorePopup();
-          }
-        });
-      
-        // Close popup with Escape key
-        document.addEventListener('keydown', function(event) {
-          if (event.key === 'Escape') {
-            closeMorePopup();
-            closeOverlays();
-          }
-        });
-      
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-          const dropdown = document.getElementById('sessionDropdown');
-          const button = e.target.closest('.sam .cta-button');
-          if (!dropdown.contains(e.target) && !button) {
-            dropdown.style.display = 'none';
-          }
-        });
-      
-        // Add scroll effect to header
-        window.addEventListener("scroll", function () {
-          const header = document.querySelector(".header");
-          if (window.scrollY > 50) {
-            header.style.background = "rgba(255, 255, 255, 0.98)";
-            header.style.backdropFilter = "blur(20px)";
-          } else {
-            header.style.background = "rgba(255, 255, 255, 0.95)";
-            header.style.backdropFilter = "blur(20px)";
-          }
-        });
-      
-        // Parallax effect for hero elements
-        window.addEventListener("scroll", function () {
-          const scrolled = window.pageYOffset;
-          const rate = scrolled * -0.5;
-          const heroImage = document.querySelector(".hero-image");
-          if (heroImage) {
-            heroImage.style.transform = `translateY(${rate * 0.3}px)`;
-          }
-        });
-      
-        // Animate elements on scroll
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
-      
-        const observer = new IntersectionObserver(function (entries) {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }
-          });
-        }, observerOptions);
-      
-        document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
-          el.style.opacity = "0";
-          el.style.transform = "translateY(30px)";
-          el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-          observer.observe(el);
-        });
-      
-        // Add micro-interactions
-        document.querySelectorAll(".contact-btn, .more-info-btn").forEach((btn) => {
-          btn.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-2px)";
-            this.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.15)";
-          });
-          btn.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(0)";
-            this.style.boxShadow = "none";
-          });
-        });
-      
-        // Floating animation for winner badge
-        function animateWinnerBadge() {
-          const badge = document.querySelector(".winner-badge");
-          if (badge) {
-            badge.style.animation = "float 3s ease-in-out infinite";
-          }
-        }
-      
-        const style = document.createElement("style");
-        style.textContent = `
-          @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-          }
-        `;
-        document.head.appendChild(style);
-      
-        // Initialize animations after page load
-        window.addEventListener("load", function () {
-          setTimeout(() => {
-            document.querySelectorAll(".hero-content, .productivity-card").forEach((el) => {
-              el.style.opacity = "1";
-              el.style.transform = "translateY(0)";
-            });
-            animateWinnerBadge();
-          }, 300);
-        });
-      
-        // Timer Logic
-        let targetDate = localStorage.getItem('timerTargetDate') ? new Date(localStorage.getItem('timerTargetDate')) : new Date('2025-09-27T15:58:00+01:00'); // WAT is UTC+1
-        if (!localStorage.getItem('timerTargetDate')) {
-          localStorage.setItem('timerTargetDate', targetDate.toISOString());
-        }
-      
-        function updateTimer() {
-          const now = new Date();
-          const timeLeft = targetDate - now;
-          if (timeLeft <= 0) {
-            document.getElementById('days').textContent = '00';
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
-            return;
-          }
-          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-          document.getElementById('days').textContent = String(days).padStart(2, '0');
-          document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-          document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-          document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-      
-        updateTimer();
-        setInterval(updateTimer, 1000);
-      
-        // Parallax effect for testimonial section
-        document.addEventListener("mousemove", (e) => {
-          const section = document.querySelector(".testimonial-sections");
-          const rect = section.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          const moveX = (x - 0.5) * 10;
-          const moveY = (y - 0.5) * 10;
-          section.style.transform = `perspective(1000px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`;
-        });
-      
-        document.addEventListener("mouseleave", () => {
-          const section = document.querySelector(".testimonial-sections");
-          section.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-        });
-      
-        // Add card hover animations
-        const cards = document.querySelectorAll(".testimonial-card");
-        cards.forEach((card) => {
-          card.addEventListener("mouseenter", () => {
-            card.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
-          });
-        });
-      
-        // Animate stats on scroll/load
-        function animateStats() {
-          const statNumbers = document.querySelectorAll(".stat-number");
-          statNumbers.forEach((stat, index) => {
-            const finalValue = stat.textContent;
-            let currentValue = 0;
-            const increment = parseInt(finalValue) / 30;
-            const timer = setInterval(() => {
-              currentValue += increment;
-              if (currentValue >= parseInt(finalValue)) {
-                stat.textContent = finalValue;
-                clearInterval(timer);
-              } else {
-                stat.textContent = Math.floor(currentValue);
-              }
-            }, 50 + index * 20);
-          });
-        }
-      
-        window.addEventListener("load", () => {
-          setTimeout(animateStats, 500);
-        });
-          // Get the button
-  const backToTopButton = document.getElementById('back-to-top');
+      }, 50 + index * 20);
+    });
+  }
+
+  window.addEventListener("load", () => {
+    setTimeout(animateStats, 500);
+  });
+    // Get the button
+const backToTopButton = document.getElementById('back-to-top');
 
 // Show/hide button based on scroll position
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) { // Show button after scrolling 300px
-    backToTopButton.classList.add('show');
-  } else {
-    backToTopButton.classList.remove('show');
-  }
+if (window.scrollY > 300) { // Show button after scrolling 300px
+backToTopButton.classList.add('show');
+} else {
+backToTopButton.classList.remove('show');
+}
 });
 
 // Smooth scroll to top when clicked
 backToTopButton.addEventListener('click', (e) => {
-  e.preventDefault(); // Prevent default anchor behavior
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth' // Smooth scrolling
-  });
+e.preventDefault(); // Prevent default anchor behavior
+window.scrollTo({
+top: 0,
+behavior: 'smooth' // Smooth scrolling
 });
-      </script>
+});
+</script>
   </body>
 </html>

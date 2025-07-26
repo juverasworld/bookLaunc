@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Family Companion– Family Health Guide by Dr. OVO</title>
+
+    <meta property="og:title" content="My Family Companion– Family Health Guide by Dr. OVO" />
+    <meta property="og:description" content="From singlehood to parenthood, everything you need to build a safe and healthy family." />
+    <meta name="keywords" content="My Family Companion, Family Health Guide, Dr. OVO, singlehood, parenthood, healthy family" />
+    <meta property="og:image" content="https://www.myfamilycompanion.org/bg1.jpg" />
+    <meta property="og:url" content="https://www.myfamilycompanion.org" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="author" content="Dr. Otubo Victor" />
+
+    <link rel="icon" href="./bg1.jpg" type="image/png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles.css">
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+          // This is your EmailJS Public Key
+          emailjs.init({ publicKey: "wYOLVvExDoBUBzO12" });
+      })();
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="/index.html"><img src="./logo.jpg" style="border-radius: 30%;" alt="My Family Companion Logo" class="logo-icon"></a>
+            <nav class="nav-menu">
+                <a href="./blog.html">Blog</a>
+                <a href="#join-community">Join Community</a>
+                <a href="#events">Events</a>
+                <a href="#Podcast">Podcast</a>
+                <a href="mailto:contact@myfamilycompanion.com">contact@myfamilycompanion.com</a>
+            </nav>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+            <div class="mobile-menu">
+                <a href="./blog.html">Blog</a>
+                <a href="#join-community">Join Community</a>
+                <a href="#events">Events</a>
+                <a href="#Podcast">Podcast</a>
+                <a href="mailto:contact@myfamilycompanion.com">contact@myfamilycompanion.com</a>
+            </div>
+            <a href="#" class="contact-btn" onclick="openOverlay('presale')">Presale Order</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="hero-image">
+             <img src="./bg1.jpg" alt="Team collaboration" class="main-image" />
+            <div class="winner-badge"><div><div class="winner-text">90 Days Presale<br /> 30% Off</div></div></div>
+            <div class="productivity-card"><div class="productivity-subtitle">Evoking true stories<br>and practical insights.<br>from a concerned doctor.</div></div>
+        </div>
+        <div class="hero-content">
+            <div class="timer-container"><div class="timer"><div class="time-unit"><span id="days">00</span><span class="label">Days</span></div><div class="time-unit"><span id="hours">00</span><span class="label">Hours</span></div><div class="time-unit"><span id="minutes">00</span><span class="label">Minutes</span></div><div class="time-unit"><span id="seconds">00</span><span class="label">Seconds</span></div></div></div>
+            <h1 class="hero-title">My Family Companion</h1>
+            <div class="her">
+                <p class="hero-descript" style="padding-bottom:5px ;">Building a healthy family starts long before the wedding day, and continues with every decision you make as a parent</p>
+                <p class="hero-description">In <em>My Family Companion</em>, Dr. OVO draws from years of medical education and practice...<a href="#" class="more-link" onclick="showMorePopup()">... more</a></p>
+            </div>
+            <div class="cta-section">
+                <a href="#" class="more-info-btn" onclick="openOverlay('donation')">Donate Copy</a>
+                <a href="#" class="more-info-btn" onclick="openOverlay('presale')">Presale Order</a>
+            </div>
+        </div>
+    </main>
+    
+    <div class="body">
+        <div class="portfolio-card">
+            <div class="content-section">
+                <div class="tagline">About The Author</div>
+                <h1 class="main-heading">It's everything, you'll ever need.</h1>
+                <div class="topics-container"><ul class="topics-list"><li>Sex</li><li>Pregnancy</li><li>Maternal & Child Health</li><li>Family & Spouse Support</li></ul></div>
+                <p class="description">Dr. OVO (Otubo Victor Ogemdi) was barely 10 years old when he watched his little sister die...</p>
+                <div class="stats-container">
+                    <div class="stat-item"><span class="stat-number blue">14</span>+</span><span class="stat-label">Certificate<br />Achievement</span></div>
+                    <div class="stat-item"><span class="stat-number orange">15</span><span class="stat-label">Years<br />Combined Experience</span></div>
+                </div>
+                <div class="sam">
+                    <button class="cta-button" onclick="toggleSessionDropdown()">Book a session</button>
+                    <div class="session-dropdown" id="sessionDropdown">
+                        <a href="#" class="session-option" onclick="openOverlay('freeSession')">Join Free Weekly Sessions</a>
+                        <a href="#" class="session-option" onclick="openOverlay('session')">Book a Paid Private Session</a>
+                    </div>
+                    <button class="cta-button" onclick="openOverlay('inviteSpeak')">Invite to Speak</button>
+                </div>
+            </div>
+            <div class="profile-section"><div class="profile-image"><img src="./author2.jpg" alt="Dr Obo Profile picture" /></div><div class="chat-bubble">Dr OVO</div></div>
+        </div>
+        </div>
+    
+    <div id="morePopup" class="popup-overlay"><div class="popup-content"><span class="close-popup" onclick="closeMorePopup()">&times;</span><div class="popup-text">...full text here...</div></div></div>
+    
+    <div class="overlay" id="donationOverlay"><div class="overlay-content"><span class="close-btn" onclick="closeOverlays()">×</span><h2 class="overlay-title">Select Donation Copies</h2>...</div></div>
+    <div class="overlay" id="donationFormOverlay"><div class="overlay-content">...</div></div>
+    <div class="overlay" id="presaleOverlay"><div class="overlay-content">...</div></div>
+    <div class="overlay" id="presaleFormOverlay"><div class="overlay-content">...</div></div>
+    <div class="overlay" id="sessionOverlay"><div class="overlay-content">...</div></div>
+    <div class="overlay" id="freeSessionOverlay"><div class="overlay-content">...</div></div>
+    <div class="overlay" id="inviteSpeakOverlay"><div class="overlay-content">...</div></div>
+    
+    <footer><p>&copy; <span id="copyright-year"></span> My Family Companion. All rights reserved.</p></footer>
+    <a href="#" id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></a>
+
+    <script>
+        // --- ⚠️ CONFIGURATION ---
+        const AppConfig = {
+            paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY',
+            emailJsServiceId: 'YOUR_SERVICE_ID',
+            mailchimpActionUrl: 'https://your-account.us1.list-manage.com/subscribe/post?u=...',
+
+            templates: {
+                owner_subscribe: 'YOUR_OWNER_SUBSCRIBE_TEMPLATE_ID',
+                owner_presale: 'YOUR_OWNER_PRESALE_TEMPLATE_ID',
+                owner_booking: 'YOUR_OWNER_BOOKING_TEMPLATE_ID',
+                owner_invite: 'YOUR_OWNER_INVITE_TEMPLATE_ID',
+                owner_free_session: 'YOUR_OWNER_FREE_SESSION_TEMPLATE_ID',
+                user_presale_confirmation: 'YOUR_USER_PRESALE_CONFIRMATION_ID',
+                user_donation_confirmation: 'YOUR_USER_DONATION_CONFIRMATION_ID',
+                user_paid_session_confirmation: 'YOUR_USER_PAID_SESSION_CONFIRMATION_ID',
+                user_invite_confirmation: 'YOUR_USER_INVITE_CONFIRMATION_ID',
+                user_free_session_confirmation: 'YOUR_USER_FREE_SESSION_CONFIRMATION_ID'
+            },
+
+            pricePerCopyNGN: 20000,
+            pricePerCopyUSD: 15,
+            amazonLink: 'https://www.amazon.com/your-book-link'
+        };
+
+        // --- ORIGINAL UI & FORM STATE VARIABLES ---
+        let selectedDonation = { copies: 0, totalNGN: 0, totalUSD: 0 };
+        let selectedPresale = { type: '', copies: 0, totalNGN: 0 };
+        
+        // --- MAILCHIMP HELPER ---
+        async function addToMailchimp(formData) {
+            // ... (Mailchimp logic from previous response)
+        }
+
+        // --- OVERLAY & UI CONTROLS (Original Functions) ---
+        function openOverlay(id) { document.getElementById(id + 'Overlay').style.display = 'flex'; }
+        function closeOverlays() { document.querySelectorAll('.overlay').forEach(o => o.style.display = 'none'); }
+        function showMorePopup() { document.getElementById('morePopup').style.display = 'flex'; }
+        function closeMorePopup() { document.getElementById('morePopup').style.display = 'none'; }
+        // ... (All other original UI functions like toggleSessionDropdown, animations, etc.)
+
+        // --- DONATION LOGIC (Original Functions updated) ---
+        function calculateDonationTotal() { /* ... original calculation logic ... */ }
+        function proceedToDonationForm() { /* ... original logic ... */ }
+        function updateDonationSummary() { /* ... original logic ... */ }
+
+        // --- PRESALE LOGIC (Original Functions updated) ---
+        function showPresaleForm(type) { /* ... original logic ... */ }
+        function calculatePresaleTotal() { /* ... original calculation logic ... */ }
+
+        // --- FORM SUBMISSION HANDLERS (UPDATED) ---
+
+        // NEWSLETTER SUBMIT
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // EmailJS and Mailchimp logic here
+        });
+
+        // PRESALE SUBMIT
+        function handlePresaleSubmit(event) {
+            event.preventDefault();
+            // EmailJS and Mailchimp logic here
+            // Followed by Paystack or Amazon redirect from your original logic
+        }
+
+        // DONATION SUBMIT
+        function handleDonationSubmit(event) {
+            event.preventDefault();
+            // This now just triggers payment. Confirmation happens in the payment callback.
+            initiatePaystackPayment(selectedDonation.totalNGN, document.getElementById('donationEmail').value, 'Donation');
+        }
+
+        // OTHER FORM SUBMITS (Free Session, Paid Session, Invite)
+        // ... Each will have its own handle... function with EmailJS & Mailchimp calls
+        
+        // --- PAYSTACK PAYMENT (UPDATED) ---
+        function initiatePaystackPayment(amount, email, type) {
+            const handler = PaystackPop.setup({
+                key: AppConfig.paystackPublicKey,
+                email: email,
+                amount: amount,
+                currency: 'NGN',
+                callback: function(response) {
+                    alert('Payment Successful!');
+                    // 1. Send user confirmation email via EmailJS
+                    // 2. Add user to Mailchimp list
+                    closeOverlays();
+                },
+                onClose: () => alert('Payment window closed.')
+            });
+            handler.openIframe();
+        }
+
+        // --- All other original script logic at the end ---
+        // (Timer, back-to-top, hamburger menu, etc.)
+    </script>
+</body>
+
+</html>
