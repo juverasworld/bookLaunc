@@ -1805,7 +1805,8 @@ viewMoreButton.classList.remove('shake');
             paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY',
             emailJsServiceId: 'YOUR_SERVICE_ID',
             mailchimpActionUrl: 'https://your-account.us1.list-manage.com/subscribe/post?u=...',
-
+            mailchimpUserId: 'YOUR_MAILCHIMP_USER_ID', // e.g., 'a1b2c3d4e5f6g7h8i9j0'
+            mailchimpListId: 'YOUR_MAILCHIMP_LIST_ID', // e.g., 'k1l2m3n4o5'
             templates: {
               owner_subscribe: 'YOUR_OWNER_SUBSCRIBE_TEMPLATE_ID',
               owner_presale: 'YOUR_OWNER_PRESALE_TEMPLATE_ID',
@@ -2432,7 +2433,46 @@ alert('Error calculating presale total. Please try again.');
 
 
 
+  async function addToMailchimp(formData) {
+    try {
+        // Prepare the data for Mailchimp
+        const mailchimpData = {
+            'u': AppConfig.mailchimpUserId, // From updated AppConfig
+            'id': AppConfig.mailchimpListId, // From updated AppConfig
+            'EMAIL': formData.EMAIL,
+            'FNAME': formData.FNAME,
+            'PHONE': formData.PHONE || '',
+            'MMERGE3': formData.MMERGE3 || '',
+            'MMERGE4': formData.MMERGE4 || '',
+            'MMERGE5': formData.MMERGE5 || ''
+        };
 
+        // Send POST request to Mailchimp
+        const response = await fetch(AppConfig.mailchimpActionUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(mailchimpData).toString(),
+            mode: 'no-cors'
+        });
+
+        console.log(`Mailchimp subscription successful for ${formData.EMAIL}`);
+        return { success: true, message: 'Subscribed to Mailchimp' };
+    } catch (error) {
+        console.error('Mailchimp subscription error:', error);
+        let errorMessage = 'Failed to subscribe to Mailchimp. Please try again later.';
+        if (error.response) {
+            const errorData = await error.response.json();
+            if (errorData.title === 'Member Exists') {
+                errorMessage = 'This email is already subscribed.';
+            } else if (errorData.title === 'Invalid Resource') {
+                errorMessage = 'Invalid email address. Please check and try again.';
+            }
+        }
+        throw new Error(errorMessage);
+    }
+}
 
 
 
@@ -2858,7 +2898,7 @@ function initiatePaystackPayment(amount, email, type, currency = "NGN") {
         // Send user confirmation email
         await emailjs.send(
           AppConfig.emailJsServiceId,
-          AppConfig.templates.user_session_confirmation,
+          AppConfig.templates.user_paid_session_confirmation,
           {
             user_name: selectedSession.name,
             user_email: selectedSession.email,
